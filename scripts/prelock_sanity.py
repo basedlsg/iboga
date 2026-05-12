@@ -10,6 +10,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+IGNORED_DIRS = {".git", "__pycache__", "slop-code-bench"}
 
 REQUIRED_FILES = [
     "CLAUDE.md",
@@ -91,8 +92,7 @@ def check_stale_phrases() -> None:
         for path in ROOT.rglob("*")
         if path.is_file()
         and path.name != "prelock_sanity.py"
-        and ".git" not in path.parts
-        and "__pycache__" not in path.parts
+        and not (set(path.parts) & IGNORED_DIRS)
         and path.suffix in {".md", ".R", ".py", ".json"}
     )
     hits = [phrase for phrase in STALE_PHRASES if phrase in haystack]
