@@ -2,7 +2,7 @@
 # ---
 # Status: draft, target lock 2026-07-01
 # Pre-registered: must be committed unchanged before any treatment trajectory runs
-# Reads: ~/iboga-data/sessions/*.json (one per trajectory)
+# Reads: ~/iboga-data/sessions/*.json (one per trajectory summary)
 # Writes: ~/iboga-data/analysis/results-{date}.json + analysis-{date}.md
 #
 # Design (matches prereg.md §9):
@@ -48,6 +48,9 @@ load_trajectory <- function(path) {
       arm             = d$arm,
       erosion_slope   = d$metrics$erosion_slope,
       verbosity_slope = d$metrics$verbosity_slope,
+      # solve_rate is precomputed by the trajectory post-processor as
+      # solved_checkpoints / expected_checkpoints, matching SlopCodeBench
+      # pct_checkpoints_solved / 100.
       solve_rate      = d$metrics$solve_rate,
       excluded        = isTRUE(d$excluded),
       exclude_reason  = d$exclude_reason %||% NA_character_

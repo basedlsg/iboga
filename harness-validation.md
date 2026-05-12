@@ -8,7 +8,7 @@ tags: [iboga, slopcodebench, harness, validation]
 
 # Harness Validation Log
 
-Purpose: record the Week 2 SlopCodeBench fork inspection and validation gates before OSF lock. This file should contain findings only from the SlopCodeBench fork and Iboga harness work, not sibling vault projects.
+Purpose: record the Week 2 SlopCodeBench fork inspection and validation gates before OSF lock. This file should contain findings only from the SlopCodeBench fork, `scb-check`, and Iboga harness work, not sibling vault projects.
 
 Local helper scripts:
 
@@ -17,9 +17,9 @@ Local helper scripts:
 
 ## Scope Rules
 
-- Inspect upstream `metrics/` to understand behavior.
-- Do not modify upstream `metrics/`.
-- Harness modifications stay in `runner/` or equivalent agent-invocation code.
+- Inspect upstream metric code and `scb-check` behavior to understand the exact exported `verbosity` and `erosion` fields.
+- Do not modify upstream metric files or `scb-check` behavior.
+- Harness modifications stay in the agent-invocation path, especially `src/slop_code/agent_runner/runner.py` and the run CLI/config plumbing needed to pass a hook path.
 - Retrospective text stays on the host under `~/iboga-data/sessions/{trajectory-id}/` and is injected into the next checkpoint prompt only.
 - Nothing from `~/iboga-data/sessions/*` may be mounted into or copied into the checkpoint workspace.
 
@@ -28,59 +28,128 @@ Local helper scripts:
 | Field | Value |
 |---|---|
 | Upstream repo | `SprocketLab/slop-code-bench` |
-| Fork repo | `basedlsg/slop-code-bench` or `basedlsg/iboga` fork path |
+| Fork repo | `basedlsg/slop-code-bench` |
 | Upstream commit hash | `080922495aba9aedc4b7a6c80803bb5ffd301a49` |
-| Local clone path | `<TBD>` |
-| Validation date | 2026-05-12 pin recorded; code inspection pending |
+| Local clone path | `projects/iboga/slop-code-bench/` |
+| Validation date | 2026-05-12 code inspection complete; reproduction pending |
+
+Local setup for reproduction:
+
+| Field | Value |
+|---|---|
+| SlopCodeBench local environment | `uv sync` complete under `projects/iboga/slop-code-bench/.venv/` |
+| `uv` cache | `projects/iboga/.uv-cache/` |
+| Managed problem catalog home | `projects/iboga/.scbench/` |
+| Problem catalog version | `v1.0` |
+| Problem catalog commit | `4d38d300059667d57e43c31969bc455f5c338b52` |
+| Catalog problem count | 36 |
+| Docker status on 2026-05-12 | Docker CLI installed; daemon not running (`Cannot connect to the Docker daemon`) |
+
+`scb-check` pin found during inspection:
+
+| Field | Value |
+|---|---|
+| Package | `scb-check` |
+| Version used by `uvx scb-check --version` | `0.1.3` |
+| PyPI wheel inspected locally | `scb_check-0.1.3-py3-none-any.whl` |
+| Wheel SHA-256 | `f13040c8ca8f57b8dc8137692c37e0f181fe55867691dfe6a5b8a79d2513f50f` |
+| Source repository in package metadata | `https://github.com/gabeorlanski/scb-check` |
 
 ## Metric Inspection
 
-### `metrics/verbosity.py`
+### Repository Layout Finding
 
-Questions to answer:
+At pinned SlopCodeBench commit `080922495aba9aedc4b7a6c80803bb5ffd301a49`, there is no in-repo `metrics/verbosity.py` and no metric implementation file named `metrics/erosion.py`.
 
-- [ ] What clone-detection algorithm is used?
-- [ ] Is the clone detector deterministic?
-- [ ] What files/directories are included and excluded?
-- [ ] Does it traverse only the checkpoint workspace?
-- [ ] Does it follow symlinks?
-
-Findings:
+The exported checkpoint fields are assembled in `slop-code-bench/src/slop_code/metrics/checkpoint/driver.py`. That function first loads evaluation, inference, quality, and rubric metrics, then shells out:
 
 ```text
-<TBD>
+uvx scb-check check --report --include-all <checkpoint>/snapshot
 ```
 
-### `metrics/erosion.py`
+The `verbosity` and `erosion` fields used by run summaries come from the JSON report emitted by `scb-check`, not from a local `metrics/verbosity.py` or `metrics/erosion.py`.
 
-Questions to answer:
+SlopCodeBench also contains local helper functions in `src/slop_code/metrics/checkpoint/composites.py`:
 
-- [ ] Confirm mass definition: `CC(f) * sqrt(SLOC(f))`.
-- [ ] Confirm high-complexity threshold and whether it is `CC(f) > 10`.
-- [ ] Confirm slope computation: OLS over checkpoint index or other method.
-- [ ] Confirm whether slope is computed per trajectory before aggregation.
+- `compute_checkpoint_verbosity(metrics)` returns `verbosity_flagged_pct` if present, else falls back to `clone_lines / loc + violation_pct`.
+- `compute_checkpoint_erosion(metrics)` returns `mass.high_cc_pct` if it is between 0 and 1.
 
-Findings:
+Those helpers are exported and tested, but no production call site in `src/` invokes them at this commit. The production checkpoint export path depends on `scb-check`.
 
-```text
-<TBD>
-```
+### Verbosity
+
+Confirmed `scb-check==0.1.3` behavior:
+
+- Score formula: `verbosity = verbosity_flagged_loc / total_loc`.
+- `verbosity_flagged_loc` is the per-file union of:
+  - clone SLOC lines,
+  - ast-grep SLOC lines,
+  - trivial-wrapper SLOC lines.
+- This is slightly broader than the paper shorthand and the original Iboga draft, which named only clone lines and ast-grep lines.
+
+Clone detection details:
+
+- Implemented in `scb_check/analysis/clones.py`.
+- Parses Python with tree-sitter.
+- Candidate AST node types: `function_definition`, `if_statement`, `for_statement`, `while_statement`, `with_statement`, `try_statement`, `match_statement`.
+- Minimum candidate size: at least 3 SLOC lines by default.
+- Excludes `TYPE_CHECKING` / `typing.TYPE_CHECKING` blocks.
+- Normalizes identifiers to `$VARn`.
+- Normalizes literals to typed placeholders such as `$STR`, `$INT`, `$FLOAT`, `$BOOL`, `$NONE`.
+- Ignores comments and plain string expression statements in the normalized subtree.
+- Hashes normalized AST subtrees with MD5, truncated to 12 hex chars.
+- Groups are exact hash matches. The algorithm is deterministic.
+
+Traversal and isolation details:
+
+- Implemented in `scb_check/walker.py`.
+- Input root is the checkpoint `snapshot` directory passed by SlopCodeBench.
+- Only `*.py` files are yielded.
+- Common generated/cache directories are excluded by default.
+- Symlinks are skipped for both directories and files (`not child.is_symlink()`), which helps prevent host-session leakage if a symlink were accidentally placed in the workspace.
+
+### Erosion
+
+Confirmed `scb-check==0.1.3` behavior:
+
+- `ParsedSymbol.cc_mass() = cyc_complexity * sqrt(sloc)`.
+- High-CC threshold is `cyc_complexity > 10`.
+- `erosion = sum(cc_mass(high_cc_functions)) / sum(cc_mass(all_functions))`.
+- Empty denominator returns `0.0`.
+
+The in-repo SlopCodeBench quality metric `src/slop_code/metrics/checkpoint/mass.py` computes the same high-CC mass share as `mass.high_cc_pct`, but production checkpoint summaries use the `erosion` field emitted by `scb-check`.
+
+Slope computation:
+
+- SlopCodeBench run summaries aggregate checkpoint `verbosity` and `erosion` as distributional stats, including means.
+- The OLS slope across checkpoint index is not computed by the upstream metric path found here.
+- Iboga must compute `erosion_slope` and `verbosity_slope` in its own trajectory post-processor from per-checkpoint `checkpoint_results.jsonl`, using the exported `erosion` and `verbosity` fields and the checkpoint order `idx`.
 
 ## Runner Hook Inspection
 
-Questions to answer:
+Questions answered:
 
-- [ ] Where is the checkpoint `k+1` spec/prompt assembled?
-- [ ] Where is the fresh Docker container launched?
-- [ ] What object carries the workspace path?
-- [ ] What object carries model/provider configuration?
-- [ ] Where can `--between-checkpoint-hook` be inserted without touching metrics?
+- Checkpoint prompt assembly: `slop-code-bench/src/slop_code/agent_runner/runner.py::get_task_for_checkpoint()`.
+- Prompt write path: same function writes `prompt.txt` under the checkpoint output directory.
+- Agent context reset between checkpoints: `AgentRunner._setup_for_checkpoint()` calls `agent.finish_checkpoint(reset_context=True)` for non-first checkpoints.
+- Checkpoint loop: `AgentRunner._run_problem()` iterates checkpoints, calls `_run_checkpoint()`, evaluates, appends summary, and then advances.
+- CLI/config plumbing: `slop-code-bench/src/slop_code/entrypoints/commands/run_agent.py` builds a `RunTaskConfig`, which is defined in `src/slop_code/entrypoints/problem_runner/models.py`.
 
 Chosen hook insertion point:
 
 ```text
-<TBD>
+Add hook configuration to RunTaskConfig, thread it into AgentRunner, and invoke it in AgentRunner._run_problem()
+for checkpoints idx > 0 after the previous checkpoint has finished and before the next prompt is rendered.
+The hook returns prompt-prefix text. run_checkpoint()/get_task_for_checkpoint() receives that prefix and prepends it
+to the checkpoint k+1 task string before writing prompt.txt and before agent.run_checkpoint(task).
 ```
+
+Rationale:
+
+- This keeps metrics untouched.
+- The previous checkpoint snapshot, diff, evaluation files, and agent artifacts exist by the time the hook runs.
+- The prefix is injected into the agent prompt only; no retrospective file needs to enter `snapshot`.
+- The first checkpoint gets no retrospective prefix.
 
 Proposed hook contract:
 
@@ -89,16 +158,39 @@ hook(
   trajectory_id,
   model_id,
   problem_id,
-  checkpoint_index,
-  checkpoint_workspace_dir,
-  prior_diff_path,
+  previous_checkpoint_name,
+  current_checkpoint_name,
+  previous_checkpoint_output_dir,
+  previous_snapshot_dir,
+  previous_diff_path,
   prior_session_dir
 ) -> prompt_prefix_text
 ```
 
+Implementation facts confirmed before coding:
+
+- Prior diff filename is `diff.json`; `save_agent_checkpoint_info()` writes it with `diff.model_dump_json()`.
+- `_run_inference()` calls `session.finish_checkpoint(snapshot_dir)` in a `finally` block, so a checkpoint snapshot/diff is produced even when agent inference raises.
+- The default environment config `configs/environments/docker-python3.12-uv.yaml` sets `docker.workdir: /workspace` and `docker.mount_workspace: true` with no `extra_mounts` field.
+
+Open implementation questions before coding:
+
+- Decide whether the hook subprocess receives JSON on stdin or command-line arguments; JSON stdin is less brittle.
+- Add a no-op hook mode that exercises the same call path and returns an empty string for Arm 0.
+- Confirm resume behavior: completed checkpoints should not re-run hooks, and hook outputs must be persisted on host so resumed runs reuse the prior prefix.
+
 ## Baseline Reproduction Gate
 
-Run upstream/forked harness on 5 published baseline models x 5 problems. Pass condition: erosion slope and verbosity slope reproduce upstream report within ±2 percentage points.
+Run upstream/forked harness on 5 published baseline models x 5 problems. Pass condition: solve rate, erosion slope, and verbosity slope reproduce upstream report within +/-2 percentage points where the upstream report exposes the comparable statistic.
+
+No-cost setup checks completed on 2026-05-12:
+
+- `uv sync` succeeded for the pinned SlopCodeBench clone.
+- Problem catalog installed locally under `projects/iboga/.scbench/`.
+- `configs/runs/lite_under20.yaml` resolves to two cheap problems: `mvvault` and `xjq`.
+- Resolved default run config for `lite_under20`: `agent=claude_code@2.0.51`, `model=anthropic/sonnet-4.5`, `thinking=high`, `environment=docker-python3.12-uv`.
+- `mvvault` has 6 checkpoints and entry file `mvault`; `xjq` has 5 checkpoints and entry file `xjq`.
+- Docker daemon was not running, so no checkpoint execution was started.
 
 | Model | Problems | Solve delta | Erosion slope delta | Verbosity slope delta | Pass? | Notes |
 |---|---:|---:|---:|---:|---|---|
@@ -111,7 +203,7 @@ Run upstream/forked harness on 5 published baseline models x 5 problems. Pass co
 Gate verdict:
 
 ```text
-<TBD>
+Pending. Local dependencies and problem catalog are ready; Docker daemon must be started before the first no-treatment dry run.
 ```
 
 Comparison helper:
@@ -125,7 +217,7 @@ python3 scripts/compare_metric_outputs.py \
 
 ## Arm 0 Hook Neutrality Gate
 
-Arm 0: run the between-checkpoint hook infrastructure with empty retrospective output. Pass condition: no-hook baseline vs Arm 0 no-op hook differs by no more than ±2 percentage points on erosion and verbosity.
+Arm 0: run the between-checkpoint hook infrastructure with empty retrospective output. Pass condition: no-hook baseline vs Arm 0 no-op hook differs by no more than +/-2 percentage points on erosion and verbosity.
 
 | Model | Problem set | Erosion delta | Verbosity delta | Solve delta | Pass? | Notes |
 |---|---|---:|---:|---:|---|---|
@@ -134,25 +226,37 @@ Arm 0: run the between-checkpoint hook infrastructure with empty retrospective o
 Gate verdict:
 
 ```text
-<TBD>
+Pending. Hook not implemented yet.
 ```
 
 ## Retrospective Isolation Gate
 
-Pass condition: `~/iboga-data/sessions/*` never enters the Docker workspace and cannot be traversed by AST-Grep, radon, or clone detection.
+Pass condition: `~/iboga-data/sessions/*` never enters the Docker workspace and cannot be traversed by `scb-check`, AST-Grep, radon, or clone detection.
 
 Checks:
 
-- [ ] Confirm Docker mount list excludes `~/iboga-data`.
+- [x] Confirm default Docker/session mount list excludes `~/iboga-data`.
+- [ ] Add Iboga wrapper assertion that spec/runtime mounts exclude `~/iboga-data`.
 - [ ] Confirm hook output is prompt text only.
-- [ ] Confirm no session/corpus files are written under the checkpoint workspace.
-- [ ] Confirm metrics traversal root is checkpoint workspace only.
-- [ ] Confirm symlink behavior cannot leak host session files.
+- [ ] Confirm no session/corpus files are written under the checkpoint workspace or `snapshot`.
+- [x] Confirm metric traversal root is checkpoint `snapshot` only for the `scb-check` composite fields.
+- [x] Confirm `scb-check` skips symlinked files and directories.
+
+Code-inspection findings from 2026-05-12:
+
+- `Session.from_environment_spec()` creates a workspace in a temporary directory.
+- `Session.spawn()` and `Session.exec()` pass that temp workspace as the runtime `working_dir`.
+- Docker runtime `_build_volumes()` mounts the session workspace read-write at `docker.workdir` when `mount_workspace` is true.
+- Static assets mount read-only under `/static/{asset.save_path}`.
+- Spec-level `docker.extra_mounts` and runtime `mounts` are the only inspected paths that could introduce additional host content into a container.
+- The pinned default Python Docker environment has `mount_workspace: true`, `workdir: /workspace`, and no configured `extra_mounts`.
 
 Findings:
 
 ```text
-<TBD>
+Partial. Code inspection supports isolation if Iboga never writes/symlinks host session files into snapshot
+and never passes ~/iboga-data through spec-level or runtime mounts. Runtime assertion and Arm 0 validation
+remain pending.
 ```
 
 ## Lock Decision
@@ -161,15 +265,15 @@ Pre-reg lock may proceed only if all required gates pass.
 
 | Gate | Status |
 |---|---|
-| Upstream pin recorded | Pending |
-| Metric inspection complete | Pending |
-| Runner hook insertion identified | Pending |
-| Baseline reproduction within ±2 pp | Pending |
-| Arm 0 hook neutrality within ±2 pp | Pending |
-| Retrospective isolation verified | Pending |
+| Upstream pin recorded | Complete |
+| Metric inspection complete | Complete for code inspection; baseline reproduction pending |
+| Runner hook insertion identified | Complete for design; implementation pending |
+| Baseline reproduction within +/-2 pp | Pending |
+| Arm 0 hook neutrality within +/-2 pp | Pending |
+| Retrospective isolation verified | Partially inspected; runtime validation pending |
 
 Decision:
 
 ```text
-<TBD>
+Do not lock yet. Next blocked steps are baseline reproduction, hook implementation, Arm 0 neutrality, and runtime mount/isolation validation.
 ```

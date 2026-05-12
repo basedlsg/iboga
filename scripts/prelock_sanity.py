@@ -10,7 +10,14 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-IGNORED_DIRS = {".git", "__pycache__", "slop-code-bench"}
+IGNORED_DIRS = {
+    ".git",
+    "__pycache__",
+    ".scbench",
+    ".uv-cache",
+    "slop-code-bench",
+    "vendor-inspection",
+}
 
 REQUIRED_FILES = [
     "CLAUDE.md",

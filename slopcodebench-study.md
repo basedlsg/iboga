@@ -44,7 +44,7 @@ Erosion = Σ_{f∈F, CC(f)>10} mass(f) / Σ_{f∈F} mass(f)
 - `SLOC(f)` = source lines of code for function `f`
 - Threshold `CC > 10` follows the Radon "high complexity" threshold
 
-**Implementation**: don't reimplement. Use SprocketLab's `metrics/erosion.py` unmodified. Their results in the leaderboard are reproducible by definition only if we use their exact code.
+**Implementation**: don't reimplement. Use SlopCodeBench's exported checkpoint field `erosion` unmodified. Repo inspection on 2026-05-12 found that this field is produced by `src/slop_code/metrics/checkpoint/driver.py`, which shells out to `scb-check==0.1.3`.
 
 ### Verbosity (§2.3, Eq. 4)
 
@@ -52,8 +52,9 @@ Erosion = Σ_{f∈F, CC(f)>10} mass(f) / Σ_{f∈F} mass(f)
 Verbosity = |{AST-Grep Flagged Lines} ∪ {Clone Lines}| / LOC
 ```
 
-- 137 AST-Grep rules detecting wasteful patterns
-- Clone-detection algorithm: **NOT SPECIFIED in paper**. Must inspect their `metrics/verbosity.py` to know whether they use token-shingle, AST-subtree, or threshold-based detection. **Add to Week 2 harness-validation checklist.**
+- AST-Grep rules detecting wasteful patterns
+- Repo inspection correction: `scb-check==0.1.3` computes `verbosity = (clone SLOC ∪ ast-grep SLOC ∪ trivial-wrapper SLOC) / total SLOC`. The paper shorthand omits trivial wrappers.
+- Clone-detection algorithm: exact tree-sitter AST-subtree hashing with normalized identifiers/literals, deterministic MD5 hash groups, default minimum 3 SLOC lines. Documented in `harness-validation.md`.
 
 ### Slope computation
 
@@ -62,7 +63,7 @@ The paper measures the *slope* of erosion and verbosity over checkpoints. Implem
 - Are checkpoints evenly spaced indices or actual time?
 - Slope per problem, then averaged? Or pooled regression?
 
-**Action: read `metrics/slope.py` (or equivalent) in their fork before Week 2.**
+**Repo inspection result**: no upstream slope script found in the checkpoint export path. SlopCodeBench run summaries aggregate checkpoint `verbosity` and `erosion` as statistics including means. Iboga computes OLS slopes from per-checkpoint exported fields and checkpoint `idx`.
 
 ---
 
@@ -84,7 +85,7 @@ An earlier Iboga draft specified "out-of-workspace" retrospective text at `/tmp/
 
 This is a substantive architectural decision. `prereg.md` §8 and §11 were updated on 2026-05-12 to reflect this: retrospective text lives in the agent's *prompt* for next checkpoint, not in any filesystem the workspace AST-Grep sees.
 
-**Confirmed: no contamination risk for verbosity/erosion metrics**, because the retrospective never enters the workspace.
+**Pre-lock contamination stance**: the intended design keeps retrospective text out of the workspace, but this is not treated as proven until runtime mount assertions and the Arm 0 no-op validation pass.
 
 ### Required harness modification
 
@@ -96,7 +97,42 @@ SprocketLab's harness has no documented intervention-hook surface. We need to:
 4. Hook returns text to be prepended to checkpoint `k+1`'s agent prompt
 5. Harness modified to accept prepended-prompt for the next agent invocation
 
-This is roughly 100-200 lines of Python in their existing `runner/` directory. **Allowed scope**: don't touch their `metrics/` directory at all (reproducibility requirement). Only modify `runner/`.
+Repo inspection correction: there is no top-level `runner/` directory. The insertion target is `src/slop_code/agent_runner/runner.py`, with CLI/config plumbing through `src/slop_code/entrypoints/commands/run_agent.py` and `src/slop_code/entrypoints/problem_runner/models.py`. **Allowed scope**: don't touch metric computation at all.
+
+---
+
+## Repo inspection (2026-05-12)
+
+Pinned local clone: `projects/iboga/slop-code-bench/` at `080922495aba9aedc4b7a6c80803bb5ffd301a49`.
+
+Local reproduction setup:
+
+- `uv sync` completed on 2026-05-12.
+- Managed problem catalog installed under `projects/iboga/.scbench/`.
+- Catalog version: `v1.0`.
+- Catalog commit: `4d38d300059667d57e43c31969bc455f5c338b52`.
+- Catalog count: 36 problems.
+- `configs/runs/lite_under20.yaml` resolves to `mvvault` (6 checkpoints, entry file `mvault`) and `xjq` (5 checkpoints, entry file `xjq`).
+- Docker CLI exists, but Docker daemon was not running on 2026-05-12; no checkpoint execution was started.
+
+Metric findings:
+
+- No `metrics/verbosity.py` and no metric-level `metrics/erosion.py` exist at the pinned commit.
+- `src/slop_code/metrics/checkpoint/driver.py` calls `uvx scb-check check --report --include-all <checkpoint>/snapshot`.
+- `uvx scb-check --version` resolved `0.1.3`.
+- Inspected PyPI wheel `scb_check-0.1.3-py3-none-any.whl`, SHA-256 `f13040c8ca8f57b8dc8137692c37e0f181fe55867691dfe6a5b8a79d2513f50f`.
+- `scb-check` package metadata points to `github.com/gabeorlanski/scb-check`.
+- `scb-check` skips symlinked files/directories during traversal and only walks `*.py` under the supplied snapshot root.
+
+Hook findings:
+
+- CLI command: `src/slop_code/entrypoints/commands/run_agent.py`.
+- Config object: `src/slop_code/entrypoints/problem_runner/models.py::RunTaskConfig`.
+- Checkpoint loop and prompt rendering: `src/slop_code/agent_runner/runner.py`.
+- Prompt assembly: `get_task_for_checkpoint()` writes `prompt.txt` and returns the string passed to `agent.run_checkpoint(task)`.
+- Best insertion target: invoke hook in `AgentRunner._run_problem()` for `idx > 0` after checkpoint k finishes and before checkpoint k+1 prompt rendering; pass returned prefix into `get_task_for_checkpoint()`.
+- Prior checkpoint diff file is `diff.json`.
+- Default Docker environment mounts a temp workspace read-write at `/workspace` and has no configured `extra_mounts`; static assets mount read-only under `/static`.
 
 ---
 
@@ -104,9 +140,12 @@ This is roughly 100-200 lines of Python in their existing `runner/` directory. *
 
 Before pre-reg lock, must inspect:
 
-- [ ] `metrics/verbosity.py` — clone-detection algorithm
-- [ ] `metrics/erosion.py` — exact OLS slope vs per-problem averaging
-- [ ] `runner/` or equivalent — agent invocation surface, where to add the hook
+- [x] Metric implementation path — actual path is SlopCodeBench checkpoint driver plus `scb-check==0.1.3`
+- [x] Clone-detection algorithm — deterministic tree-sitter AST-subtree hashing
+- [x] Erosion formula — `cyc_complexity * sqrt(sloc)`, high complexity `> 10`
+- [x] Slope computation — no upstream checkpoint-export slope; Iboga computes slopes from exported checkpoint fields
+- [x] Runner equivalent — `src/slop_code/agent_runner/runner.py`
+- [x] Docker/session implementation and default mount list
 - [ ] Per-checkpoint specification format — what does the agent receive at checkpoint `k+1`? File path? Text in stdin? Env var?
 - [ ] `Dockerfile` — what Python version, what packages preinstalled, what user permissions
 - [ ] Existing logs/output format — how do their 11 baselines store per-checkpoint results? Reproducing their leaderboard numbers requires reading their existing result JSON format.
@@ -152,11 +191,11 @@ This is the gap Iboga occupies. The paper authors explicitly flag it as their op
 
 ## Risk flags identified during this read
 
-1. **Clone-detection algorithm unspecified in paper**. If their `metrics/verbosity.py` uses a non-deterministic clone detector (e.g., random-projected MinHash), our reproductions may not be bit-exact. Mitigation: compare *distributions* across 5-problem reproductions, not point values. Tolerance ±2 pp matches the pre-reg.
+1. **Paper shorthand under-specifies verbosity**. `scb-check==0.1.3` includes trivial-wrapper SLOC in the verbosity union, not only clone and ast-grep lines. Mitigation: pre-reg now names the package-level exported field and pins the package version/hash.
 
-2. **Slope computation unspecified in paper**. Same mitigation.
+2. **Slope computation not in upstream checkpoint export path**. Iboga must compute OLS slopes from `checkpoint_results.jsonl` using checkpoint `idx`. Mitigation: analysis script and pre-reg now state this explicitly.
 
-3. **The hook surface doesn't exist**. We're modifying a benchmark harness. There's a risk that our fork's "hook between checkpoints" subtly changes timing/scheduling and shifts measured metrics independent of intervention content. Mitigation: include a "Arm 0 — no retrospective at all, but with the empty hook running" as a sanity-check arm during pilot (Week 7). If Arm 0 matches Arm C on all metrics, the hook is benign.
+3. **The hook surface doesn't exist**. We're modifying a benchmark harness. There's a risk that our fork's "hook between checkpoints" subtly changes timing/scheduling and shifts measured metrics independent of intervention content. Mitigation: include a "Arm 0 — no retrospective at all, but with the empty hook running" as a sanity-check arm during pilot (Week 7). If Arm 0 matches no-hook baseline on all metrics, the hook is benign.
 
 4. **Their Docker images may be tied to specific Python versions / package pins**. Test environment must match.
 
@@ -170,7 +209,7 @@ Status as of 2026-05-12:
 
 1. **§8 Treatment specifications**: done. Retrospective lives in the prompt for checkpoint k+1, not in workspace or `/tmp/`.
 2. **§10 Stopping rules**: done. Arm 0 sanity-check arm added; if the hook itself shifts metrics, abort.
-3. **§11 Pre-Lock Validation**: done. Explicit subtasks added for inspecting `metrics/verbosity.py` clone detection and `metrics/erosion.py` slope computation.
+3. **§11 Pre-Lock Validation**: done. Explicit subtasks updated to match the actual repo layout and `scb-check==0.1.3` metric package.
 4. **§14 Solo Execution Plan budget**: unresolved risk. Do not silently reduce Opus to 16/20 problems; that changes the locked design and requires a pre-lock revision or post-lock OSF amendment.
 5. **§16 External Coordination**: done. Opening sentence drafted in `sprocketlab-email.md`.
 
@@ -186,10 +225,10 @@ If Opus drops to 16 problems → 64 paired observations for Opus arm contrasts. 
 
 ## Next read
 
-Move from paper to repo. Week 1 task: `gh repo fork SprocketLab/slop-code-bench`, then inspect:
-- `metrics/`
-- `runner/` (or equivalent)
-- `Dockerfile`
-- Existing leaderboard JSON output format
+Continue repo validation:
+- Docker/session implementation and mount list
+- Existing leaderboard/result JSON output format
+- One cheap no-treatment baseline dry run after Docker daemon is running
+- 5-model × 5-problem reproduction gate
 
-Update this file with repo-level findings under `## Repo inspection (Week 2)`.
+Append any further repo-level findings to `## Repo inspection (2026-05-12)`.

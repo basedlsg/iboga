@@ -39,13 +39,13 @@ structural-erosion slope and solve-rate non-inferiority as paired
 primary outcomes. 240 trajectories total, ICLR 2027 workshop target.
 
 What we are NOT touching:
-- Your metrics/ directory. Reproductions use your code unmodified.
+- Your metric computation. Reproductions use your exported checkpoint metrics unmodified.
 - Your problem set. We use the 20 problems and 93 checkpoints as published.
 - Your leaderboard. We run our own untreated-control arm rather than
   comparing against your published baselines.
 
 What we add:
-- A between-checkpoint hook in runner/ that lets a retrospective LLM
+- A between-checkpoint hook in the agent-runner path that lets a retrospective LLM
   call happen on the host between Docker checkpoint runs, with the
   retrospective text injected into the next checkpoint's agent prompt.
 - Three retrospective vocabularies (treatment, neutral, none).

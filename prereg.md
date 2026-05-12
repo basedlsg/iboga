@@ -10,6 +10,8 @@ target_venue: ICLR 2027 workshop (Recursive Self-Improvement or Lifelong Agents)
 target_submission: 2026-09-25
 fallback_venue: NeurIPS 2026 SafetyXAI workshop
 substrate_repo_pin: 080922495aba9aedc4b7a6c80803bb5ffd301a49 (SprocketLab/slop-code-bench HEAD pinned 2026-05-12; verify still intended at lock)
+problem_catalog_pin: scb-problems v1.0 commit 4d38d300059667d57e43c31969bc455f5c338b52 (managed catalog installed 2026-05-12; verify still intended at lock)
+metric_package_pin: scb-check==0.1.3 (wheel sha256 f13040c8ca8f57b8dc8137692c37e0f181fe55867691dfe6a5b8a79d2513f50f; verify still intended at lock)
 related: silentvault (workshop methodology paper, 2026)
 tags: [iboga, prereg, research, agents, introspection, sae]
 ---
@@ -30,6 +32,8 @@ tags: [iboga, prereg, research, agents, introspection, sae]
 | Pre-reg author | Carlos (solo) |
 | OSF DOI | pending — registered before first treatment run |
 | Substrate harness | `SprocketLab/slop-code-bench` at commit `080922495aba9aedc4b7a6c80803bb5ffd301a49` |
+| Problem catalog | `gabeorlanski/scb-problems` managed catalog `v1.0`, commit `4d38d300059667d57e43c31969bc455f5c338b52` |
+| Composite metric package | `scb-check==0.1.3`, wheel SHA-256 `f13040c8ca8f57b8dc8137692c37e0f181fe55867691dfe6a5b8a79d2513f50f` |
 | Iboga harness repo | `basedlsg/iboga` |
 | Lineage | silentvault (closed-vocabulary protocols for LLM self-report content) |
 | Conflicts of interest | None. Solo. No collaborator dependencies. |
@@ -102,20 +106,20 @@ On Llama-3.1-8B-Instruct using Goodfire's open SAE at layer 19 (`Llama-3.1-8B-In
 
 ### Primary DV: Structural-Erosion Slope
 
-Per SlopCodeBench (Pickett et al. 2026, §3.2):
+Per SlopCodeBench's exported checkpoint field `erosion`:
 - `mass(f) = CC(f) × √SLOC(f)` for each function `f` in workspace at checkpoint `k`
 - `erosion(k) = sum(mass(f) for f where CC(f) > 10) / sum(mass(f) for f in all_f)`
-- `slope = OLS_slope(erosion, k)` across all checkpoints in a trajectory
+- `slope = OLS_slope(erosion, checkpoint_idx)` across all checkpoints in a trajectory
 
-Computed by SprocketLab's unmodified `metrics/erosion.py`. **Forked harness must reproduce upstream baseline numbers within ±2 percentage points before pre-reg lock** (see §11 reproducibility check).
+Pre-lock repository inspection on 2026-05-12 found no in-repo `metrics/erosion.py`; the pinned SlopCodeBench harness shells out to `uvx scb-check check --report --include-all <checkpoint>/snapshot`, and `scb-check==0.1.3` emits the `erosion` field. Iboga computes slopes from the per-checkpoint exported `erosion` values and checkpoint order. **Forked harness must reproduce upstream baseline numbers within ±2 percentage points before pre-reg lock** (see §11 reproducibility check).
 
 ### Primary DV: Solve Rate
 
-Per SlopCodeBench's checkpoint test runner. `solve(k) = passed_tests(k) / total_tests(k)` averaged across all checkpoints in a trajectory.
+Per SlopCodeBench's checkpoint test runner. Trajectory-level `solve_rate = solved_checkpoints / expected_checkpoints`, where a checkpoint is solved iff `strict_pass_rate == 1.0`. The denominator is the configured expected checkpoint count, so missing checkpoints from agent crashes count as unsolved. This mirrors SlopCodeBench's `pct_checkpoints_solved / 100`.
 
 ### Secondary DV: Verbosity Slope
 
-Per SlopCodeBench §3.3: `verbosity(k) = (AST-Grep flagged lines ∪ clone lines) / total LOC`. Slope computed identically to erosion.
+Per SlopCodeBench's exported checkpoint field `verbosity`: `verbosity(k) = (clone SLOC lines ∪ ast-grep SLOC lines ∪ trivial-wrapper SLOC lines) / total SLOC`. This pre-lock correction follows `scb-check==0.1.3`; the paper shorthand named clone and ast-grep lines, but the package report includes trivial-wrapper lines in the union. Slope computed identically to erosion.
 
 ### Tertiary (Exploratory) DV: Recurrence Rate
 
@@ -145,7 +149,7 @@ Per H_M, mean activation magnitude of locked feature set during retrospective-ge
 
 ## 7. Sampling / Population
 
-**Substrate**: SlopCodeBench v1.x (commit-pinned at pre-reg lock). 20 problems × ~10 effective checkpoints per problem.
+**Substrate**: SlopCodeBench harness commit-pinned at pre-reg lock plus managed problem catalog `scb-problems` pinned at `v1.0` / `4d38d300059667d57e43c31969bc455f5c338b52`. The experimental eval set is 20 SlopCodeBench problems × 93 total checkpoints.
 
 **Models** (4 families, 3 vendors):
 1. Claude Opus 4.7 (Anthropic, closed, API)
@@ -290,11 +294,11 @@ Reported in supplement; primary inference is the paired Wilcoxon.
 Before posting to OSF and beginning treatment runs, the following must be completed:
 
 1. **Fork SlopCodeBench**: `gh repo fork SprocketLab/slop-code-bench`. Pin upstream commit.
-2. **Inspect upstream metrics**: read `metrics/verbosity.py` for clone-detection algorithm (not specified in paper). Read `metrics/erosion.py` for OLS-slope-vs-per-problem-averaging detail. Document in `iboga/harness-validation.md`.
-3. **Inspect upstream runner**: identify the agent invocation surface. Find where to inject the `--between-checkpoint-hook` flag. Modifications stay in `runner/` only; **never** touch `metrics/`.
-4. **Reproduce baseline numbers**: run 5 upstream baseline models on 5 problems through the forked harness. Verify erosion slope and verbosity slope match upstream report within ±2 pp.
+2. **Inspect upstream metrics**: document the actual metric implementation paths in `iboga/harness-validation.md`. Pre-lock inspection found no `metrics/verbosity.py` or metric-level `metrics/erosion.py`; the production exported fields come from SlopCodeBench's `src/slop_code/metrics/checkpoint/driver.py` invoking `scb-check==0.1.3`.
+3. **Inspect upstream runner**: identify the agent invocation surface. Find where to inject the `--between-checkpoint-hook` flag. Current insertion target is `src/slop_code/agent_runner/runner.py` plus run CLI/config plumbing; **never** touch metric computation.
+4. **Reproduce baseline numbers**: run 5 upstream baseline models on 5 problems through the forked harness and pinned `scb-problems` catalog. Verify erosion slope and verbosity slope match upstream report within ±2 pp.
 5. **Sanity-check arm (Arm 0)**: run identical to Arm C (unstructured) but with the between-checkpoint hook running on an empty no-op. If Arm 0 metrics differ from upstream baseline at >±2 pp, the hook itself is shifting metrics — abort and revise hook architecture.
-6. **Verify retrospective text isolation**: confirm `~/iboga-data/sessions/*` paths on the **host** never enter the Docker container's workspace. Run "Arm A with retrospective" vs "Arm 0 hook-only" and confirm verbosity/erosion at checkpoint k+1 are identical (because the retrospective only appears in the *prompt*, not the workspace).
+6. **Verify retrospective text isolation**: confirm `~/iboga-data/sessions/*` paths on the **host** never enter the Docker container's workspace. No-op hook vs no-hook must match within ±2 pp. For treatment hooks, verify by path audit and content-hash/grep that retrospective text appears only in saved prompts/session logs, never in checkpoint `snapshot`.
 7. **SAE feature catalog pull**: download Goodfire l19 feature index. Apply label-filter (§4). Inspect top-20 features. Lock IDs in `iboga/sae-features.json`. If <5 or >50 → H_M demotes.
 8. **Power calc commit**: run R script, commit output to `iboga/power-calc-output.txt`.
 9. **Annotator agreement**: interview and select annotator. Confirm $200 payment. Confirm availability for 5-hour pass in August.
@@ -315,7 +319,7 @@ Before posting to OSF and beginning treatment runs, the following must be comple
 | **Rollback triggers** | API spend >$1100; >10% exclusions; κ<0.7 |
 | **Data/compute budgets** | $900 cap; 80-100 GPU-hours for SAE; 240 API trajectories |
 | **Expected failure modes** | (a) AA vocabulary degrades solve rate (caught by H1b); (b) SAE filter yields wrong features; (c) Retrospective text leaks into workspace despite §11.3; (d) Single-operator confound on tertiary DV (mitigated by blinded annotator) |
-| **Audit logging** | All session prompts, outputs, diffs, costs logged to `iboga/sessions/<trajectory-id>.json` |
+| **Audit logging** | All session prompts, outputs, diffs, costs logged on the host under `~/iboga-data/sessions/{trajectory-id}/` |
 | **Human approval gates** | Pre-reg lock requires OSF time-stamp. Stopping rules require pre-reg amendment, not silent change. |
 | **License / artifacts** | All code MIT-licensed. Pre-reg and analysis on OSF (CC-BY). Data release: aggregated metrics public; raw trajectories under data-use agreement if any commercial considerations from Nemo case study. |
 

@@ -98,7 +98,7 @@ SlopCodeBench uses **fresh Docker containers per checkpoint**. Only the working 
 - Retrospective lives on the **host** at `~/iboga-data/sessions/{trajectory-id}/{k}.json`
 - At checkpoint k+1, retrospective is **injected into the agent's prompt**, never written to a file inside the container
 
-This required modifying SprocketLab's harness to expose a `--between-checkpoint-hook` flag. Modifications stay in `runner/` only; **never touch `metrics/`** (reproducibility requirement).
+This requires modifying SprocketLab's harness to expose a `--between-checkpoint-hook` flag. Repo inspection found the insertion target is `src/slop_code/agent_runner/runner.py` plus run CLI/config plumbing; **never touch metric computation** (reproducibility requirement).
 
 ## Current state (2026-05-12, evening)
 
@@ -125,7 +125,7 @@ This required modifying SprocketLab's harness to expose a `--between-checkpoint-
 | `power-calc.R` | n=80 power validation across d=0.2-0.5 |
 | `sae-features-decision.md` | SAE feature-catalog filter and lock decision scaffold |
 | `sprocketlab-email.md` | Week 7 coordination email draft |
-| `harness-validation.md` | Week 2 validation scaffold for upstream metric and runner inspection |
+| `harness-validation.md` | Week 2 validation log for SlopCodeBench, `scb-check`, and runner-hook inspection |
 | `handoff-prompt.md` | This file (also lives in the chat that produced it) |
 
 **Decisions locked** (no silent revisions allowed):
@@ -140,19 +140,23 @@ This required modifying SprocketLab's harness to expose a `--between-checkpoint-
 - **Solo execution — no collaborator outreach**
 
 **Pre-lock corrections already applied 2026-05-12**:
-- Erosion equation in `prereg.md` aligned with `slopcodebench-study.md`: high-complexity threshold `CC(f) > 10`, with upstream `metrics/erosion.py` still authoritative after repo inspection.
+- Erosion equation in `prereg.md` aligned with repo inspection: high-complexity threshold `CC(f) > 10`, using SlopCodeBench's exported `erosion` field from `scb-check==0.1.3`.
+- Verbosity operationalization corrected before lock: `scb-check==0.1.3` uses clone SLOC union ast-grep SLOC union trivial-wrapper SLOC divided by total SLOC.
 - Recurrence annotation is now a capped exploratory audit: 120 candidate pairs, 20% annotated sample (target 24 pairs), 5-hour cap, $200.
 - Mixed-effects sensitivity check uses raw `erosion_slope`, not `log(erosion_slope)`, because slopes can be zero or negative.
 - Primary analysis requires raw H1a and H1b p-values to both pass α=0.025; Holm-adjusted p-values are still reported.
 - Structured output is provider-neutral JSON Schema with local validation/retry. Arm C uses a single wrapper field so it remains unstructured in content but structured in transport.
+- Local SlopCodeBench reproduction setup completed: `uv sync` succeeded in `projects/iboga/slop-code-bench/`; managed problem catalog installed under `projects/iboga/.scbench/`, catalog `v1.0` commit `4d38d300059667d57e43c31969bc455f5c338b52`.
+- No-cost config smoke check completed: `configs/runs/lite_under20.yaml` resolves to `mvvault` and `xjq`, with default `claude_code@2.0.51`, `anthropic/sonnet-4.5`, `thinking=high`, and no Docker `extra_mounts`.
+- Docker daemon was not running on 2026-05-12, so no checkpoint execution or paid baseline dry run was started.
 
 **Pre-lock validation steps pending** (user-side, mostly mechanical):
-1. Fork SlopCodeBench: `gh repo fork SprocketLab/slop-code-bench`. Pin commit.
-2. Inspect upstream `metrics/verbosity.py` (clone-detection algorithm — not specified in paper). Inspect `metrics/erosion.py` (slope computation detail). Document findings in a new file `iboga/harness-validation.md`.
-3. Inspect upstream `runner/` to identify where to insert `--between-checkpoint-hook`.
-4. Run upstream harness on 5 baseline models × 5 problems → verify reproduction within ±2 pp.
-5. Build "Arm 0" no-op-hook arm; run pilot; confirm no metric drift from upstream baseline.
-6. Verify `~/iboga-data/sessions/*` paths never enter Docker workspace.
+1. Create OSF account; no pre-reg upload until all gates pass.
+2. Start Docker Desktop / Docker daemon; then run the first no-treatment dry run on `configs/runs/lite_under20.yaml`.
+3. Run upstream/fork baseline reproduction on 5 baseline models × 5 problems → verify reproduction within ±2 pp.
+4. Build `--between-checkpoint-hook` around `src/slop_code/agent_runner/runner.py`.
+5. Build "Arm 0" no-op-hook arm; run pilot; confirm no metric drift from no-hook baseline.
+6. Verify `~/iboga-data/sessions/*` paths never enter Docker workspace or checkpoint `snapshot`.
 7. Pull Goodfire l19 feature catalog. Apply label-filter against the 8 terms locked in `prereg.md` §4. Top-20 by match score → lock IDs in `iboga/sae-features.json`. If <5 features → demote H_M to exploratory-no-direction.
 8. Commit power calc output to `iboga/power-calc-output.txt`.
 9. Recruit one external annotator ($200, ~5 hours work, no AA familiarity) for the capped recurrence audit sample.
@@ -185,7 +189,7 @@ This required modifying SprocketLab's harness to expose a `--between-checkpoint-
 Likely first tasks in a fresh chat:
 
 1. **"Read the pre-reg and flag anything I'd want to fix before lock."** → Read the Iboga folder artifacts, surface inconsistencies or risks.
-2. **"Help me inspect the SlopCodeBench fork."** → After I run `gh repo fork SprocketLab/slop-code-bench`, walk through their `metrics/` and `runner/` code with me to understand the hook insertion point.
+2. **"Help me inspect the SlopCodeBench fork further."** → Continue from `harness-validation.md`; next blocker is starting Docker and running the no-treatment `lite_under20` dry run; remaining repo question is existing result JSON/leaderboard format.
 3. **"Build the harness-validation script."** → Concrete code: a Python or shell script that runs the upstream harness on 5×5 trajectories and compares my fork's output to upstream.
 4. **"Pull the SAE feature catalog and apply the filter."** → A Python script using `huggingface_hub` + Goodfire's feature index format to filter top-20 features matching the locked terms.
 5. **"Run the power calc."** → Execute `power-calc.R` and commit the output.

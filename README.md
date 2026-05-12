@@ -36,7 +36,7 @@ tags: [iboga, research, agents, introspection]
 | `power-calc.R` | Power-analysis script draft. |
 | `sae-features-decision.md` | SAE feature-catalog filter and lock decision scaffold. |
 | `sprocketlab-email.md` | SprocketLab transparency email draft. |
-| `harness-validation.md` | Week 2 validation scaffold for upstream metric and runner inspection. |
+| `harness-validation.md` | Week 2 validation log for SlopCodeBench, `scb-check`, and runner-hook inspection. |
 | `handoff-prompt.md` | Self-contained continuation prompt for future chats. |
 | `README.md` | This file. |
 
@@ -73,6 +73,10 @@ silentvault (2026 workshop paper) ──── methodology lineage
 - 🟡 Pre-lock validation steps pending (see `next-steps.md`)
 - ⚪ OSF account creation pending
 - 🟢 SlopCodeBench fork created and upstream commit pinned (2026-05-12)
+- 🟢 SlopCodeBench metric and hook insertion inspection documented (2026-05-12)
+- 🟢 Local SlopCodeBench dependencies and managed problem catalog installed under this project folder (2026-05-12)
+- 🟡 Docker daemon not running; first no-treatment dry run blocked until Docker starts
+- 🟡 Baseline reproduction and Arm 0 hook-neutrality gates pending
 - ⚪ SAE feature catalog pull pending
 - ⚪ External annotator recruitment pending
 - ⚪ Pre-reg lock target 2026-07-01
