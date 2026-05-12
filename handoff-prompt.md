@@ -148,11 +148,12 @@ This requires modifying SprocketLab's harness to expose a `--between-checkpoint-
 - Structured output is provider-neutral JSON Schema with local validation/retry. Arm C uses a single wrapper field so it remains unstructured in content but structured in transport.
 - Local SlopCodeBench reproduction setup completed: `uv sync` succeeded in `projects/iboga/slop-code-bench/`; managed problem catalog installed under `projects/iboga/.scbench/`, catalog `v1.0` commit `4d38d300059667d57e43c31969bc455f5c338b52`.
 - No-cost config smoke check completed: `configs/runs/lite_under20.yaml` resolves to `mvvault` and `xjq`, with default `claude_code@2.0.51`, `anthropic/sonnet-4.5`, `thinking=high`, and no Docker `extra_mounts`.
-- Docker daemon was not running on 2026-05-12, so no checkpoint execution or paid baseline dry run was started.
+- Docker server `27.3.1` was started on 2026-05-12.
+- No-cost `slop-code run --config configs/runs/lite_under20.yaml --dry-run --no-live-progress` reaches credential resolution and stops before agent execution because `ANTHROPIC_API_KEY` is missing.
 
 **Pre-lock validation steps pending** (user-side, mostly mechanical):
 1. Create OSF account; no pre-reg upload until all gates pass.
-2. Start Docker Desktop / Docker daemon; then run the first no-treatment dry run on `configs/runs/lite_under20.yaml`.
+2. Export `ANTHROPIC_API_KEY` or provide the correct provider key env; then run the first no-treatment run on `configs/runs/lite_under20.yaml`.
 3. Run upstream/fork baseline reproduction on 5 baseline models × 5 problems → verify reproduction within ±2 pp.
 4. Build `--between-checkpoint-hook` around `src/slop_code/agent_runner/runner.py`.
 5. Build "Arm 0" no-op-hook arm; run pilot; confirm no metric drift from no-hook baseline.
@@ -189,7 +190,7 @@ This requires modifying SprocketLab's harness to expose a `--between-checkpoint-
 Likely first tasks in a fresh chat:
 
 1. **"Read the pre-reg and flag anything I'd want to fix before lock."** → Read the Iboga folder artifacts, surface inconsistencies or risks.
-2. **"Help me inspect the SlopCodeBench fork further."** → Continue from `harness-validation.md`; next blocker is starting Docker and running the no-treatment `lite_under20` dry run; remaining repo question is existing result JSON/leaderboard format.
+2. **"Help me inspect the SlopCodeBench fork further."** → Continue from `harness-validation.md`; next blocker is provider credentials for the no-treatment `lite_under20` run; remaining repo question is existing result JSON/leaderboard format.
 3. **"Build the harness-validation script."** → Concrete code: a Python or shell script that runs the upstream harness on 5×5 trajectories and compares my fork's output to upstream.
 4. **"Pull the SAE feature catalog and apply the filter."** → A Python script using `huggingface_hub` + Goodfire's feature index format to filter top-20 features matching the locked terms.
 5. **"Run the power calc."** → Execute `power-calc.R` and commit the output.

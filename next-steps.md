@@ -21,7 +21,8 @@ Today: **2026-05-12**. Lock target: **2026-07-01**. That's **7 weeks of pre-lock
 - [x] Fork SlopCodeBench: `gh repo fork SprocketLab/slop-code-bench`. Pin upstream commit hash in `prereg.md` metadata.
 - [x] Install pinned SlopCodeBench clone dependencies locally with `uv sync`; cache kept under `projects/iboga/.uv-cache/`.
 - [x] Install managed problem catalog locally under `projects/iboga/.scbench/`; pinned catalog `v1.0` at `4d38d300059667d57e43c31969bc455f5c338b52`.
-- [ ] Start Docker Desktop / Docker daemon before any SlopCodeBench checkpoint run. Docker CLI exists, but daemon was not running on 2026-05-12.
+- [x] Start Docker Desktop / Docker daemon before any SlopCodeBench checkpoint run. Docker server `27.3.1` available after `open -a Docker` on 2026-05-12.
+- [ ] Provide provider credentials for the first no-treatment dry run. Current blocker: `ANTHROPIC_API_KEY` missing for default `anthropic/sonnet-4.5`.
 - [ ] Create OSF account at osf.io (use flareondon@gmail.com). No pre-reg posted yet.
 - [ ] Read SlopCodeBench paper in full (arXiv 2603.24755), take notes on: exact metric definitions in §3.2, the agent-loop hook surface, reproduction protocol.
 - [ ] Set up RunPod or Vast.ai account for SAE work later (A10G access).
@@ -34,7 +35,7 @@ Today: **2026-05-12**. Lock target: **2026-07-01**. That's **7 weeks of pre-lock
 - [x] Inspect runner insertion surface. Finding: hook belongs in `src/slop_code/agent_runner/runner.py` plus run CLI/config plumbing, not a top-level `runner/` directory.
 - [x] Inspect default Docker/session mount path. Finding: default environment mounts only a temporary workspace read-write at `/workspace` plus read-only static assets; Iboga still needs an explicit assertion against spec/runtime mounts that include `~/iboga-data`.
 - [ ] Run their published baseline on 5 models × 5 problems (out of the 20).
-- [ ] Start with no-treatment dry run on `configs/runs/lite_under20.yaml` (`mvvault`, `xjq`) after Docker daemon is running.
+- [ ] Start with no-treatment run on `configs/runs/lite_under20.yaml` (`mvvault`, `xjq`) after provider credentials are available.
 - [ ] Verify forked harness reproduces upstream numbers within ±2 percentage points on `erosion_slope` and `verbosity_slope`. **If fail → pre-reg blocked until harness debugged.**
 - [ ] Write `iboga-runner.py` — wraps SlopCodeBench harness with retrospective hook between checkpoints. Host-side session logging goes to `~/iboga-data/sessions/{trajectory-id}/`; nothing is written into the checkpoint workspace.
 - [ ] **Pivotal verification**: confirm `~/iboga-data/sessions/*` is not mounted into the Docker workspace and cannot be traversed by `scb-check`, AST-Grep, radon, or clone detection. Run no-hook baseline vs Arm 0 no-op hook → must produce identical metrics. Document in `iboga/harness-validation.md`.
@@ -128,7 +129,7 @@ When you hit a fork, log it here. **No silent decisions after pre-reg lock.**
 - 2026-05-12 — **DV operationalization correction before lock**: `verbosity` is the union of clone SLOC, ast-grep SLOC, and trivial-wrapper SLOC divided by total SLOC; `erosion` is high-CC mass share with `CC > 10`; slopes are computed by Iboga from per-checkpoint exports rather than by an upstream slope script. `solve_rate` is solved checkpoints divided by expected checkpoints, matching SlopCodeBench `pct_checkpoints_solved / 100`.
 - 2026-05-12 — **Hook insertion target identified**: add hook config through `RunTaskConfig`; invoke in `AgentRunner._run_problem()` after checkpoint k finishes and before checkpoint k+1 prompt rendering; prepend returned text in `get_task_for_checkpoint()`. Metrics remain untouched.
 - 2026-05-12 — **Runtime isolation inspection, code-level**: default SlopCodeBench Docker sessions use a temporary workspace mounted read-write at `/workspace`; default Python Docker config has no `extra_mounts`; static assets mount read-only under `/static`. Remaining lock gate is an Iboga-side assertion that neither spec-level nor runtime mounts include `~/iboga-data`, plus Arm 0 no-op validation.
-- 2026-05-12 — **Local reproduction setup**: `uv sync` completed in the local SlopCodeBench clone; managed problem catalog installed at `projects/iboga/.scbench/`, catalog `v1.0` commit `4d38d300059667d57e43c31969bc455f5c338b52`; `lite_under20` resolves to `mvvault` and `xjq`. Docker daemon was not running, so no checkpoint dry run was started.
+- 2026-05-12 — **Local reproduction setup**: `uv sync` completed in the local SlopCodeBench clone; managed problem catalog installed at `projects/iboga/.scbench/`, catalog `v1.0` commit `4d38d300059667d57e43c31969bc455f5c338b52`; `lite_under20` resolves to `mvvault` and `xjq`; Docker started successfully; no-cost `slop-code run --config configs/runs/lite_under20.yaml --dry-run --no-live-progress` reaches credential resolution and stops before agent execution because `ANTHROPIC_API_KEY` is missing.
 - _Add entries below as decisions accrue._
 
 ---
@@ -148,9 +149,9 @@ When you hit a fork, log it here. **No silent decisions after pre-reg lock.**
 
 ## What to do TODAY
 
-1. Start Docker Desktop / Docker daemon.
+1. Export `ANTHROPIC_API_KEY` or pass the correct provider key env with `--provider-api-key-env`.
 2. Create OSF account at osf.io using `flareondon@gmail.com`.
-3. Start a no-treatment baseline reproduction dry run on `configs/runs/lite_under20.yaml` after Docker is running.
+3. Start a no-treatment baseline reproduction run on `configs/runs/lite_under20.yaml`.
 4. Do not begin treatment trajectories before OSF lock.
 
 **The pre-reg is drafted. The work is in the validation steps before lock.**

@@ -75,7 +75,7 @@ silentvault (2026 workshop paper) ──── methodology lineage
 - 🟢 SlopCodeBench fork created and upstream commit pinned (2026-05-12)
 - 🟢 SlopCodeBench metric and hook insertion inspection documented (2026-05-12)
 - 🟢 Local SlopCodeBench dependencies and managed problem catalog installed under this project folder (2026-05-12)
-- 🟡 Docker daemon not running; first no-treatment dry run blocked until Docker starts
+- 🟡 Docker daemon started; no-cost `lite_under20` dry run reaches credential resolution and is blocked on `ANTHROPIC_API_KEY`
 - 🟡 Baseline reproduction and Arm 0 hook-neutrality gates pending
 - ⚪ SAE feature catalog pull pending
 - ⚪ External annotator recruitment pending

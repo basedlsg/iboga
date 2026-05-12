@@ -113,7 +113,8 @@ Local reproduction setup:
 - Catalog commit: `4d38d300059667d57e43c31969bc455f5c338b52`.
 - Catalog count: 36 problems.
 - `configs/runs/lite_under20.yaml` resolves to `mvvault` (6 checkpoints, entry file `mvault`) and `xjq` (5 checkpoints, entry file `xjq`).
-- Docker CLI exists, but Docker daemon was not running on 2026-05-12; no checkpoint execution was started.
+- Docker server `27.3.1` started successfully on 2026-05-12.
+- `slop-code run --config configs/runs/lite_under20.yaml --dry-run --no-live-progress` reaches credential resolution and stops before agent execution because `ANTHROPIC_API_KEY` is missing.
 
 Metric findings:
 
@@ -228,7 +229,7 @@ If Opus drops to 16 problems → 64 paired observations for Opus arm contrasts. 
 Continue repo validation:
 - Docker/session implementation and mount list
 - Existing leaderboard/result JSON output format
-- One cheap no-treatment baseline dry run after Docker daemon is running
+- One cheap no-treatment baseline run after provider credentials are available
 - 5-model × 5-problem reproduction gate
 
 Append any further repo-level findings to `## Repo inspection (2026-05-12)`.

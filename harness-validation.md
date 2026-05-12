@@ -43,7 +43,7 @@ Local setup for reproduction:
 | Problem catalog version | `v1.0` |
 | Problem catalog commit | `4d38d300059667d57e43c31969bc455f5c338b52` |
 | Catalog problem count | 36 |
-| Docker status on 2026-05-12 | Docker CLI installed; daemon not running (`Cannot connect to the Docker daemon`) |
+| Docker status on 2026-05-12 | Docker CLI installed; daemon started successfully after `open -a Docker`; server `27.3.1` |
 
 `scb-check` pin found during inspection:
 
@@ -190,7 +190,8 @@ No-cost setup checks completed on 2026-05-12:
 - `configs/runs/lite_under20.yaml` resolves to two cheap problems: `mvvault` and `xjq`.
 - Resolved default run config for `lite_under20`: `agent=claude_code@2.0.51`, `model=anthropic/sonnet-4.5`, `thinking=high`, `environment=docker-python3.12-uv`.
 - `mvvault` has 6 checkpoints and entry file `mvault`; `xjq` has 5 checkpoints and entry file `xjq`.
-- Docker daemon was not running, so no checkpoint execution was started.
+- `slop-code run --config configs/runs/lite_under20.yaml --dry-run --no-live-progress` reaches the SlopCodeBench credential-resolution step.
+- Dry run stops before agent execution because `ANTHROPIC_API_KEY` is not present in the environment.
 
 | Model | Problems | Solve delta | Erosion slope delta | Verbosity slope delta | Pass? | Notes |
 |---|---:|---:|---:|---:|---|---|
@@ -203,7 +204,7 @@ No-cost setup checks completed on 2026-05-12:
 Gate verdict:
 
 ```text
-Pending. Local dependencies and problem catalog are ready; Docker daemon must be started before the first no-treatment dry run.
+Pending. Local dependencies, problem catalog, Docker daemon, and config resolution are ready; first no-treatment run is blocked on provider credentials (`ANTHROPIC_API_KEY` for the default `anthropic/sonnet-4.5` dry run).
 ```
 
 Comparison helper:
