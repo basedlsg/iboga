@@ -1,0 +1,129 @@
+{
+  "version": "0.5.0-draft",
+  "status": "draft",
+  "arm": "B_neutral",
+  "description": "Provider-neutral structured-output contract for Arm B: coding-jargon vocabulary plus full retrospective structure.",
+  "max_output_tokens": 2000,
+  "tools": [
+    {
+      "name": "record_behavioral_row",
+      "description": "One row of the behavioral coding table. Call once per diff hunk.",
+      "input_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "item",
+          "claimed_purpose",
+          "actual_outcome",
+          "where_i_was",
+          "diff_line_refs"
+        ],
+        "properties": {
+          "item": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Concise description of the change, for example modified parse_input() in lexer.py."
+          },
+          "claimed_purpose": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What this change was supposed to accomplish, per the spec or commit message."
+          },
+          "actual_outcome": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What the change actually does in concrete code terms: function names, conditions, return values."
+          },
+          "where_i_was": {
+            "type": "string",
+            "enum": [
+              "drift",
+              "omission",
+              "premature-commit",
+              "unverified-assumption",
+              "scope-creep"
+            ],
+            "description": "Closed-vocabulary pattern classification. Pick exactly one enum value."
+          },
+          "diff_line_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Specific diff line references, for example src/lexer.py:42-58."
+          }
+        }
+      }
+    },
+    {
+      "name": "record_noting_label",
+      "description": "One noting label per behavioral row. Call once per accepted row.",
+      "input_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "row_index",
+          "label"
+        ],
+        "properties": {
+          "row_index": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "0-based sequence index of the accepted behavioral row."
+          },
+          "label": {
+            "type": "string",
+            "enum": [
+              "overreach",
+              "evasion",
+              "cosmetic",
+              "gold-plating",
+              "scope-creep",
+              "unverified-claim",
+              "dropped-thread",
+              "re-promise",
+              "phantom-progress",
+              "cargo-cult",
+              "straight",
+              "corrected"
+            ],
+            "description": "Pick exactly one enum value."
+          }
+        }
+      }
+    },
+    {
+      "name": "record_reflection_summary",
+      "description": "Final Arm B summary paragraphs after table and noting labels.",
+      "input_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resentment_inventory",
+          "past_tense_panorama"
+        ],
+        "properties": {
+          "resentment_inventory": {
+            "type": "string",
+            "description": "Paragraph 1. Max 200 words. Must cite at least two row indices and diff line references."
+          },
+          "past_tense_panorama": {
+            "type": "string",
+            "description": "Paragraph 2. Max 200 words. Exactly three rows, strict past tense, no future planning."
+          }
+        }
+      }
+    }
+  ],
+  "postprocessor_rules": [
+    "Reject the whole table turn and retry if any behavioral row has empty diff_line_refs.",
+    "Reject the whole table turn and retry if any behavioral row actual_outcome has fewer than 10 words.",
+    "Surface a session-level warning if one where_i_was value appears in more than 50 percent of rows.",
+    "Reject the noting pass if row_index is out of range.",
+    "Reject the session if every accepted row gets the same noting label.",
+    "Reject resentment_inventory if it lacks a row citation or exceeds 220 words.",
+    "Reject past_tense_panorama if it contains future-tense modal verbs, exceeds 220 words, or references fewer than three distinct rows."
+  ]
+}

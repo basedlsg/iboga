@@ -1,0 +1,35 @@
+{
+  "version": "0.5.0-draft",
+  "status": "draft",
+  "arm": "C_unstructured",
+  "description": "Provider-neutral structured-output contract for Arm C: unstructured retrospective in a single transport wrapper.",
+  "max_output_tokens": 2000,
+  "tools": [
+    {
+      "name": "record_unstructured_retrospective",
+      "description": "Unstructured retrospective text for Arm C.",
+      "input_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "retrospective"
+        ],
+        "properties": {
+          "retrospective": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Free-form retrospective on the last checkpoint's changes. No required vocabulary or section structure."
+          }
+        }
+      }
+    }
+  ],
+  "postprocessor_rules": [
+    "Reject if retrospective is empty.",
+    "Reject or truncate per locked harness policy if local token count exceeds 2000 tokens.",
+    "No vocabulary checks.",
+    "No coverage requirements.",
+    "No tense enforcement.",
+    "No row-citation requirement."
+  ]
+}
