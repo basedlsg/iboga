@@ -190,8 +190,18 @@ No-cost setup checks completed on 2026-05-12:
 - `configs/runs/lite_under20.yaml` resolves to two cheap problems: `mvvault` and `xjq`.
 - Resolved default run config for `lite_under20`: `agent=claude_code@2.0.51`, `model=anthropic/sonnet-4.5`, `thinking=high`, `environment=docker-python3.12-uv`.
 - `mvvault` has 6 checkpoints and entry file `mvault`; `xjq` has 5 checkpoints and entry file `xjq`.
-- `slop-code run --config configs/runs/lite_under20.yaml --dry-run --no-live-progress` reaches the SlopCodeBench credential-resolution step.
-- Dry run stops before agent execution because `ANTHROPIC_API_KEY` is not present in the environment.
+- The default upstream route `slop-code run --config configs/runs/lite_under20.yaml --dry-run --no-live-progress` reaches the SlopCodeBench credential-resolution step, then stops before agent execution because it uses `anthropic/sonnet-4.5` and no direct Anthropic key is configured.
+
+Non-Anthropic provider checks completed on 2026-05-13:
+
+- Gemini CLI OAuth route passes credential resolution: `uv run slop-code run --config configs/runs/lite_under20.yaml --agent gemini --model gemini_auth/gemini-2.5-flash-lite --dry-run --no-live-progress`.
+- OpenRouter route is syntactically valid but blocked by shell state: `uv run slop-code run --config configs/runs/lite_under20.yaml --agent miniswe --model openrouter/gemini-2.5-flash-lite --dry-run --no-live-progress` stops because `OPENROUTER_API_KEY` is not exported.
+- Local model configs added in the SlopCodeBench fork clone for Opus 4.7 via OpenRouter, Qwen2.5-32B, and Llama-3.1-8B. All three reach `OPENROUTER_API_KEY` credential resolution in dry-run probes.
+- Gemini Docker image build passes after Docker disk cleanup: `uv run slop-code docker build-agent configs/agents/gemini.yaml configs/environments/docker-python3.12-uv.yaml` built `slop-code:python3.12` and `slop-code:gemini-0.41.2-python3.12`. Initial failures were Docker Desktop storage exhaustion during apt/Rust installation; resolved by pruning build cache, stopped containers, and unused images.
+- Actual no-treatment Gemini validation run started on `xjq` only: `uv run slop-code run --config configs/runs/lite_under20.yaml --agent gemini --model gemini_auth/gemini-2.5-flash-lite --problem xjq --no-live-progress`. Output path: `slop-code-bench/outputs/lite_under20_runs/gemini-2.5-flash-lite_0.41.2_high_just-solve/20260513T1427/`.
+- Checkpoint 1 completed and evaluated locally: `inference_result.json` reports no agent error, 9 steps, cost `$0.005402`; `evaluation.json` collected 23 tests with infrastructure failure `false`.
+- Checkpoint 2 did not complete. Gemini CLI repeatedly hit Google Code Assist capacity errors (`429`, `MODEL_CAPACITY_EXHAUSTED`, "No capacity available for model gemini-2.5-flash-lite") after a long agent loop. The run was stopped manually after checkpoint 2 reached 61 steps to avoid waiting for the one-hour timeout.
+- See `provider-routing.md` for provider slugs and local model-config work required before the locked-model pilot.
 
 | Model | Problems | Solve delta | Erosion slope delta | Verbosity slope delta | Pass? | Notes |
 |---|---:|---:|---:|---:|---|---|
@@ -204,7 +214,7 @@ No-cost setup checks completed on 2026-05-12:
 Gate verdict:
 
 ```text
-Pending. Local dependencies, problem catalog, Docker daemon, and config resolution are ready; first no-treatment run is blocked on provider credentials (`ANTHROPIC_API_KEY` for the default `anthropic/sonnet-4.5` dry run).
+Partial pass. Local dependencies, problem catalog, Docker daemon, config resolution, and Gemini agent image build are ready. Gemini CLI OAuth can execute checkpoints but is not stable enough for a full baseline run today because of Google capacity errors. Next full no-treatment run should use OpenRouter after `OPENROUTER_API_KEY` is exported, or retry Gemini later with explicit step limits.
 ```
 
 Comparison helper:

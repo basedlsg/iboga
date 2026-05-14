@@ -37,6 +37,8 @@ tags: [iboga, research, agents, introspection]
 | `sae-features-decision.md` | SAE feature-catalog filter and lock decision scaffold. |
 | `sprocketlab-email.md` | SprocketLab transparency email draft. |
 | `harness-validation.md` | Week 2 validation log for SlopCodeBench, `scb-check`, and runner-hook inspection. |
+| `provider-routing.md` | Non-Anthropic provider routing notes for OpenRouter, Gemini CLI OAuth, Meta Llama Developer API, and Jules. |
+| `jules-tasks.md` | Ready-to-dispatch Jules task prompts (J6-J9) for engineering coordination once `basedlsg/iboga` is public. |
 | `handoff-prompt.md` | Self-contained continuation prompt for future chats. |
 | `README.md` | This file. |
 
@@ -59,13 +61,22 @@ silentvault (2026 workshop paper) ──── methodology lineage
 ## Research arc decisions (locked unless flagged)
 
 - **Substrate**: SlopCodeBench, not Nemo. Nemo becomes deployment case study only.
-- **Models**: Claude Opus 4.7 + Qwen2.5-32B + Llama-3.1-8B + DeepSeek-Coder-V3. Four families, three vendors.
+- **Models** (locked OpenRouter slugs): `anthropic/claude-opus-4.7` + `qwen/qwen2.5-32b-instruct` + `meta-llama/llama-3.1-8b-instruct` + `deepseek/deepseek-chat-v3-0324`. Four families, three vendors.
 - **Arms**: 3 — Iboga (AA vocabulary), Vocabulary-Neutral (coding-jargon), Unstructured.
 - **Primary DV**: structural-erosion slope + solve-rate (co-primary, non-inferiority).
 - **Mechanism**: SAE on Llama-3.1-8B via Goodfire's open weights at layer 19. Exploratory, with pre-registered direction.
 - **Operator**: solo. Blinding via deterministic hash-based arm assignment.
 - **Budget**: $810 across 18 weeks.
 - **Submission window**: ICLR 2027 workshop, 2026-09-25. Fallback NeurIPS SafetyXAI October.
+
+## Tool stack (original plan, preserved)
+
+- **OpenRouter** — pre-registered route for the 4 trajectory models. Locked.
+- **Gemini CLI** — free OAuth-backed validation route (proven on `xjq` checkpoint 1). Used for harness debugging, not as a trajectory model.
+- **Jules** — engineering coordinator for J6-J10 coding tasks (hook implementation, `iboga_runner.py`, SAE collection script, metric reproduction harness, DeepSeek slug resolution). Same way silentvault used it for J1-J5. Not a trajectory model.
+- **HuggingFace Router + Together AI** — fallbacks for Llama / Qwen if OpenRouter has issues.
+
+See `provider-routing.md` for the full routing table and the Jules task list.
 
 ## Status flags
 
@@ -75,7 +86,10 @@ silentvault (2026 workshop paper) ──── methodology lineage
 - 🟢 SlopCodeBench fork created and upstream commit pinned (2026-05-12)
 - 🟢 SlopCodeBench metric and hook insertion inspection documented (2026-05-12)
 - 🟢 Local SlopCodeBench dependencies and managed problem catalog installed under this project folder (2026-05-12)
-- 🟡 Docker daemon started; no-cost `lite_under20` dry run reaches credential resolution and is blocked on `ANTHROPIC_API_KEY`
+- 🟢 Non-Anthropic `lite_under20` dry-run route verified through Gemini CLI OAuth (`gemini_auth/gemini-2.5-flash-lite`) on 2026-05-13
+- 🟢 Gemini SlopCodeBench Docker image built successfully on 2026-05-13 after Docker disk cleanup
+- 🟡 Actual no-treatment `xjq` Gemini run partially validated the path: checkpoint 1 completed/evaluated; checkpoint 2 hit Google capacity errors and was stopped
+- 🟡 OpenRouter route identified; `OPENROUTER_API_KEY` is not exported in this shell yet
 - 🟡 Baseline reproduction and Arm 0 hook-neutrality gates pending
 - ⚪ SAE feature catalog pull pending
 - ⚪ External annotator recruitment pending

@@ -11,7 +11,7 @@ tags: [iboga, prereg, checklist]
 
 **Goal**: complete every item below before posting `prereg.md` to OSF. No treatment trajectories run before lock.
 
-Today: **2026-05-12**. Lock target: **2026-07-01**. That's **7 weeks of pre-lock work**.
+Today: **2026-05-13**. Lock target: **2026-07-01**. That's **7 weeks of pre-lock work**.
 
 ---
 
@@ -22,7 +22,12 @@ Today: **2026-05-12**. Lock target: **2026-07-01**. That's **7 weeks of pre-lock
 - [x] Install pinned SlopCodeBench clone dependencies locally with `uv sync`; cache kept under `projects/iboga/.uv-cache/`.
 - [x] Install managed problem catalog locally under `projects/iboga/.scbench/`; pinned catalog `v1.0` at `4d38d300059667d57e43c31969bc455f5c338b52`.
 - [x] Start Docker Desktop / Docker daemon before any SlopCodeBench checkpoint run. Docker server `27.3.1` available after `open -a Docker` on 2026-05-12.
-- [ ] Provide provider credentials for the first no-treatment dry run. Current blocker: `ANTHROPIC_API_KEY` missing for default `anthropic/sonnet-4.5`.
+- [x] Verify a non-Anthropic dry-run route. `uv run slop-code run --config configs/runs/lite_under20.yaml --agent gemini --model gemini_auth/gemini-2.5-flash-lite --dry-run --no-live-progress` passes credential resolution and previews `mvvault` + `xjq` on 2026-05-13.
+- [x] Build Gemini SlopCodeBench Docker image. After Docker Desktop disk cleanup, `slop-code:python3.12` and `slop-code:gemini-0.41.2-python3.12` built successfully on 2026-05-13.
+- [x] Start actual no-treatment Gemini validation on `xjq`. Checkpoint 1 completed/evaluated; checkpoint 2 hit Gemini Code Assist capacity errors (`429`, `MODEL_CAPACITY_EXHAUSTED`) after a long loop and was stopped manually before the one-hour timeout.
+- [ ] Export `OPENROUTER_API_KEY` in the run shell or direnv before OpenRouter-backed validation. Current shell has `OPENROUTER_API_KEY` unset.
+- [x] Add/test local SlopCodeBench model configs for unambiguous OpenRouter routes: Opus 4.7, Qwen2.5-32B, and Llama-3.1-8B reach `OPENROUTER_API_KEY` credential resolution on 2026-05-13.
+- [ ] Resolve the exact DeepSeek model slug before lock. Do not silently substitute DeepSeek V3 for `DeepSeek-Coder-V3` without a pre-lock correction.
 - [ ] Create OSF account at osf.io (use flareondon@gmail.com). No pre-reg posted yet.
 - [ ] Read SlopCodeBench paper in full (arXiv 2603.24755), take notes on: exact metric definitions in §3.2, the agent-loop hook surface, reproduction protocol.
 - [ ] Set up RunPod or Vast.ai account for SAE work later (A10G access).
@@ -35,18 +40,18 @@ Today: **2026-05-12**. Lock target: **2026-07-01**. That's **7 weeks of pre-lock
 - [x] Inspect runner insertion surface. Finding: hook belongs in `src/slop_code/agent_runner/runner.py` plus run CLI/config plumbing, not a top-level `runner/` directory.
 - [x] Inspect default Docker/session mount path. Finding: default environment mounts only a temporary workspace read-write at `/workspace` plus read-only static assets; Iboga still needs an explicit assertion against spec/runtime mounts that include `~/iboga-data`.
 - [ ] Run their published baseline on 5 models × 5 problems (out of the 20).
-- [ ] Start with no-treatment run on `configs/runs/lite_under20.yaml` (`mvvault`, `xjq`) after provider credentials are available.
+- [ ] Complete a no-treatment run on `configs/runs/lite_under20.yaml` (`mvvault`, `xjq`) through OpenRouter after `OPENROUTER_API_KEY` is exported, or retry Gemini later with explicit step limits.
 - [ ] Verify forked harness reproduces upstream numbers within ±2 percentage points on `erosion_slope` and `verbosity_slope`. **If fail → pre-reg blocked until harness debugged.**
 - [ ] Write `iboga-runner.py` — wraps SlopCodeBench harness with retrospective hook between checkpoints. Host-side session logging goes to `~/iboga-data/sessions/{trajectory-id}/`; nothing is written into the checkpoint workspace.
 - [ ] **Pivotal verification**: confirm `~/iboga-data/sessions/*` is not mounted into the Docker workspace and cannot be traversed by `scb-check`, AST-Grep, radon, or clone detection. Run no-hook baseline vs Arm 0 no-op hook → must produce identical metrics. Document in `iboga/harness-validation.md`.
 
 ## Week 3 — May 26 - June 1 — Prompt Templates
 
-- [ ] Write Arm A (AA vocabulary) prompt template. Use provider-neutral JSON Schema enum validation with an Anthropic `tool_use` adapter for Claude. Test against Claude Opus on a synthetic diff.
+- [ ] Write Arm A (AA vocabulary) prompt template. Use provider-neutral JSON Schema enum validation; if Opus is routed through OpenRouter, use the Anthropic-compatible OpenRouter adapter rather than a direct Anthropic key. Test against the locked Opus 4.7 route on a synthetic diff.
 - [ ] Write Arm B (vocabulary-neutral) prompt template. Same structure, swap vocabularies.
 - [ ] Write Arm C (unstructured) prompt template. Same Berg induction, same corpus, free-form retrospective content inside a single structured-output wrapper, with ≤2000 token cap.
 - [ ] Validate token budgets: Arm A and Arm B mean output tokens within ±15%; record Arm C distribution without padding. **Token-budget documentation in `iboga/arm-token-budget.md` — locked at pre-reg.**
-- [ ] Test all three arms on a single SlopCodeBench problem with Claude Opus. Sanity check the output structure.
+- [ ] Test all three arms on a single SlopCodeBench problem with the locked Opus 4.7 route. Sanity check the output structure.
 - [ ] Build `iboga/arm-assignment.json` from `iboga/arm-assignment-spec.md` — deterministic SHA256-based per-trajectory arm mapping. Commit cryptographic hash to git.
 
 ## Week 4 — June 2-8 — SAE Feature Catalog
@@ -122,14 +127,20 @@ When you hit a fork, log it here. **No silent decisions after pre-reg lock.**
 - 2026-05-12 — **Architecture revision after SlopCodeBench paper read** (`slopcodebench-study.md`): retrospective text moved from `/tmp/iboga-*` (Docker-wiped) to `~/iboga-data/sessions/{trajectory}/{k}.json` on host. Retrospective injects into next checkpoint's *agent prompt*, not workspace. Added "Arm 0" sanity-check arm to pilot to verify the hook itself doesn't shift metrics. Pre-reg §8, §11 updated.
 - 2026-05-12 — **Confirmed niche**: SlopCodeBench Conclusion explicitly flags "interventions that enforce structural discipline across checkpoints remain untested" as open question. SprocketLab coordination email (Week 7) opens with this acknowledgement.
 - 2026-05-12 — **Pre-lock consistency corrections**: Week 2 checklist updated to host-side `~/iboga-data/sessions/*` architecture; tertiary recurrence audit capped at 120 candidate pairs with 24 annotated pairs to match the $200 / ~5-hour annotator budget; mixed-effects sensitivity check changed from `log(erosion_slope)` to raw `erosion_slope` because slopes can be zero or negative; primary analysis script now requires raw H1a and H1b p-values to both pass α=0.025, while still reporting Holm-adjusted p-values.
-- 2026-05-12 — **Structured-output portability fix**: prompt schemas are canonical JSON Schema. Claude uses Anthropic `tool_use`; non-Anthropic models use provider adapters where available or JSON-only output with local validation/retry. Arm C gets a single structured wrapper field so transport shape is explicit without adding structure/vocabulary constraints.
+- 2026-05-12 — **Structured-output portability fix**: prompt schemas are canonical JSON Schema. Claude uses an Anthropic-compatible structured-output adapter through the selected route; non-Anthropic models use provider adapters where available or JSON-only output with local validation/retry. Arm C gets a single structured wrapper field so transport shape is explicit without adding structure/vocabulary constraints.
 - 2026-05-12 — **Pre-lock scaffold files created**: draft JSON schemas added under `schemas/`; `arm-token-budget.md`, `sae-features-decision.md`, and `annotator-rubric.md` created as lock-time documentation targets. Token-budget checklist corrected to A/B equivalence plus Arm C documentation, not all-arm output matching.
 - 2026-05-12 — **GitHub setup complete**: created/verified `basedlsg/iboga`, forked `SprocketLab/slop-code-bench` to `basedlsg/slop-code-bench`, and pinned upstream HEAD `080922495aba9aedc4b7a6c80803bb5ffd301a49` in `prereg.md` and `harness-validation.md`.
 - 2026-05-12 — **SlopCodeBench repo inspection correction**: pinned local clone at `projects/iboga/slop-code-bench/`. There is no `metrics/verbosity.py` or metric-level `metrics/erosion.py` at the pinned commit. Production checkpoint exports invoke `uvx scb-check check --report --include-all <snapshot>` from `src/slop_code/metrics/checkpoint/driver.py`; inspected `scb-check==0.1.3` and pinned wheel SHA-256 `f13040c8ca8f57b8dc8137692c37e0f181fe55867691dfe6a5b8a79d2513f50f`.
 - 2026-05-12 — **DV operationalization correction before lock**: `verbosity` is the union of clone SLOC, ast-grep SLOC, and trivial-wrapper SLOC divided by total SLOC; `erosion` is high-CC mass share with `CC > 10`; slopes are computed by Iboga from per-checkpoint exports rather than by an upstream slope script. `solve_rate` is solved checkpoints divided by expected checkpoints, matching SlopCodeBench `pct_checkpoints_solved / 100`.
 - 2026-05-12 — **Hook insertion target identified**: add hook config through `RunTaskConfig`; invoke in `AgentRunner._run_problem()` after checkpoint k finishes and before checkpoint k+1 prompt rendering; prepend returned text in `get_task_for_checkpoint()`. Metrics remain untouched.
 - 2026-05-12 — **Runtime isolation inspection, code-level**: default SlopCodeBench Docker sessions use a temporary workspace mounted read-write at `/workspace`; default Python Docker config has no `extra_mounts`; static assets mount read-only under `/static`. Remaining lock gate is an Iboga-side assertion that neither spec-level nor runtime mounts include `~/iboga-data`, plus Arm 0 no-op validation.
-- 2026-05-12 — **Local reproduction setup**: `uv sync` completed in the local SlopCodeBench clone; managed problem catalog installed at `projects/iboga/.scbench/`, catalog `v1.0` commit `4d38d300059667d57e43c31969bc455f5c338b52`; `lite_under20` resolves to `mvvault` and `xjq`; Docker started successfully; no-cost `slop-code run --config configs/runs/lite_under20.yaml --dry-run --no-live-progress` reaches credential resolution and stops before agent execution because `ANTHROPIC_API_KEY` is missing.
+- 2026-05-12 — **Local reproduction setup**: `uv sync` completed in the local SlopCodeBench clone; managed problem catalog installed at `projects/iboga/.scbench/`, catalog `v1.0` commit `4d38d300059667d57e43c31969bc455f5c338b52`; `lite_under20` resolves to `mvvault` and `xjq`; Docker started successfully; default upstream dry run reaches credential resolution and stops before agent execution because it uses `anthropic/sonnet-4.5` and no direct Anthropic key is configured. Superseded as current route by the 2026-05-13 provider-routing correction below.
+- 2026-05-13 — **Provider-routing correction**: no Anthropic key will be used. SlopCodeBench already supports `openrouter` via `OPENROUTER_API_KEY` and `gemini_auth` via `~/.gemini/oauth_creds.json`. Gemini CLI OAuth dry-run passes with `--agent gemini --model gemini_auth/gemini-2.5-flash-lite`; OpenRouter dry-run is blocked only because `OPENROUTER_API_KEY` is not exported in this shell. Meta Llama Developer docs require authenticated portal access; provider support must be added and logged before lock if used for the Llama-3.1-8B trajectory route.
+- 2026-05-14 — **Tool-stack role clarification (preserving original silentvault plan)**: OpenRouter is the trajectory-model route; Gemini CLI is the free validation route; Jules is the engineering coordinator for J6-J10 coding tasks (hook implementation, `iboga_runner.py`, SAE activation collector, metric reproduction harness, DeepSeek slug resolution) — same way silentvault used Jules for J1-J5. Jules is in scope as engineering helper, not as a trajectory provider; the prior "Jules out of scope" phrasing was too restrictive and is superseded. See `provider-routing.md` for the full task list. Jules dispatch starts once `basedlsg/iboga` is public on GitHub and connected to Jules.
+- 2026-05-14 — **DeepSeek slug resolved**: verified against `https://openrouter.ai/deepseek` that "DeepSeek-Coder-V3" does NOT exist as an OpenRouter slug. Replaced with `deepseek/deepseek-chat-v3-0324` (canonical V3 chat, $0.20/$0.77 per M tokens, 164K context, fits $30 arm budget). Updated `prereg.md` §7, `README.md`, `handoff-prompt.md`. Vendor diversity preserved. J10 (DeepSeek slug resolution Jules task) is now CLOSED.
+- 2026-05-13 — **Local SlopCodeBench model-config patch**: added `opus-4.7-openrouter.yaml`, `qwen2.5-32b-instruct.yaml`, and `llama-3.1-8b-instruct.yaml` in the local SlopCodeBench fork clone. All three dry-run probes reach OpenRouter credential resolution. DeepSeek remains unresolved because current docs expose DeepSeek V3 variants, not an exact `DeepSeek-Coder-V3` slug.
+- 2026-05-13 — **Gemini Docker build gate passed**: `uv run slop-code docker build-agent configs/agents/gemini.yaml configs/environments/docker-python3.12-uv.yaml` initially failed due Docker Desktop storage exhaustion during apt/Rust install. Pruned Docker build cache, stopped containers, and unused images; retry built `slop-code:python3.12` and `slop-code:gemini-0.41.2-python3.12`.
+- 2026-05-13 — **Actual no-treatment Gemini validation partial**: started `xjq` only using Gemini CLI OAuth and stock `just-solve`. Checkpoint 1 completed/evaluated with no infrastructure failure and cost `$0.005402`; checkpoint 2 entered a long loop and then hit Google Code Assist capacity errors (`429`, `MODEL_CAPACITY_EXHAUSTED`). Stopped manually before the one-hour timeout. This validates the container/auth path but not full baseline reproducibility.
 - _Add entries below as decisions accrue._
 
 ---
@@ -149,9 +160,11 @@ When you hit a fork, log it here. **No silent decisions after pre-reg lock.**
 
 ## What to do TODAY
 
-1. Export `ANTHROPIC_API_KEY` or pass the correct provider key env with `--provider-api-key-env`.
+1. Export `OPENROUTER_API_KEY` in the shell that will launch SlopCodeBench; Gemini CLI OAuth is validated but capacity-limited today.
 2. Create OSF account at osf.io using `flareondon@gmail.com`.
-3. Start a no-treatment baseline reproduction run on `configs/runs/lite_under20.yaml`.
-4. Do not begin treatment trajectories before OSF lock.
+3. Start a no-treatment baseline reproduction run on `configs/runs/lite_under20.yaml`; do not use any treatment prompt.
+4. Resolve the DeepSeek exact slug and either correct the pre-reg label before lock or add the matching local SlopCodeBench model config.
+5. Once `basedlsg/iboga` is public on GitHub, dispatch **J6** to Jules: implement `--between-checkpoint-hook` per the contract in `harness-validation.md`. Jules tasks J6-J10 are listed in `provider-routing.md` under "Jules engineering tasks." Same pattern as silentvault J1-J5: write the prompt, send via `jules new --repo basedlsg/iboga "..."`, pull patch via `jules remote pull --session <id>`, review, apply.
+5. Do not begin treatment trajectories before OSF lock.
 
 **The pre-reg is drafted. The work is in the validation steps before lock.**

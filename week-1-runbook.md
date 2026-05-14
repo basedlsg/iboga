@@ -100,6 +100,35 @@ Record any corrections in:
 - `prereg.md`
 - `next-steps.md` decision log
 
+## 4a. Provider Routing Check
+
+No direct Anthropic key is assumed. The verified no-cost configuration probe is:
+
+```bash
+cd slop-code-bench
+uv run slop-code run \
+  --config configs/runs/lite_under20.yaml \
+  --agent gemini \
+  --model gemini_auth/gemini-2.5-flash-lite \
+  --dry-run \
+  --no-live-progress
+```
+
+OpenRouter-backed probes require `OPENROUTER_API_KEY` in the same shell:
+
+```bash
+export OPENROUTER_API_KEY=<manual>
+cd slop-code-bench
+uv run slop-code run \
+  --config configs/runs/lite_under20.yaml \
+  --agent miniswe \
+  --model openrouter/gemini-2.5-flash-lite \
+  --dry-run \
+  --no-live-progress
+```
+
+Record exact provider slugs and local model-config changes in `provider-routing.md` before any locked-model pilot.
+
 ## 5. GPU Vendor Setup
 
 Create RunPod or Vast.ai account manually. Do not rent GPU yet.

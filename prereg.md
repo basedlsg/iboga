@@ -151,13 +151,20 @@ Per H_M, mean activation magnitude of locked feature set during retrospective-ge
 
 **Substrate**: SlopCodeBench harness commit-pinned at pre-reg lock plus managed problem catalog `scb-problems` pinned at `v1.0` / `4d38d300059667d57e43c31969bc455f5c338b52`. The experimental eval set is 20 SlopCodeBench problems × 93 total checkpoints.
 
-**Models** (4 families, 3 vendors):
-1. Claude Opus 4.7 (Anthropic, closed, API)
-2. Qwen2.5-32B-Instruct (Alibaba, open, Together AI)
-3. Llama-3.1-8B-Instruct (Meta, open, local + Together AI)
-4. DeepSeek-Coder-V3 (DeepSeek, open, OpenRouter free tier)
+**Models** (4 families, 3 vendors), with locked OpenRouter slugs:
 
-**Solo-execution adjustment**: dropped Llama-3.3-70B from v0.5-draft0 (compute cost). Replaced with DeepSeek-Coder-V3 to maintain 3-vendor diversity. NeurIPS reviewer W11 flagged "Replace one Qwen with a different family" — DeepSeek-Coder-V3 satisfies this.
+| # | Family | Vendor | OpenRouter slug | Context | Price (in/out per 1M tok) |
+|---|---|---|---|---:|---|
+| 1 | Claude Opus 4.7 | Anthropic | `anthropic/claude-opus-4.7` | 200K | per OpenRouter listing |
+| 2 | Qwen2.5-32B-Instruct | Alibaba | `qwen/qwen2.5-32b-instruct` | 32K | per OpenRouter listing |
+| 3 | Llama-3.1-8B-Instruct | Meta | `meta-llama/llama-3.1-8b-instruct` | 128K | per OpenRouter listing |
+| 4 | DeepSeek V3 (chat) | DeepSeek | `deepseek/deepseek-chat-v3-0324` | 164K | $0.20 / $0.77 |
+
+**DeepSeek slug correction (2026-05-14)**: v0.5-draft0 named the 4th model "DeepSeek-Coder-V3," which does NOT exist as a distinct OpenRouter slug. Verified against `https://openrouter.ai/deepseek` on 2026-05-14: OpenRouter's DeepSeek V3 generation consists of `deepseek-chat-v3-0324` (canonical V3 chat), `deepseek-v3.2`, `deepseek-v3.2-speciale`, `deepseek-v4-flash`, and `deepseek-v4-pro`; none are named "Coder-V3." `deepseek/deepseek-chat-v3-0324` is selected because (a) it is the canonical V3 chat model, (b) at $0.20/$0.77 per M tokens it fits the locked $30 DeepSeek arm budget, (c) its 164K context handles SlopCodeBench's longest checkpoints. The DeepSeek family was originally chosen to maintain vendor diversity (NeurIPS reviewer W11), which the chat variant satisfies equally well.
+
+Provider routing is an execution detail but is material for reproducibility and cost. Final provider slugs and pricing are locked at OSF posting; changing provider routes after lock requires an OSF amendment if it changes model identity, sampling, or budget assumptions.
+
+**Solo-execution adjustment**: dropped Llama-3.3-70B from v0.5-draft0 (compute cost). Replaced with `deepseek/deepseek-chat-v3-0324` to maintain 3-vendor diversity. NeurIPS reviewer W11 flagged "Replace one Qwen with a different family" — DeepSeek satisfies this.
 
 **Trajectories**: 4 models × 20 problems × 3 arms = **240 trajectories**. Pair structure: each (model, problem) seen in all 3 arms → 80 paired observations per arm contrast.
 
@@ -182,7 +189,7 @@ SlopCodeBench's harness uses **fresh Docker containers per checkpoint**. Only th
 
 This required modifying SprocketLab's harness to expose a `--between-checkpoint-hook` flag. See §11 for validation.
 
-**Structured-output enforcement:** Prompt schemas are locked as provider-neutral JSON Schema before pre-reg lock. Claude uses Anthropic `tool_use`; Qwen, Llama, and DeepSeek use the harness's provider adapter where available, otherwise JSON-only output with local validation and retry. Closed-vocabulary enforcement is the combination of schema enum validation plus the local post-processor, not model self-compliance. Invalid structured output after the retry budget counts as a technical failure under the §7 exclusion criteria.
+**Structured-output enforcement:** Prompt schemas are locked as provider-neutral JSON Schema before pre-reg lock. Claude uses an Anthropic-compatible structured-output adapter through the selected route; Qwen, Llama, and DeepSeek use the harness's provider adapter where available, otherwise JSON-only output with local validation and retry. Closed-vocabulary enforcement is the combination of schema enum validation plus the local post-processor, not model self-compliance. Invalid structured output after the retry budget counts as a technical failure under the §7 exclusion criteria.
 
 **Schema artifacts:** Draft JSON Schema files live in `iboga/schemas/arm-a.json`, `iboga/schemas/arm-b.json`, and `iboga/schemas/arm-c.json`. Final content hashes are added here before OSF lock.
 
@@ -353,14 +360,16 @@ Before posting to OSF and beginning treatment runs, the following must be comple
 
 | Item | Amount |
 |---|---|
-| Claude Opus 4.7 API (80 trajectories) | $280 |
-| Qwen2.5-32B via Together AI (80 trajectories) | $80 |
-| Llama-3.1-8B via Together AI (80 trajectories) | $40 |
+| Claude Opus 4.7 via OpenRouter (80 trajectories) | $280 |
+| Qwen2.5-32B via OpenRouter (80 trajectories) | $80 |
+| Llama-3.1-8B via Meta Llama Developer API or OpenRouter fallback (80 trajectories) | $40 |
 | DeepSeek-Coder-V3 via OpenRouter (80 trajectories) | $30 |
 | GPU rental for SAE (A10G, 100 hrs @ $0.50/hr) | $50 |
 | Annotator | $200 |
 | Buffer (15%) | $130 |
 | **Total** | **$810** |
+
+Budget rows are provisional until the Week 2 provider-routing validation locks exact provider slugs and current prices. The hard cap remains $900.
 
 **Timeline (revised solo, June 1 → September 25):**
 

@@ -114,7 +114,10 @@ Local reproduction setup:
 - Catalog count: 36 problems.
 - `configs/runs/lite_under20.yaml` resolves to `mvvault` (6 checkpoints, entry file `mvault`) and `xjq` (5 checkpoints, entry file `xjq`).
 - Docker server `27.3.1` started successfully on 2026-05-12.
-- `slop-code run --config configs/runs/lite_under20.yaml --dry-run --no-live-progress` reaches credential resolution and stops before agent execution because `ANTHROPIC_API_KEY` is missing.
+- Default `slop-code run --config configs/runs/lite_under20.yaml --dry-run --no-live-progress` used the upstream default `anthropic/sonnet-4.5` route and stopped at `ANTHROPIC_API_KEY` credential resolution.
+- Non-Anthropic route verified on 2026-05-13: `uv run slop-code run --config configs/runs/lite_under20.yaml --agent gemini --model gemini_auth/gemini-2.5-flash-lite --dry-run --no-live-progress` passes credential resolution and previews `mvvault` + `xjq`.
+- OpenRouter route probe on 2026-05-13: `uv run slop-code run --config configs/runs/lite_under20.yaml --agent miniswe --model openrouter/gemini-2.5-flash-lite --dry-run --no-live-progress` stops only because `OPENROUTER_API_KEY` is not exported in this shell.
+- Actual no-treatment Gemini validation on 2026-05-13: `xjq` checkpoint 1 completed/evaluated; checkpoint 2 hit Gemini Code Assist capacity errors (`429`, `MODEL_CAPACITY_EXHAUSTED`) and was stopped manually before timeout. Output: `slop-code-bench/outputs/lite_under20_runs/gemini-2.5-flash-lite_0.41.2_high_just-solve/20260513T1427/`.
 
 Metric findings:
 
@@ -134,6 +137,13 @@ Hook findings:
 - Best insertion target: invoke hook in `AgentRunner._run_problem()` for `idx > 0` after checkpoint k finishes and before checkpoint k+1 prompt rendering; pass returned prefix into `get_task_for_checkpoint()`.
 - Prior checkpoint diff file is `diff.json`.
 - Default Docker environment mounts a temp workspace read-write at `/workspace` and has no configured `extra_mounts`; static assets mount read-only under `/static`.
+
+Provider-routing findings (2026-05-13):
+
+- SlopCodeBench's credential resolver uses the provider prefix in `--model provider/name`. Therefore `gemini_auth/gemini-2.5-flash-lite` reads the Gemini CLI OAuth file provider, while `google/gemini-2.5-flash-lite` requires `GEMINI_API_KEY`.
+- The pinned clone supports `openrouter`, `google`, `together`, `deepseek`, and file-based `gemini_auth` providers in `configs/providers.yaml`.
+- The pinned clone has no Jules agent integration and no Meta Llama Developer provider entry. Jules should not be treated as a trajectory provider without writing a new SlopCodeBench agent adapter, which is out of scope for pre-lock validation.
+- Local model configs added on 2026-05-13 for `opus-4.7-openrouter`, `qwen2.5-32b-instruct`, and `llama-3.1-8b-instruct`; all three reach OpenRouter credential resolution in dry-run probes. DeepSeek remains unresolved because the exact `DeepSeek-Coder-V3` slug is not present in the pinned local model catalog or confirmed from official OpenRouter docs.
 
 ---
 
