@@ -84,8 +84,8 @@ if (exclusion_rate > 0.10) {
 
 # ---- Sanity checks ----
 
-# Expect: 4 models × 20 problems × 3 arms = 240 trajectories
-# Each (model, problem) seen in all 3 arms → 80 paired observations per arm contrast
+# Expect: 4 models × 36 problems × 3 arms = 432 trajectories (updated 2026-05-14)
+# Each (model, problem) seen in all 3 arms → 144 paired observations per arm contrast
 pairing_check <- trajectories_kept %>%
   group_by(model, problem_id) %>%
   summarise(arms_present = paste(sort(unique(arm)), collapse = "|"), .groups = "drop")

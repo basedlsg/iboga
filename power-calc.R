@@ -1,7 +1,7 @@
 # Iboga v0.5 — Power Analysis for Pre-Registration
 # ---
 # Status: draft, target lock 2026-07-01
-# Purpose: justify the n=80 paired-observations sample size and α-budget
+# Purpose: justify the n=144 paired-observations sample size and α-budget (updated 2026-05-14 for 4 models x 36 problems)
 # Output: power-calc-output.txt (committed before pre-reg lock)
 #
 # Run from R 4.x. Requires: WMWssp (or pwr as fallback)
@@ -20,8 +20,9 @@ suppressPackageStartupMessages({
 PRIMARY_ALPHA  <- 0.025         # Holm-Bonferroni split of 0.05 across H1a + H1b
 SECONDARY_ALPHA <- 0.05
 EFFECT_SIZES   <- c(0.2, 0.3, 0.4, 0.5)
-N_VALUES       <- c(60, 70, 80, 90, 100)
+N_VALUES       <- c(80, 100, 120, 144, 180)   # n=144 is the pre-registered lock (4 models x 36 problems)
 NONINF_MARGIN  <- -0.05
+REGISTERED_N   <- 144                          # locked sample size per arm contrast (2026-05-14)
 
 # ---- Helpers ----
 
@@ -100,24 +101,24 @@ print(sec_table)
 # ---- Summary ----
 
 cat("\n=== SUMMARY ===\n")
-cat("Pre-registered n = 80 (per arm contrast)\n\n")
+cat("Pre-registered n =", REGISTERED_N, "(per arm contrast, 4 models x 36 problems)\n\n")
 
-cat("At n=80, α=0.025 one-tailed:\n")
+cat("At n=144, α=0.025 one-tailed:\n")
 for (d in EFFECT_SIZES) {
-  p <- power_paired_wilcox(d, 80, PRIMARY_ALPHA)
+  p <- power_paired_wilcox(d, REGISTERED_N, PRIMARY_ALPHA)
   cat(sprintf("  d = %.2f → power = %.3f\n", d, p))
 }
 
-cat("\nAt n=80, α=0.05 two-tailed (secondary):\n")
+cat("\nAt n=144, α=0.05 two-tailed (secondary):\n")
 for (d in EFFECT_SIZES) {
-  p <- power_paired_wilcox(d, 80, SECONDARY_ALPHA, "two.sided")
+  p <- power_paired_wilcox(d, REGISTERED_N, SECONDARY_ALPHA, "two.sided")
   cat(sprintf("  d = %.2f → power = %.3f\n", d, p))
 }
 
 cat("\nPre-registered minimum-detectable effect at 80% power, α=0.025:\n")
-# Find smallest d giving power ≥ 0.80 at n=80
+# Find smallest d giving power ≥ 0.80 at n = REGISTERED_N
 for (d in seq(0.1, 1, by = 0.05)) {
-  p <- power_paired_wilcox(d, 80, PRIMARY_ALPHA)
+  p <- power_paired_wilcox(d, REGISTERED_N, PRIMARY_ALPHA)
   if (!is.na(p) && p >= 0.80) {
     cat(sprintf("  MDE ≈ d = %.2f (power = %.3f)\n", d, p))
     break
@@ -131,7 +132,7 @@ sink(out_path, type = "output")
 cat("Iboga v0.5 Power Analysis Output\n")
 cat("Generated:", format(Sys.time(), "%Y-%m-%dT%H:%M:%S"), "\n")
 cat("================================\n\n")
-cat("Pre-registered n = 80 paired observations per arm contrast.\n")
+cat("Pre-registered n =", REGISTERED_N, "paired observations per arm contrast.\n")
 cat("Primary α = 0.025 (Holm-Bonferroni). Secondary α = 0.05.\n\n")
 cat("H1a power table (one-tailed paired Wilcoxon):\n")
 print(h1a_table)
