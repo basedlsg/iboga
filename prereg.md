@@ -88,13 +88,37 @@ On Llama-3.1-8B-Instruct using Goodfire's open SAE at layer 19 (`Llama-3.1-8B-In
 
 **Predicted direction**: AA-arm suppresses confabulatory self-referential mode because AA vocabulary demands diff-grounded specificity ("I was selfish in commit abc1234 by deleting X without test"), whereas neutral vocabulary ("drift") permits abstract noting that activates the roleplay generative mode.
 
-**Pre-specified features (locked at pre-reg time):**
-- Goodfire l19 features labeled with terms matching: `deception`, `roleplay`, `identity`, `self-reference`, `first-person narrator`, `confession`, `apology`, `admission`
-- Specific feature IDs locked in `iboga/sae-features.json` before pre-reg lock by:
-  1. Pulling Goodfire l19 feature catalog
-  2. Filtering by label-string match against the 8 terms above
-  3. Top-20 features by label-match score → frozen set
-- If filtering yields <5 or >50 features, the methodology fails and SAE work demotes to exploratory-only (no direction prediction).
+**Pre-specified features (locked at pre-reg time, probe-prompt method):**
+
+Methodology correction 2026-05-14: Goodfire's open SAE release (`Llama-3.1-8B-Instruct-SAE-l19`) provides weights but **NOT feature labels** (labels only via Goodfire's archived Ember SDK, see `goodfire-ai/goodfire-sdk` which is public-archived). The original "label-string match" filter is therefore not executable from public artifacts. **Replaced with a probe-prompt-based selection that is methodologically tighter and does not depend on any third-party label curation.**
+
+Selection protocol:
+
+1. **Probe corpus** (locked at pre-reg, stored at `iboga/sae-probe-corpus.json` with SHA-256 hash in pre-reg metadata):
+   - 50 self-referential prompts: drawn from public domain — AA Step 4 worksheet excerpts (12-step.org), Berg 2025 self-referential induction variants, introspective journaling prompts, Vipassana noting instructions, Catholic examination of conscience templates
+   - 50 control prompts: math word problems (MATH dataset public sample), recipe instructions, weather descriptions, news headline rewrites. Length-matched in tokens to the self-referential set within ±15%.
+   - Both sets are short (50-200 tokens each) and self-contained
+   - Corpus authored before pre-reg lock; never modified after
+
+2. **Activation extraction**:
+   - Run Llama-3.1-8B-Instruct on each prompt with Goodfire l19 SAE hooked at residual stream layer 19
+   - For each SAE feature `f`, compute:
+     - `act_self(f)` = mean activation magnitude across all tokens in the 50-prompt self-referential set
+     - `act_ctrl(f)` = mean activation magnitude across all tokens in the 50-prompt control set
+     - `ratio(f) = (act_self(f) + ε) / (act_ctrl(f) + ε)` with ε = 1e-6
+
+3. **Feature lock**:
+   - Rank features by `ratio(f)` descending
+   - Top-20 features → frozen set, written to `iboga/sae-features.json` with feature IDs and probe-corpus content hash
+   - If fewer than 5 features have `ratio(f) > 2.0`, methodology fails and H_M demotes to exploratory-no-direction
+   - If the top-20 set is identical across two independent runs (no GPU non-determinism), the selection is robust and locked
+
+4. **Why this is better than label-string match**:
+   - No dependency on deprecated Goodfire Ember SDK
+   - No dependency on Goodfire's auto-interpretation choices
+   - Operational definition of "self-reference feature" — measurable, reproducible
+   - Pre-registered probe corpus prevents post-hoc feature cherry-picking
+   - Same mechanistic story (self-referential SAE features differentially activate across arms), but the features are defined by what they fire on, not by labels someone else assigned
 
 **Status:** Exploratory, not confirmatory. Direction pre-registered. Result reported regardless of outcome. **Solo-execution adjustment**: with no SAE specialist co-author, H_M is intentionally lower-stakes than reviewers wanted. A clear positive or negative on direction is informative; null is informative; reverse direction is the most informative.
 
@@ -308,7 +332,7 @@ Before posting to OSF and beginning treatment runs, the following must be comple
 4. **Reproduce baseline numbers**: run 5 upstream baseline models on 5 problems through the forked harness and pinned `scb-problems` catalog. Verify erosion slope and verbosity slope match upstream report within ±2 pp.
 5. **Sanity-check arm (Arm 0)**: run identical to Arm C (unstructured) but with the between-checkpoint hook running on an empty no-op. If Arm 0 metrics differ from upstream baseline at >±2 pp, the hook itself is shifting metrics — abort and revise hook architecture.
 6. **Verify retrospective text isolation**: confirm `~/iboga-data/sessions/*` paths on the **host** never enter the Docker container's workspace. No-op hook vs no-hook must match within ±2 pp. For treatment hooks, verify by path audit and content-hash/grep that retrospective text appears only in saved prompts/session logs, never in checkpoint `snapshot`.
-7. **SAE feature catalog pull**: download Goodfire l19 feature index. Apply label-filter (§4). Inspect top-20 features. Lock IDs in `iboga/sae-features.json`. If <5 or >50 → H_M demotes.
+7. **SAE feature selection via probe corpus**: (a) author `iboga/sae-probe-corpus.json` with 50 self-referential + 50 control prompts; hash and pin in pre-reg metadata. (b) Download Goodfire's open SAE weights for `Llama-3.1-8B-Instruct-SAE-l19` from HuggingFace. (c) Run activation extraction on probe corpus. (d) Compute `ratio(f) = act_self / act_ctrl` per feature; lock top-20 in `iboga/sae-features.json`. If <5 features have `ratio > 2.0`, demote H_M to exploratory-no-direction. (Methodology updated 2026-05-14: Goodfire labels are only in the archived Ember SDK and not reliable from public artifacts.)
 8. **Power calc commit**: run R script, commit output to `iboga/power-calc-output.txt`.
 9. **Annotator agreement**: interview and select annotator. Confirm $200 payment. Confirm availability for 5-hour pass in August.
 10. **OSF account + pre-reg upload**: post this document. Receive DOI. Write DOI back to frontmatter.
