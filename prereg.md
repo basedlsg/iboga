@@ -192,7 +192,9 @@ Provider routing is an execution detail but is material for reproducibility and 
 
 **Solo-execution adjustment**: dropped Llama-3.3-70B from v0.5-draft0 (compute cost). Replaced with `deepseek/deepseek-chat-v3-0324` to maintain 3-vendor diversity. NeurIPS reviewer W11 flagged "Replace one Qwen with a different family" — DeepSeek satisfies this.
 
-**Trajectories**: 4 models × 20 problems × 3 arms = **240 trajectories**. Pair structure: each (model, problem) seen in all 3 arms → 80 paired observations per arm contrast.
+**Trajectories**: 4 models × **36 problems** × 3 arms = **432 trajectories** (updated 2026-05-14). Pair structure: each (model, problem) seen in all 3 arms → **144 paired observations per arm contrast**.
+
+**Problem-set expansion**: v0.5-draft0 planned 20 problems (matching SlopCodeBench's published baseline subset). At pre-reg drafting, inspecting the upstream catalog showed all 36 problems are first-class and well-formed. Locking the full catalog (a) increases paired observations from 80 to 144 → power ≈ 0.99 at d=0.4 vs 0.92 at n=80, (b) eliminates ambiguity in problem selection, (c) makes the deterministic assignment file simpler (`arm-assignment.json` SHA-256 `7adb28f7a74ea34e128351e2f62f47073f612d64c46ca6c3891c8c478d4f7dda`). The 36 problems are the full pinned catalog at `v1.0`/`4d38d300059667d57e43c31969bc455f5c338b52`: cfgpipe, circuit_eval, code_search, dag_execution, database_migration, datagate, dynamic_buffer, dynamic_config_service_api, env_manager, etl_pipeline, eve_industry, eve_jump_planner, eve_market_tools, eve_route_planner, execution_server, file_backup, file_merger, file_query_tool, forge, l2m, layered_config_synthesizer, log_query, meshctl, metric_transform_lang, migrate_configs, mocked_http, mvvault, pwd_manager, recli, rejector, sheeteval, sith, test_translator, textdrop, trajectory_api, xjq.
 
 **Exclusion criteria**:
 - Trajectories where harness crashes before checkpoint 3 (technical failure, not behavioral)

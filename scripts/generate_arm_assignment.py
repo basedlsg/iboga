@@ -16,10 +16,10 @@ from pathlib import Path
 
 
 DEFAULT_MODELS = [
-    "opus-4.7",
-    "qwen-2.5-32b",
-    "llama-3.1-8b",
-    "deepseek-coder-v3",
+    "anthropic/claude-opus-4.7",
+    "qwen/qwen3-32b",
+    "meta-llama/llama-3.1-8b-instruct",
+    "deepseek/deepseek-chat-v3-0324",
 ]
 
 MAIN_ARMS = ["A_iboga", "B_neutral", "C_unstructured"]

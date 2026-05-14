@@ -1,0 +1,3952 @@
+{
+  "arms": [
+    "A_iboga",
+    "B_neutral",
+    "C_unstructured"
+  ],
+  "assignment_seed": "iboga-v0.5-lock-2026-07-01-placeholder",
+  "created_at": "2026-05-14T10:15:55+00:00",
+  "models": [
+    "anthropic/claude-opus-4.7",
+    "qwen/qwen3-32b",
+    "meta-llama/llama-3.1-8b-instruct",
+    "deepseek/deepseek-chat-v3-0324"
+  ],
+  "phase": "main",
+  "pilot_arms": [
+    "A_iboga",
+    "B_neutral",
+    "C_unstructured",
+    "arm0_noop"
+  ],
+  "problem_ids": [
+    "cfgpipe",
+    "circuit_eval",
+    "code_search",
+    "dag_execution",
+    "database_migration",
+    "datagate",
+    "dynamic_buffer",
+    "dynamic_config_service_api",
+    "env_manager",
+    "etl_pipeline",
+    "eve_industry",
+    "eve_jump_planner",
+    "eve_market_tools",
+    "eve_route_planner",
+    "execution_server",
+    "file_backup",
+    "file_merger",
+    "file_query_tool",
+    "forge",
+    "l2m",
+    "layered_config_synthesizer",
+    "log_query",
+    "meshctl",
+    "metric_transform_lang",
+    "migrate_configs",
+    "mocked_http",
+    "mvvault",
+    "pwd_manager",
+    "recli",
+    "rejector",
+    "sheeteval",
+    "sith",
+    "test_translator",
+    "textdrop",
+    "trajectory_api",
+    "xjq"
+  ],
+  "records": [
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "circuit_eval",
+      "run_seed": "760b575edfe772e430b82ec9bd0e3664cc1e99372cfb1e14e9de10cb676c0423",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "0030f3fdc783693ba420e18c0a28bd0f9ea0b2cd155fc32fe38ba344b1c50b08"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "eve_jump_planner",
+      "run_seed": "a4db7a1ddb737da4ce35ef698cbf8a43a407e1b15074fc8cc67f0ef06f1decd3",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "0040ba7d47354b642bec20c158e851d82abcb02d44070416ae42ecfd99517fae"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "xjq",
+      "run_seed": "aa24d81b88ff6c4dacb3dbb28b6dcee2777ddc76f1b0fde8eda730e296e67821",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "0083c9606ef06a4856abe6331f3f3e1dcd39a2031324d41de0b142e7a636a90f"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "textdrop",
+      "run_seed": "841d326b1bbd0d5286226b8f752da17e16007837b2c6274dcf1d24c1e7db35e5",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "01fce0f53c6abc2e6042350a33b9e211dc974d5e0eb741a3d8a18ec24e155503"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "xjq",
+      "run_seed": "5211d8949740e002f8e4b05e9e73a90ed6e99f9e3d0a772110926840984caed6",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "021ba66f5e8eec95300d6bf6923bf16ce1b1a47c7c57ebbf05d04e5504cb5b1f"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "rejector",
+      "run_seed": "3f9317c2ab5a43b545b1b94f17d232a7195452caf44cca4bada605c4b36b0707",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "02549409efa4bdf4ed6fcd94acec8a71a3afa19ef4f624c7c63c4cc69074718c"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "eve_jump_planner",
+      "run_seed": "ff45e30204b4aed0a53d803ddaba709243b0082137450cf38aeeb8cedac896bf",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "02d787486dbbbc721f3f2d3f63087fc0eaf2d1b835ddacd4768c8861a9288b7c"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "file_backup",
+      "run_seed": "283d26d7d6a4e0f279bdc6e35410cf0da7c1bcd56cd8d7e312e7d485b3b425d1",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "031377e7b7c7c319b52911105a6e5c8a74c5f7dfef60dcdf2e9c42308ddbc5b4"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "trajectory_api",
+      "run_seed": "84412c0a0a07414b91ba79c24ae8bda973d65b3d0b363e87a1db0f9fbe607563",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "03c91cd66c66e369f0f3d4a3f1da6004a75a0725cae8168bc65932aa47aa4328"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "meshctl",
+      "run_seed": "d1595ff9ca9fd8c83889ccedcc0c31836938df99f5f1716e24730b8ac1feafa9",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "04a36c57af1785fecf25ce185c303d46dc54fbcde254c9cc5941c49721b01ed2"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "forge",
+      "run_seed": "71d8828778f1ff6dac8fe11519a113a17e3b895071356e401c32e151b3ef25b0",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "058d48e5d0715b19e7b76fec1aa3bc96cd95909db417438844abc1e0a4b2ee40"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "eve_route_planner",
+      "run_seed": "7f0523e25e0e9221e6d41c7e695193ce7b744071049a3ef087c35799402e6ff2",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "05d033b1d41fe82e0531d3383a33db02ac295e13101d7938bba59f77cb0cfb58"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "xjq",
+      "run_seed": "bd5d863587256c371584a39dbfcc86ea32e8a46ddeace6a57ecfbfb6fbecce71",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "05e3814bde68351b6156c076e63e0f1ab59860983bf08fe5d1b1de28fcfcff71"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "code_search",
+      "run_seed": "c97c0b541749070f740ae898952e0c1b5d2d009ff03a1193725fc28eb5b7da2c",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "05f5e5b898e7b31db4f39316520bb3db2855ca244a2e807de86c458e1f005190"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "cfgpipe",
+      "run_seed": "8c2cca6cb4b1fc73cc639b09a3ff417f1156610bad2c56800b84b2d044d640fb",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "06cf74741c870f6817080a6a6a7e00d68a630ddb6756f9dd4d5db1f8ce2f33cc"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "etl_pipeline",
+      "run_seed": "65788063c5c37d04c79f67e67764cec20f4e9a2a59c1ce75495a6f3936eb48d2",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "07422f39f198ef58423cea7795b844bf99fccb0bef7e968efc8aec0c65ee4d03"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "code_search",
+      "run_seed": "94d8eb1a2a02cd3967f250e020812c7f7f07f209fa94d8ad608b85a366cd4bb1",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "079609540eece40155fbbe3ed8c181b0b09cbbef7323294b2beda7a2eaecc637"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "etl_pipeline",
+      "run_seed": "f47a4bc24a6cfd33c1c8c2e41df8d965b735b906a58b6cf53cc22f6324bfc69a",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "080e6c174b7ec878925ac3c43af48fc071917fa7e828fae66be529185d470ef7"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "dynamic_config_service_api",
+      "run_seed": "972c3808eba1849341e9ec5e00018e185ff00b353f2a7cdb15bffadce5c5ce1e",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "08e4b22647e93729c1b8bd4218172de86bb8c4ffe3ee7bd02cdff9abadde3a0d"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "circuit_eval",
+      "run_seed": "c7f810eb898c61a924dea8665d70ea5cc6d62dde7177175764ae6338b3b20f1d",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "08fef1e4e9674502493c2548028f92dc4d86f03c9efd3ab396f91f50b00e2763"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "textdrop",
+      "run_seed": "e442b9f0aa6ce4f79e6220ca40cc5efc647cb72563799e3d82bdf1bc73d39c6f",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "098d5cb14f81f6995b2079df80d157a5b4d540fdf6943f0b24fd8ee40d81e15f"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "eve_market_tools",
+      "run_seed": "ea97f47db55670eb64c7c2c40cc34dc20855ed5a89afd1489ef4e837a238c0f4",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "09d670dafe7271a076d37ae57480d4cf025ff60a26df433038ca57fcede2b3e0"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "trajectory_api",
+      "run_seed": "085495d9abffd4be88c6ec162c6ba5a40dda5de44acaaa8fbcf7bc07b94f9837",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "0b0b22ae25ff6302bacc639e9f95c6aa87a8df3a6cc05e3f60418059921981d7"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "etl_pipeline",
+      "run_seed": "8c44105e0c0c3da8f309e467988e08b032ef54b4c13d3b7c64c890223ffa717c",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "0bee31b4ef051ddc118d5ae65ab812dd9e7051b587aee54b6fd6632a40091523"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "etl_pipeline",
+      "run_seed": "6210a7e23785ce930d9f0ae5206485f10bead5c91d328b34e3a97ea30cdfaae4",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "0cc2edb4a088e79647803b370c83b1414f5a6d1b0da21b20fb361730d735ca63"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "circuit_eval",
+      "run_seed": "58a6e3008b23fa25ad62583c68ea1a9ce3dfd8fbdbcc3de4b050b75b03070de1",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "0d8025aa279632c791e4e0d7bf6ddea035cc9c484a419637144c2d3d46b0a19d"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "mvvault",
+      "run_seed": "b75b5d0c8a5d5de0f9fd3052f4cd8949b305a05d3e699093089a09f5ba0de471",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "0ffe4665745713ab12c946d1edcfa476dde503d50f4b2ef2bdfdab46b283e822"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "dynamic_buffer",
+      "run_seed": "5d19c6a69b8332c12706232b7923557832fa8e629d9c8cdd61b0eacc80e703cd",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "10e1ad2211caa51b2b6f1e592e18cc657ee3389776be7b21b79053327199463c"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "circuit_eval",
+      "run_seed": "d97bc0343c26266e7d38855cc7f34cd704b1e0cb57ffd3e4e31525e587964f65",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "111ed9ca7c36b5d40c901974b0fe7b60114c055341477046f0c15a497bc16a4a"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "rejector",
+      "run_seed": "1d26a00d6b097fff279f0a23b80aaeb192fd0d2a7e498cefdc964250efb9bb09",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "11eccd871a4ce49a8c1193a381e0064d0c4ae940c13b6526b3ab5615a9a336e5"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "eve_jump_planner",
+      "run_seed": "6e609fcf1a78fb08ef0e12ec943b9ed05cda6942bc33bf9b22c381b6a5342022",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "1245967e17ce3050d57555e13cb73f59248530da89972187879cb29d45955896"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "eve_industry",
+      "run_seed": "661aa1c73911b8db4d4b17c794e09b9a2ceb7d333a783811503a13783c802587",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "12874e73ddd70dca243fc9f9e8db5624b016d259e3ba6610a6906ad99be90ef8"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "meshctl",
+      "run_seed": "cc86fe49c55a85bd8968ad7cecd4f648f0b93ec4e83308b0190e587339c1a0a8",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "138f6b894278156d98091a99d13e772a569946c30fe48d06c6f4d598cb1bc8f7"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "mvvault",
+      "run_seed": "982bb38f9b0baaccfecb2c47fecb7d4a92abbbf14f990fc43e77c8ddf4aef121",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "13abc1aa91d1357f0086c3a1fb6007165423764fc113b6747561a17859d0f1eb"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "file_backup",
+      "run_seed": "28e2749fd7c4053be71cca6b219ee233975f1ea4f1668080992c68976cbfb429",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "14237d07eff17c4d44a2bee3312bf4b108da37d935a8959087e2b674212124f0"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "mocked_http",
+      "run_seed": "699a2adab27e9fd44d20b0af2641daa2af948992daa23e0e0e80dd49b256fb94",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "147f6dc7f2ed02a7c4774430022971617b978182dcbf1f0322cf00de1f60e47d"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "sith",
+      "run_seed": "9e3c67b843008220f8a0e02296ae73cef766776ee3ce042759cb87aae9d30e7c",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "1483c7e11bc8d02362b8ea8cd30daed01f34c94e429bbea14c3d6f39e341097b"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "mvvault",
+      "run_seed": "cac2f84716ae4ac8afbf4dcf6acaf4f1f3b2ebb6e22680124e53469df5a53b03",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "1689197f2174b493a37dd0d0dead92ec78914cf5201314ef770107d5f99ffd4a"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "cfgpipe",
+      "run_seed": "e47464d109cbe6b90072cd0ad17087f8338c73597075cfbb0622b9967087859c",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "17f985c0a9c27f22596536ac1f15816e55f6d2e982fd58f4af6c5d52b52b7e06"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "code_search",
+      "run_seed": "cf53f4466bc94d1e75dfe3d303c3d6a916161977efd6a8228392f9951aa3347f",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "189baac0fb35bbdb335f61c69da49ad0fe38a9c683390dafe775ff1da0a20d80"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "migrate_configs",
+      "run_seed": "11f193872aabea0b2289444a68a8bb28f158757cf1a08c4b302a49c21925fe04",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "189cd9fa863ce44e5f167ea77f64bc004c527ac3f464727e554972fa0e48a5dd"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "cfgpipe",
+      "run_seed": "1319d0297c5a31dd4f32a71c039f17287aef92fee586fdfd1017975d5f293dad",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "18da9d34e88017b9e8354a2ad692b572f134c88dc5de89b454d916d0a399b87c"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "l2m",
+      "run_seed": "6615ee3ac4f3d7cef4f30940487beef2639114c3556c2c7e2a4a047244420a00",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "18e87a5e0b0ed07db545799e3244aaf2315cada3d8df7d41fdc86ffa5e18b5de"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "sith",
+      "run_seed": "59cb4b9db9c9e04e254331019c5ed021df94a185e8b5b0abbdd22ed3869a9599",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "18fc57b0fd633a82621c306d1de5d72bd5c00f03d1049e95f2075520096bd4ae"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "database_migration",
+      "run_seed": "cd2194728ba62420ebd658f47c4df94980446f434ae94a97dbb11c70ef45df83",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "19643ea502ee12cddbcdea3ea797a9f9f2eef3889b6758aae0d0ec4342e9ccdb"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "trajectory_api",
+      "run_seed": "536852e1d9ceea4b785b0f4ecda7e894c5add718c2f7a1ffee4d9749c092cca1",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "19b475bdc0e0154933e90473cfa79fbb9fd129da5498bde379a5e17fd8047f62"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "eve_industry",
+      "run_seed": "3db0b390dfc38cf3bd0a9482e6bbb56472400d93a8b07af4f234763fedb28f9c",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "1a6b9ff8d6261347a8e9770e55bde6003627a0b2660cc37acd21fc89d8baae8e"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "dynamic_config_service_api",
+      "run_seed": "cf0c035893babfc934476c9c2b88cd32f4f04c97d18e01bbff66f39362e0921d",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "1b2440e3383a4999515dbd51ce997f20c492d5fdf65179bc383128de520b3ef9"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "database_migration",
+      "run_seed": "f1eec9b4d02ec2bebdfc89d958d14f4e1230965565947a97c59677e5a75fab8f",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "1b2ca76aecbde069070a92c59c4bac67091654bf21398fcd15c7a65354f95ff0"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "recli",
+      "run_seed": "d4063b73024f65ccb72f8895d73cc8dc2e3c8c1c6a849d2bed5c8476e144d128",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "1c152469e0b9f86d691e6472603aa1cef4549602990ce1a3f65ec72b3fd254e0"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "test_translator",
+      "run_seed": "6f0886063cea6419327db8d7cb9c4c8c7cc5f6fbe587329afb3862c5f01eb2e2",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "1c31211af5dd73f54c639d32e9b671a82fe122e4cb8fa906909b147e82636ad1"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "eve_route_planner",
+      "run_seed": "b864c1526aceaede194ee13d3181c606d7caf7f4f819a57f29df6973a66116b2",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "1f06e34d87c2b434cb3b4fe98bfdc331f2cccc8eadad8f4e5e61c95e5cb673f4"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "l2m",
+      "run_seed": "e70707ed0a92da3bcfaea30e431b6e0e5de67e8149d43ecb8d9912ebf1e4af8c",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "1f0a0c9e91469fd3338528b58fc36b4cc5d2d9c3f6af91c68d5672972a19705b"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "file_merger",
+      "run_seed": "43ce7ff9a677b8ebb375fea9b779613f744223bc44a4a3352f040ecf2ce0411c",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "1fc331d163715c9c1efb159ecf9efb87cb9870bcbec0949cff9655b130408536"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "log_query",
+      "run_seed": "d8d06a385555ed48d369b59bb3b6fff70147cabfc7bfb28572b6b046a9cbbb2c",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "1fd861f2f2498022ca255b51f14226db7d3dc3c5cb3af26474ee16dc394ae48e"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "metric_transform_lang",
+      "run_seed": "f11fd403075052e1d8704a81280a3b38289e61d521eec551d3beac79f57204a8",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "2006226bc337610ac4e8c6f8615e6fbc0e1bceac1667ae3be87df424fd8eb141"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "file_merger",
+      "run_seed": "feee4dd3549c74bc53060788fc3f5e3bb9e474de8aa59c3c66beade2401ada54",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "2077cbaf9e5382cd34a9c5bb25d485cffa042651597235b448492e051e5936a0"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "eve_jump_planner",
+      "run_seed": "7a5dac4c7eea474a07e8237bf95f70975865691f2da7ce5f664b47528f4938b5",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "212f70561c4791ced9fd6507ddbbce18447c5ca418bac779c8ed14d83f176453"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "sith",
+      "run_seed": "b8d83747ad75d8ed90ee119ecd4109f5ab32cbc01b14a720df8e0b11ec0a80fc",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "21a9b3ac6f9d0123c2e2e661387cf924af82fac093cb149e2ef993ef5d62377f"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "eve_route_planner",
+      "run_seed": "4c0205f8c2af3ab0800705595058cf286486d9cbcb47c3ee456e1aecf501a660",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "22381d361e6437da04ecb8c3880e0fb2bf9c73eb32b33e75daa78f2b6a0907ff"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "layered_config_synthesizer",
+      "run_seed": "93ef066af957d8deb1c5d2fd3208c6501a0c8422c9de57d5d8292213d6c1f960",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "224a1765d7497e9cc426ceefbe8e3b85d4b2430a990e23b8db331090fcbf61b6"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "dynamic_buffer",
+      "run_seed": "5fb1f9f5d8b2b55216ab341d85c290732b0a9eda649acf864c142b81f97d0c8c",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "233057297a50667be0e338307e9e7aaaf8579c13779f331fcef75dd3ef179a81"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "eve_industry",
+      "run_seed": "f9ed7e0b0e52e987f69cb17ac71b7789070ed4cfafe95adb787e469f88b23e19",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "23470d77fc3a7006753ed7b677b07a9b62c8beca0faf1c9749b0d396fdbce7a1"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "mocked_http",
+      "run_seed": "e2d675c1c1a3edb44ed63e4654511fd26dc788a4dc9d47ebfade10b3a0734912",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "23c3870cf15aae33b0902590af35db3ddd5aa0aaa3063251575d318dff4d8000"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "dynamic_buffer",
+      "run_seed": "fbb19c2bffa353ca2eb190bb851364424538721521f2f250284bd44bddcb3932",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "242b09b32d7e52f21a727f68e54be21e5326fa09095d2cd027538061facdd5d4"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "rejector",
+      "run_seed": "88cc13b24f8b17b9a112ab2de620a79406f2781d9fb348e9ee615b4bd037d9af",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "2461d60ec882ad345ab8ba75aab60e99019215d6f3eeaa3e9b7422d645c52c04"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "eve_market_tools",
+      "run_seed": "9fdb54d0516771206e354a993ec7cbdb456b6ffc8e06f4ab70cc2728a8750faf",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "247212fcf3c24d48603122cbdb7c75430d3e3d4dad4c60106a6bbc46ca557edc"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "sheeteval",
+      "run_seed": "2748e6acf609a7c4f782133f534d080cfb2a8adcc0ce4cbd71ba8f3b1375680f",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "2608b0b9d22ff8b5f29e80f68c042ab576f61931494e69684871ecad0d87a8ef"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "dag_execution",
+      "run_seed": "ffb52602c9048e6d425e2fe7b966cbbb5acd9ee33b4ee74c7cd6febe190f3efb",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "268a49eec61282f6983a01e87b3c43a2d6f36a8a193a574dff6d1d5762d76963"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "circuit_eval",
+      "run_seed": "3406d88eac81af84084f302eef035e36f32507dcb555bcc159927807a48bfca1",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "27cae7d3db0c420f0dd4513acdc30ac98ed30014533049ee4c7181eb1058aaa9"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "rejector",
+      "run_seed": "5419814f7dadfcca5315f64615764d9720b02ef93c25ff52c4018a09fa976b19",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "284754ece14a7d781560c09f6bf1e314756147156feb4482c92dd6adbf51c88a"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "l2m",
+      "run_seed": "a902a9caffed9f8d3083114291b3be7050d087cee3e520e8cf5f950076ebc24e",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "289c1939175357e18bc631a65c6a3304ceb65ba9b2325483ba56ea6888a78a07"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "metric_transform_lang",
+      "run_seed": "7140e8a4be421bcb94bb873f85e947ef1b2b35ed4f728ca893c8e746ac47f8bd",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "28a8c075e9d347a8b0018cb3b511b1fb44925cc5017ea63108aefc4a13586630"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "meshctl",
+      "run_seed": "3d0cdaa36e28ca17da724e983c34972755028145ff5f639cab3b20d8c3fd70e4",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "29d3499fc1385d33178eb0eaace83d651ab2054eecfae371145e3b113a37fbaa"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "code_search",
+      "run_seed": "5b5abdff1421dbb23303a57f78e3c17aa59f79e75400b1e20a9c01fe82bcaf40",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "2b15173a95d5b47a431dea0099620ca430862699bc6f491bbf2dc6a7d300c159"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "meshctl",
+      "run_seed": "9d418eee380b07808c07091351d0b227955ea17c4bfbdf6bf16e4518c764ad48",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "2c223459f432f018e18c01005fd8b2090cf0fc779d22cd5dd47f477d423b4962"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "recli",
+      "run_seed": "1f92cd7fa4530a58539c45632069e76091d4b0f86e55eca6a8f4490f2276cf29",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "2d94f267beba8f94033638230473c1d8c14158e20f22419d4eb06fd6bc57fefc"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "layered_config_synthesizer",
+      "run_seed": "1c4901c52f9ce57d9fc18dbd8ef1faf3096fec4ece0d240f416dc0784a17e284",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "2da5dc530e278b551f6626cfee882c590e935cb31dfbc74ea84dcf9937e96478"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "recli",
+      "run_seed": "5d23a815f85adb164c7740abce32d2ab48d2ba740476fc0d89b08070a678ed67",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "2f4cb083de1ce668ab86535d41192941ed376106043f088bf2b4e3926fb40f03"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "layered_config_synthesizer",
+      "run_seed": "d74af73e94f52f750fb234ecfdf99ffb0954833207d0daf5f417cdf9d72bcfab",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "2f72d3fc6c9ed886179ddb532ffdad25e5f0e9ef109109b5c10057d7ce27927e"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "file_query_tool",
+      "run_seed": "5a69b5c2532555a370979a01909cf5941a02a29ce8d8bf7a40b008ec54c23dd0",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "2f756eeb73139e837c5a97ab9d2adcb2a5959eca59b07f265025e1a5a1c4bfb0"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "code_search",
+      "run_seed": "a0580436ceebcbd84bc00b99b529b500ea4e286521290c359644a063f88a2c2c",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "2f7dc9dc2de7525bfb8c2780558b2556315080ac4fbf0b81391507de00d71b76"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "textdrop",
+      "run_seed": "729f1099cde3fc469ce2ff14be87e2b2b0dceab87afd69f8242f856648f679b9",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "2fafe018921da2ff970edd15d6028710361f4321b7b456cf22097321e49ab80a"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "l2m",
+      "run_seed": "e060c9f5e2e062f71d86643ddd3cae16c8246329ddc4670a73298b9a605d3d1e",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "3065f5b22300b876a72b3f8cb947990f21868852f5bb64bf3fb6b7eeab4eff7d"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "migrate_configs",
+      "run_seed": "9d70e8afe3d463bd803209f163db2563a54f10789c8619aa54d67296b7136b85",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "3114678091297dc550f143bb0f67c38ff232f5a0a9f33fa6eac7aa6785a2d2d9"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "execution_server",
+      "run_seed": "7e189101e9cb53f55ab230772b2f9392bac43ddaf98458596c27c7260f5e6d44",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "3138425f9634a5a807cc0ca10220e2b93be02277cb1d1a09fe3e41c64907048a"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "metric_transform_lang",
+      "run_seed": "2e1e89d554a62e2fe4aa33490630fa4ca7fea7c00a098fb6ca1ea94bc5166f42",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "31767dba6402a458354d72198214261811f5d6a2adba99e4531619b14a2ac8b8"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "log_query",
+      "run_seed": "07f023a6e9d1c2bf2948808cc681652f098c6dc33715561783c69276c63921ce",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "3178d0b8a5ba37088e5d3ba300c1d54b669c98ea8701cac1baa91a30269b2b3f"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "dynamic_buffer",
+      "run_seed": "af859d07bab1b57f71298797aa0dcc8cb18b7ccd950b2a015e3936ce70441e16",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "33117f59d064fb57f4703fd386df54ddcdaa0abc1da658dc61875b00a0574a71"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "sheeteval",
+      "run_seed": "04ee649b64584ab704fe2365fa5ea136a069166a9b0629f73c1651a49ad34aeb",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "34955f3e80b64c705191cc5d7cb885789b89222215fe2a3c194b48e78cba4a88"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "migrate_configs",
+      "run_seed": "b59fd76fbb8886f37c39e5cfddd83d679fb23625de2f49491274629531ad7861",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "35c024fdc3d1d8c29b7c8edc49f4f27d8021a81edc0f89471a7a92c036ad3b0e"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "dynamic_buffer",
+      "run_seed": "5ac38980c73bc66817eb7f3ef6e105065a023a69b02b1370bff8ebbe2ba6c006",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "36b718735daef1ef9b12929720522e6b0f9f16ae1698d68b65ee61b8f4a06c98"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "datagate",
+      "run_seed": "876928718f2a49aca00eeca5818540bfa502ee3878da8be37185111e56bbe16a",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "3701e3213d42f5dae41c714267d8177942c960ec99abb17f729319efad2b5cd9"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "eve_industry",
+      "run_seed": "11dea38f08685f73ed7941a515c5113a3071f7c9db023aec043544ea48e8d64b",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "37a8dab8f3a7be5ce6d73e3fcbdea99d2da0d7b9e5d6d931634310028d548ea4"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "dag_execution",
+      "run_seed": "c399697a4902220ef6701514c5a98a0c82a61824262d410e52d6e3c639fcbabd",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "37aa2c1fb9df0a4969a834c3167512b0488ea9b169d38cec3ef1f81cbb168849"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "circuit_eval",
+      "run_seed": "91e14a97755a12008a120f88edde5517fd4fc517bf2e2e90b08080a87836b382",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "37c97f3857e8233ac9a760f3716683a61b4dc85c2c84f43ba1ca2cb45835da0a"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "l2m",
+      "run_seed": "4caa9fafb17e655ffe9aa2c180802e3e24e1834645fc03b274d3d1005d6d6313",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "38551112114cf5ed0f7efe92f1d273f8dfb854440807da97fbe2ca69829f3208"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "file_backup",
+      "run_seed": "395bd019138a83573f34db7e26f88e61748f6e986c1f0dbcd69dc2bf6fe79804",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "3961757efc0e9f3db8d2f58a42d579e56a02922576c1a1a947ba1c1bf133f21a"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "metric_transform_lang",
+      "run_seed": "167228615143d799149fee59c13f184e4b947881ac159270f99b1a6aef3d0eea",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "3a563fd357d2949fe0366a471cc42b0fdae0575dd7343f6f8855c3d272f3043c"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "mocked_http",
+      "run_seed": "0fd55ed28b22f21bcf78da7940bb4ea5932e44e1adf65c0063a42d5e25868554",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "3acb9272d4dcdb61ee33c2d99fdc08fc7282825c33f2f7d2b6439a66ff32cada"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "file_merger",
+      "run_seed": "ca1a84d02edce9d38a5e07f44005820e16fc740b79be043e8848a2aacbf67de0",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "3b7b4903285dad2d3957106954d92a847a46f6896f1af2bee9e1fa28b8d57359"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "etl_pipeline",
+      "run_seed": "6298d6467646629069e1526e69faf07af601ca7d72e1dc1b4b1d8a9ec49965a5",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "3bb5f6c136bc1357203d031409c812df6f37c8b46d8b232eb4342b00a35987b9"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "log_query",
+      "run_seed": "3a51aa8f3410a4d9357ad4c715f03d0ab8b0953973e04e032ba0d122f4d18989",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "3bb92db92365617fa7c5daaa67a1af9337bd046bd47d055e27b16dd0464680ed"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "recli",
+      "run_seed": "3c5a343d1446623c78301f75151b103b2b57cea5058d6c820b4895b82246dc46",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "3c68810e515db76e6236179cc30bba000145defd4fdcd90aa3a340ef1052e83c"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "dynamic_config_service_api",
+      "run_seed": "14ffb223496aaecfe3da2941ed9042252d8a8569e5e0ec7ef152a62a726b9880",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "3df02e4eaa3fdb6eded9174ea4c929139e61a8c0843980b4beb7dea53565084e"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "sith",
+      "run_seed": "5edc30411c34441055ea6070cb288e68c64c396ce8b39ad4337cc2b6fceddfca",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "3ea5da998442778b539050e2f62c78468d42125d1c6877d1e67c366208487c27"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "file_query_tool",
+      "run_seed": "498249982414be8c428b4fd59a12840ab2d59f29422b3c7f6097c4f9e2042cd6",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "3eaa190e54aaca5df01c01f6a1aaac329c9e66eeeeac7b1d93a097b77398fa2d"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "trajectory_api",
+      "run_seed": "ea9183ff5cbc3a6c3b18675a87113859bf9f8544851d9bb72a34e7fbdefa1ba6",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "3fc114b914e01f97d871b1b0d8c31a49da90268ec488b0e6af8e0f319c0a9627"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "eve_market_tools",
+      "run_seed": "ea25e6e4472b6607cdd2ed5f4fce7ddde54da56489ec53dfdfe9ed6d3a2a7c18",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "3fe1c8d38292866c3d0dad1d74b082fe5f221a150148412321aaa11dbf6ce0b9"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "dag_execution",
+      "run_seed": "a7d0956f2de834f2ee0abc62182884199db3ea723d373e08d81b6b03ee941cdb",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "410b0f20e48991355aa3debe6a18f3b4eda12102414ccd596e70a6cbf52ae25c"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "file_merger",
+      "run_seed": "935a4cf83171818d48424181c4a9adcc6a68545f9df5e09d2dbb68aa597f228c",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "41500b973fe935bf50695aa99a436748ad5c0ffba2e874ebbacac27b65914ede"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "mvvault",
+      "run_seed": "26340f8bf6bd64fc2dca7b2c387351f9386021bdcab5e05cdcdbdc63c1dbe6c8",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "415923e6be5c065e301629fac8f92588938d8746602e13bbe65628f8c61a356e"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "eve_market_tools",
+      "run_seed": "baaa4da5b96172e39bec527b35b768674fb2009948964ac2c1f912b61060604b",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "42cb6d1cc34db19538cc5cad189435a16ff4a6f420a602f1934fe17b4233904c"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "mocked_http",
+      "run_seed": "de9e0cc880044b24ad77b63ed9c0ea019b6349063f8fb5f2599edf3504fae4f4",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "447c25502172a9981f712eccfc3ddb8c93914e7859aeaa47ff839320af097297"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "mocked_http",
+      "run_seed": "0c742456afe71c6c1ef388d24aa9930322e1dcefaefb150097513a4a7ecf4ba3",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "4498dab3aba89bd4dd013fc92ee50be88d5b9a1ec6fada1b36c846a5d0b6bc23"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "layered_config_synthesizer",
+      "run_seed": "5e343767cdbe82e0551e14d6729e2cec0bc2d219499f000082d805f4d257ee70",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "462c2ec60a84159bb179d32450ad77d431f1f54d46b600ccfc79d3be975444d8"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "pwd_manager",
+      "run_seed": "e3017cec0cc0f466e1af1ee11bf91af48a113ee04475ce644c79e47e49eb898b",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "466edc7f8c4a5a0095b6e383edd425ffc937f4ebc4718dbee810fef377cb664d"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "log_query",
+      "run_seed": "748b0be8bc8f8178e3040b848a338f42b3cbf937881b1e24a271cff1048d19c4",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "48a6a96f5f5cdaacb5dff05c8b8a21467184262dbf0dabdee431307c535f2998"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "file_merger",
+      "run_seed": "fe988678bb6dfc68ef3b759f581bfd04bc593d0b7ba061cb9b3b5c21ca0ce3b0",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "48caeeb229228a6d61e6173e6e3d7c7ca8c5c319d86f1091ff0a3af3721fdac0"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "etl_pipeline",
+      "run_seed": "270db6c3cfbdfa08b795075a47cb9675ac0f7342d010d7040f01648bae3f21e4",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "495840921488cab833f134144e8d8328063e2a1ba51c459f98b5bce9c663b673"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "eve_route_planner",
+      "run_seed": "da10bb67454f7ec59508263659fbecbe72eb9da5ee9773dc5fcafd0f1f6afd13",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "49827924f32e5387de020742178e4b4c0aa7ad719ebe46abf00ae73621430934"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "datagate",
+      "run_seed": "1b1b8248c275c5c01c2e7f24b6de747e24a14be1c76dfdd67ba3622c362b0468",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "499875cbb44e0237349a75b487c158f308b0989f7a44ebae065e09a7e3e319c8"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "eve_market_tools",
+      "run_seed": "66277816719271e0a881498e4430a2a319476f38c7d4eab42f1e6eaadf3924d8",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "49bb51dca7a1c9594573ce307c772dccee906d192e87adae349b522e2512c186"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "meshctl",
+      "run_seed": "b179c4b3000780a32ac96ab3b5d58c3cc97c0a987c715a5e26078532deb8365b",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "49c2b0ea5b77a049b843439eb3ebad43ecefda4135d367d2667b582c100be25b"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "eve_jump_planner",
+      "run_seed": "c07c2e7f6e5db0351507e2d4427a40c6e429396748661ef4790994e096249d74",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "4a8efc45a6632146a6fe641b52b1fccfa6587b5b1a211d668cdf5c83f127c363"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "file_backup",
+      "run_seed": "d2a656bad46cf4d3cc955cd3b0ea8ecad0001d7e7efc061a113e8d34a3119626",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "4af38bbb187e7562ac12008cb0ec64e9f1931997507a9f6f5b457a2154a63006"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "recli",
+      "run_seed": "8a468e2c2e154ce47a311df7ebc9ba5a7dca89d7d04d978b0acb6ad7dca53fa2",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "4c68641cab2517daa6a61e9f5b4910bbe07f7a036350d453425a75fc680c4679"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "dag_execution",
+      "run_seed": "5d252c2219c27a053e0a7a612b12f127262955d2bdc7bfc5cc459aea6407d7e0",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "4c7d53ac479d6daa26ab2108eac3a683cbb018e24567fcaea8233ee5f3d8f306"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "eve_route_planner",
+      "run_seed": "c8f160175be8c7412a256e810ebeaf808170bf6ecb3e1dc7f54f3ecd4e3631fa",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "4d210b3e74163ad632c21461709f301b1523b2590ea186e6f956dd5238e0750e"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "sheeteval",
+      "run_seed": "e14842250fc66865ae3c3301c86c84fe7906b7fd8694fa54fe5ed108e89c3175",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "4d37f5da3bd8dcef6b3dfc7c9b18224c0858157e295e23e6639d91176fdf90cb"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "env_manager",
+      "run_seed": "fdaf27c6b0af575f840229d318807f19d282b4c026963bfb064a4c4b4d9c0af4",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "4fa77f1e98953a38d43e0519af285da8ce98bc4bcea8019f0856997e11fbaaeb"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "mocked_http",
+      "run_seed": "6bc8a9fddd9816ce131fbfaa2474a743badc8c4066546f3a3f1c8157fa1d861c",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "4fca3867a42d22cd6c89c2912549de2ad55de396e1222dc2a221b869686bf787"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "file_merger",
+      "run_seed": "110d572eb0abc88c230770c33b1ae5b786c1d2e0513e51878288dd1210ddbf5a",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "50e6b90cc322b82b60ed65a19ff9b51ed9a2c6a88a367b5f51a43daebad2f4c1"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "mvvault",
+      "run_seed": "1c460b24a858c0c489b1626e152c59f9718b1fd9b90a3d8786ce0a5a07fe9b2f",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "51136dec40bacc368a92ca0988bd909f9e32c5c6217d45d34eebde7afa6f6435"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "textdrop",
+      "run_seed": "66eac1f44b30aa163e726080567104ae502c275ffd7ee03f89099f7a9cf3852a",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "519638acacfe231871a6c4aa7b9e39748be01893044bb90e2a37ad8f045745d7"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "file_backup",
+      "run_seed": "90b604710ad5e8ee6d73a79e0bb90cfee7b8b16773053a521448969c52c5307d",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "519d67b4d7afad577a74b794b5d16a5ac30fbea76045204e0b220eddfc8ed8aa"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "layered_config_synthesizer",
+      "run_seed": "bd010a3752457e14fc1c489ad873b5a223f0639c187e86730511752711c623ea",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "51a1ffbbc4605e7859eae7c5a84c50fbd714efca8734089590bc7ad82a9e3487"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "sheeteval",
+      "run_seed": "9b45c63ed52b4341d3631b7d10af03a10c43268d632155069f2612805e71158b",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "51d23a59f8b710f2342e8126b6d57d63e6862b2b48e26ecffd4f6788d3f8d527"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "recli",
+      "run_seed": "c96566ac5f2836e33f433c6392d8bbee8854f75ca2ffa2db1c289ed46a9d4b12",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "525c1768b87499d9cf69def02fad9daa0e1b22a7d2b84d1554ea2cbb78dbbf6d"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "xjq",
+      "run_seed": "8ba034c94f946a87814d3b76a88a1e309a9a47186902d9e9eaae3303005e080a",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "53236a4fccf0681a218d18c01f78700d79ad129310aaa7860646217e8484ef7c"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "file_query_tool",
+      "run_seed": "e56cf48c63f4d7b919ea837fc976b4e3341b16a0587817fd0d2f4c139aabc5bc",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "533c152df77b217c4daf86f8ce518607a3ca7328189d1e1fcc9d750aaf67d0f7"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "forge",
+      "run_seed": "49de722585ddc06321b1bab47b685bb75875396153a8c92b440b91cec06e08ac",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "537e9a2312892b1e4c28e4b03b8ddf31db6622a2ddcd4bc96ae7d5217d30889c"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "dynamic_config_service_api",
+      "run_seed": "2c9c613fc32d96418be5cdee629c85d60edfab343cee4b56b490a41771d438ab",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "53cd52294a86ca2a76ddb4cf1674c2df1d644a7e4f6a026968af905d2ab0fd3a"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "env_manager",
+      "run_seed": "21fca6a57edebee6152a853887f16b8856ee7f6dc8e56605c76648c2a22b615e",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "53ff04b6f36bd106a8c2991ad754c7eeb86b4cb0cea0a51760c89e03a81f12f8"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "pwd_manager",
+      "run_seed": "19d2234f239d7f2ed78c5727c86e8d123f9e895e6dda29d34340ac6b25b5c91a",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "54300bafc2b9fbb6d3272c381ed0a84e5e2e9cfea67cffb0ce23571168194db2"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "circuit_eval",
+      "run_seed": "9df4003ea9eb14ae46050f94f9bf93e9a63758a346e029bc3a2ece5e4a525c29",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "54d57fa582f7c9db203caaf3c48146a3fce3c184ab9f9236f286ad6d2dbc8bdb"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "xjq",
+      "run_seed": "0e3dae27650881c84628f8377b0e1d82ea2adbca8b82b5c1d839ee450cf6b613",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "5580de07ce22d2b39b97d65eb2b92735f90b5b79b1aae4a6f57873059bba019f"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "eve_jump_planner",
+      "run_seed": "414ffbe27d474b9b48305d790d46a1a1edec9cc32bf1a399132446d2eea6333d",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "55e6048a8932cc7ab9a42af3c5cff0a94bf6380b8a2b32f1d5bed5e747dc0691"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "sheeteval",
+      "run_seed": "54038b007b0d7380ab5ee8f5651a4e5ab91890d029a5cf4535f92485019b962c",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "574c5f602d725d3f90a3591afbd4e9253a6ae738f88e6c868c892b59f9d0b6d5"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "meshctl",
+      "run_seed": "0388f375967f1661e6671255e59413d6243d3e30c6b6e084c16d11518f06c1fc",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "57b90d69b3ab570f1471d8170bc8e6d3a95c071061806b992a315c2e2d5249ce"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "sith",
+      "run_seed": "c8afd27c45814b717e51c9e84ca7d1ecb58672778f59ea9a88a9533755685e9c",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "58513fd21738b068997d5845c93f46fa1825ab96717c788c53e086cbb8b73945"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "test_translator",
+      "run_seed": "fb2204787b5a04dc67f8a593dc808a6037489e446e68d37c649a7a7562b4332d",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "58a66a79e84b53b243288412e59778d9470ecc2cbc6305462b9dba5c59b8cea3"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "code_search",
+      "run_seed": "6d127039d3faa83cfc16e196e38614aed6d02e558cc4700c5bc2606ccb7daede",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "597f379e79fdb20375061c9f65063f380b87fc4fa6e13c880bd52d6665c4b587"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "trajectory_api",
+      "run_seed": "d1618b0a1c11d99919ac4fe880aa6fbd36abccb6a73fc5a67297dd137a8e1746",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "59a7973c5a0d01b5aef84fc8eed94a51bc078815a397341ec4cc6fdc0fc2caeb"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "layered_config_synthesizer",
+      "run_seed": "9cf25b7eca9d2a8cb3113632ef5808312d54b324d411654b6bbff00f402ab7c2",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "5a4a58f2bd20b55c075f918756022fb1d7ff210f0c5006b6055bf00777e3cf96"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "mvvault",
+      "run_seed": "c173121356c8fdd66944467333d48f1e3d6b19af23854d88614f3ed7eb279a1e",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "5bf3eda6ecea2fa408c39e25b4a4cdeb85f5ddbb79d9427f4821d1a684e368c4"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "layered_config_synthesizer",
+      "run_seed": "d4e2e28514362d14447a5d71eafa16a7196a1819a01059a7fb7659cef59f406d",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "5c3fbc8acb5fe7fe9074f00f6fad2fcf1f06bb81f520b549d64999fe4ad2dc5a"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "trajectory_api",
+      "run_seed": "20f190a670183cceab38decf67f6bfb3573d18608259ac4ed0c5099e5d0bbb3f",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "5d7f48cdf3c56e4ae531c28de106fb14d15a03b66d07069b2c75841146fc1f55"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "etl_pipeline",
+      "run_seed": "2748efc19c989d08862296b6dde7ea50e2e6d32b7d1a492521932e569d8c83e4",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "5daada72db9ef9b22c34388468035d276dd3d9b890245e46a4e52016ed977971"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "dag_execution",
+      "run_seed": "3d0ea6caab9941ef7d71688597db68929f15f9c2b05a08741624cda35018ccb1",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "5df7224d98c7bf5a6822face728ce797ef65869655359711921019c2994594f2"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "recli",
+      "run_seed": "6d32658722232e236f4b318066c211404dc01a22d6ab9a7ac86348432a88bd23",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "5e02898fd35b32b0bc861386d9ce59c002f11b7fb451c2740b052ffdaa27078b"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "test_translator",
+      "run_seed": "bea44cb61025381fb61095facad4e224c00acf83b52e57b878dd48e3ae50d48f",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "5e063bedd415e31a44b037f023bc4bd8ae8b0c9d8abc6cd706e59b043b28db6f"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "mvvault",
+      "run_seed": "a5791c0ecb8e24e3266e6c796ad8b35164d50e041be0bab987ae04ff5625551c",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "5f4ee0278784c98bc18ad24087e21b8df97aa9ebb505264679fadbb6d25df7d7"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "env_manager",
+      "run_seed": "d97246ed1933cb4195087e536e9fd208b6b36091f5f8de11e278d9cf4ea39a13",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "5f9b84b3999c3e1e58969b451f50c115eda723e4c0334d355632eae76e9b9029"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "eve_industry",
+      "run_seed": "806c8c8687b564768142bf58349a58e70673eaa9eca5c071efa14dea4e66037e",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "5fad729bf9fd2281c14c964abc714155cbfac2f78e054093eedd04584625b7f8"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "meshctl",
+      "run_seed": "e2606197c4faa246afe4996a47dbeab668df05072f003177b9a6ea10a8405c80",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "6035f4230d7483e4f69bdeb9ca8a1f69094cb878e7f537d8dbc9cdff6a95678e"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "etl_pipeline",
+      "run_seed": "b8027f66c1ea2220a53a2e5cf5d6bb074366d37146d793b12f5b5589c566ef18",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "621a7777f7178adfcaea18f45d482c0974df9a4883b00ca6fb69cd1fba9285c8"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "xjq",
+      "run_seed": "ebc34c78cb7c035a82da138649bf6dc7ff41e5a6f3bf694a776407cfd79b45cf",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "62c3ced089c282b3a731959ecd16f4ba22d5e5788877e4cbb0247013ba8468f8"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "file_query_tool",
+      "run_seed": "bcf33f041512129f644e738cc63980ed4bcac7eeb1aae3186886591118c81fd1",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "62e4aa4f050524608f6abf4fb16352b79eb1ab6832fab282edf4d070b8917999"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "sith",
+      "run_seed": "b4233929fe4e8832c047531abeb96e3f664e1e5d7c1828b359bd3c6981ec2d85",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "63bbd33d7d3a8836ca4abfadf3a03c293a90dd4fbb24fd378e2cfb3c1143d2e9"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "eve_market_tools",
+      "run_seed": "61c013b8be2e65f837bc328bc9e5a76585433820dbaacd49c0ec01347d04b2bc",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "651e89e94024238f99b66974476984fb3d7260ea54aead6c59bbbc63c86cf183"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "migrate_configs",
+      "run_seed": "169ac70be12c50e6cf50a1f5cf68752c5c7cab7728883bab33108e4d1a0e871e",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "65647798f51c5e5437fd2cfb73a94d5fde309c35e1e6457d101655326f9e176a"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "datagate",
+      "run_seed": "01b27538620b0e7ee0c4cf09211c01b5e79829929c0227997dd42d994bff1d7e",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "66361fbcba6916abb54d8ecd724a5f6b8899eb5f30e31ec1f7bf424634e6652a"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "eve_industry",
+      "run_seed": "3a1888c391336cfb2430da2ecd7421267e965c79bc51b843297e0046408e667c",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "6854cf2da89afb9aa5e21bf2af451003038e202b2c25304b464f1841a091032f"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "sheeteval",
+      "run_seed": "1ee7266394126097f610b193f4ac09c983c8f87d1956e0b8c3b441200728957d",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "68d97e9774e86a07b3e43426e407e2199ebffc41e320c8c8da20d75dbc2b7263"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "migrate_configs",
+      "run_seed": "88421bd9583370e1b1e2adb5f1736911eb16b5e4919a042a22c2d6f4d5ec6e1b",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "696519b2d6e5e29a91d1dbc3d0307566ae925086b9ffce529232cea7a7c40fe8"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "file_merger",
+      "run_seed": "8954a33d7ecda7fa4c8df80f2117fb54fc50e6a6cfdfddb3aa988f9417abee86",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "69e7b56e709f977ea5957ae56be57313fd6502efc1cf76f2f41f0924cfbe94ef"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "eve_market_tools",
+      "run_seed": "d40f624a261c36f9738123b778a64560e85b7518ff204fd3d2f310bf141fd9df",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "6a35f1364826a197f8b71c00092fa8faca79ced6d8007b3c23416022670320c1"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "code_search",
+      "run_seed": "e7cfed9f7c8211e828ad810f0646a432447498b1eaa3533b888980852d52c60a",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "6a66615599e6673d868d6175571732da57f6cf7c6d3abe1a498c6def1c9390f5"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "mocked_http",
+      "run_seed": "be20c566d5bebca0d1affa3684491fdcef5eb1df49b0d4c3af92894d3c3d17af",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "6a7d70ffc23ada3b9afb513d3f30dc7d2e141d1769b84a38b0fbf962d8d6c983"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "code_search",
+      "run_seed": "4e1b62cf885249a900b6123ca5459fd17b1d9af5faa1bb17e9c0e081f5c56c2a",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "6c331d40ee298749509f05b6c7d5b87c5f96d4dc82a5daf48b33b6039ffdc9d6"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "forge",
+      "run_seed": "55a1cd9dfa1867686d5f12d66418c09d6a7100ec5c7c55fcb6908507a1226592",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "6d6439c13230474ffafe0399a5bff14e3ceaddcfb6ae0be6dfa39d7d8752e95e"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "env_manager",
+      "run_seed": "05431a2ca7f75499b910298d9bce1d54e7955a30cfb6574a0a6b70bd8216f647",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "6d98bd5b8c56ae88cb7bccdc18227cf73d4a5ca893b0c1e678f17590932df3e3"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "log_query",
+      "run_seed": "6872ab0f51c6946ac4490d79315154cd1e6ab72996090f72ed58c8ca617f2fe8",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "6eaeb22414ae66de8a10684b2575f85f8d99494abc6fa81444e09ee36d9dc9c0"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "textdrop",
+      "run_seed": "66b84213eb4aaff2036953fd5fe6003556d711a257934dd64c0e28d6c5776c1f",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "6f6c924ac32bbaa828ca5c4af32f89257e1d14eb681d722bb6fdcb96f2ad6da6"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "eve_industry",
+      "run_seed": "fdbe468a0eb9c04f24209bcdb93907be1640b5ff9d336ce40fce95f26ab45e7f",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "702384411c9c22143bc5138b23d55b8c88c33c215f77218a4b1e8a3e0d47f402"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "eve_market_tools",
+      "run_seed": "a44a295eb63ac2b6dbdc4069ac9e96a1550f6181018b095990a383af9cdf4ddb",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "704a5eb41c182c544c13dcfc6ceeec029e972628aa13d0fb3ffbeba93c8464e7"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "dynamic_buffer",
+      "run_seed": "08fceebdff1404a4dff945be1176a41130f11bd7e6e978339ff832925f06f809",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "710fd8609d966ac327950bf4d976263a5b6791079b79d187d847943924076bce"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "execution_server",
+      "run_seed": "b31642eede70635db8f2c59b046a420a2fb1b8ae219e9450d0ca1ee8aec804d7",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "71700071cbdcab0b888fc3c77145c43d8dd2f02a43a3714429752b4c3dba1893"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "execution_server",
+      "run_seed": "9b30e377121e7d719bc4573410c896109ae41668409dbe751d52ce22df8d5745",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "723818b2b1556959aa424b54370b32613349f30714c24ff0873dbe0a08a0e1e2"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "cfgpipe",
+      "run_seed": "03a40644651820a04181f5b2bea1b2a1c640d82ef99ed96a93a8eef4897fb4c4",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "727281840281c370da7a65f1278ec0d45565a7006d52844ad938a65ddf01e849"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "file_query_tool",
+      "run_seed": "1d622dc266985b4f12b5df719bd4587da18b61065b46b9834c98dbb60258f893",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "72f2593ebbcb17d505d7ed1a8169286791451bb7b6fa36c18091707ea8de6998"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "env_manager",
+      "run_seed": "35ce590e29463b5571bc1749a20bd8a5699e0e3d5767fd36afed335987a9df99",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "7308a5818e07d26506e4b05910ba6cd3962a1bcec39456263550f9d1b19352f0"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "file_backup",
+      "run_seed": "3c510ce5232d7aca123e91b6b87667de8098aa49e2c8d54226696d7bb8e24eee",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "75d45759a0d349c1efef8b5f222d1a5448c8cad022d66ecc10074026cd8e5353"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "file_query_tool",
+      "run_seed": "d24a83e11ec047f674a9e598e3f89277caed4e40de723c918608f25c44660cd7",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "7689054d5dff2a1b83a51643e6c6c14a98f5eb3d8527632f6148c66238cc5f4d"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "migrate_configs",
+      "run_seed": "2a1af23e50b842cdef19e6c352350544ab3967809bee515b9d83707c47a531e2",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "772110f9bd9c501be4b212c97eb91429cc50c1bc38bf0687930b3078e6ffeff8"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "eve_industry",
+      "run_seed": "4a3f42e075e9a35e39426cf6fc8d395a39cf2a0d014a766a56a17f5ac68f86dc",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "776ea5e05bccbcbdab244aea7694ea668aa3588033dc6f4a1c7f34b47a76f169"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "file_query_tool",
+      "run_seed": "6b52a1bd652f5fc044066b5b4cd5e87df2378f13d652109d7af455ab80e98a97",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "77873b05a5a200eb668735cfb04fd4699e608877922e86b2d0b6232c34e9eddb"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "cfgpipe",
+      "run_seed": "08779d5440ef49150e4b7aebfb6fa642c596be6ba7044905e14b6a1a546dc591",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "780ac356dc70ca63b99d6d99ddc87bc557820ea440f009558983ebbbc432ebc2"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "eve_jump_planner",
+      "run_seed": "767b307d0f40817159663a4e5d7a9d0a3bcd14daa3f4f5d0579de4fcb63277ee",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "78301cfb2089f3e958d9c9eb849cc6d10b0b8d05ad2c57c6d6236e2cccf88065"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "eve_market_tools",
+      "run_seed": "a1e38344883c4b1d637eb481aaef34de3e9a0919b31f022eb3e73be46029755f",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "78dad1b5750b21964a522c1d88a3abc12d92ca87802d80a20b22dc156198ecc9"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "trajectory_api",
+      "run_seed": "0501a4aee7cd70dfbadebaac7c9a8b9c6c15d16860d3f98658eaf9fd522562ce",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "7b37632bf9c6a3c64efc32c54807c756befcc2201da3a48e3f0265c990523736"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "rejector",
+      "run_seed": "e00de21494df9e85c44561883f9d7022abf54846cfe4531ef9c72048ef49290a",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "7b7c402e1c50fb206dd3a92998443d7bece407cb53d25dc4ff8ff9d996aeb1ce"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "code_search",
+      "run_seed": "586a33ead8a13100524b8e567073d6c9cd1a2604cc2dc4d98e5f8a6a3ddf1dbf",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "7cf4465669168261fea3ce0ffbc46e90414b578d6b57ddab7aaee8101a0da0d1"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "database_migration",
+      "run_seed": "b27f64407478352651f247162ca2cc8ff97b3b99de54ebdd2e1a102c0d52e6c0",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "7d651d1a2a0c89abd1959e069e5d6b46d52193b85fe62cbe0843467f07064213"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "pwd_manager",
+      "run_seed": "7551f23a760a5d5045adee616b95e1c699ca3c0385bff9d375af9eea1c0160e9",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "7d9afcc9c28f3dee6a33b93f461fae9a0ed895357590fffbb9562d14a3f60f85"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "trajectory_api",
+      "run_seed": "58cc424702f1c9a1859d2b335340241c1b3c30ed3f9ec4996f36e3596cfb3b01",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "7e0db478651cd7c87f603f3047d727e78b8eb815548ec61d457e50f26703e24a"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "dynamic_config_service_api",
+      "run_seed": "473349e4087735f22de0697a8695b4275c3806417bf2cee838497ea3316145bd",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "7ed261db910aeaf15e9ec0f52fd20b47c508c6dc4daeb6e9de880cb518673a4e"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "dynamic_config_service_api",
+      "run_seed": "9572e42885684aca63c36efb947c17287998fc452dca7aa6dd6debbf4840738e",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "81c9e72b291de78e8e7eab305f823b263b68be0504ae851dcd9252b9f8c22c4b"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "file_merger",
+      "run_seed": "6b3fe3fdb57b93d8c0f28dd256c096e506871b20271e98529ce19ecdf3ec49d2",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "827311a4068f1db2245d9dc8099f55f7263fd2cc043552ccd20e4abcbce56672"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "file_query_tool",
+      "run_seed": "d63be3311288b394daa643df3bb6600ad79389b03c90ec200348c37fae29da77",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "831bef6bdf005e5401e6635ecb983c9b4ca3100cf381635a479ed665e3818b01"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "cfgpipe",
+      "run_seed": "4d835d6e4d7503379f48e3ecde23a596a1b7a0fdce4a983345cbbf2db0e2104b",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "8332daa84ab96d866cbad0a3a8fd35d92ec5e90113d49d3cc84ef9e36f3f0bb5"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "textdrop",
+      "run_seed": "62c4cff1bef9b762b5b664527c4d03c8cfd0b6b1836d919d6f79fc2ac8e1c5fb",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "8384a615b34215312a0084b4107249183cd0529f5ed9c8d24c0fb721dc88740c"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "layered_config_synthesizer",
+      "run_seed": "c95005bccc98e362dc7f9e33fd9abbe250dfcc13b86bf8e9168a905823bff02e",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "847d87b47479d4b9149f22a7c832d2d7b4f59c2b78bea360bec1d2bb9b6ce8d5"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "test_translator",
+      "run_seed": "52b1b101b55925d4c7920e74c412225c9aeea07acc48170484545c548e42c54a",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "848e2702eace72bd305042b50f9b3b4bb37b693ac00f8a621a2173bfff381985"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "eve_route_planner",
+      "run_seed": "19c0e0acfcdf1ad502d6f8466072ebde050b6a9d78082735660fe9c8580b88dc",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "84c715f00b93380c1cba82566342ab80952de63da8249902b543a0ae0e92ef17"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "cfgpipe",
+      "run_seed": "0141a0324c6f12386632d34bcf96949b8a01fc0e2664c7eacb520d59ac05cd78",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "85b1711f5bf00f743e0078d0eb9ef2b663213f1f2d554db559d677593106488a"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "metric_transform_lang",
+      "run_seed": "108f186e0a6f2bcda930e34a68d13448c5ba3061ba2fbd8a4f063cc6b1855be1",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "85df2e2702ab79f18f05e13d7c78903d1a65d675c137f497c97a567b1b289da0"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "eve_jump_planner",
+      "run_seed": "839ae4ab72372e9b6f0140d0c472ad488c38d7510a6bbee61b1769d5eb276ca8",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "85fa841c6c8e00c7335896b0f5228f412c39b2cc805b9db7b9bd48ab46c10dc9"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "forge",
+      "run_seed": "577a01c896d37234a52d6115c9f4ac79d203fbe320e57aa83b0ec591599286a5",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "867f35b33f586e5c64a93da99d646168010dafff4306e239d08c450d0faf2435"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "file_backup",
+      "run_seed": "dfd39d1769fe9881c17f0098f1cfeabfb3d81ff7425bc6a8bf449b4d25341195",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "87bc3af04ab35a998c47d598d56c8ffecf8730175d30330d965437791310b957"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "execution_server",
+      "run_seed": "cf48eb2e1efad08afc1fe65fa7292b3d55cfdbd9851b1af80046646a3617a940",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "887de514a736c837f638bb48bb4fa0c1af43c1123ff4303d4bf6a6bb7a713bc7"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "database_migration",
+      "run_seed": "709909ad1138f7fca95ae8d14259214ee05662aeee702848c4f75e74aec9a37d",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "897cc764fdc3d72bf20fb3a157f718c7eaddf4b75ac761d5a3a86953955ab470"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "metric_transform_lang",
+      "run_seed": "aca8eaec202f8be1cca26515d0798d530445d3fc5742148c913aed2f85c11dd4",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "898c541f48207cfe85a93c4bf90712568a241919547ca037acdfbc9a40390711"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "eve_route_planner",
+      "run_seed": "171ada57dda70fcc41c0d71dd1e432a0f6be7e926329e9ac0951a1cdfbeafca1",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "8a3ce7252401b00bd0de59fb6cc63bcd027268b1ee37ab50f455b43e10fd8f4a"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "dynamic_config_service_api",
+      "run_seed": "65a63928b08302042e3eb1454f4adb38c432f3c8d2c7c68f7cd0e8e84435b8ad",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "8ab8d3395c836ad65a3b21916c1d4f92b2c6a5906202c668e2e20031c19a1ab4"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "mvvault",
+      "run_seed": "5f9c83583b777c75e430fa69e63745a6db8c4f6b0b6d58eb51346c8ed8e148d6",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "8b8a8c45de08ac176f9dbfbcdd229dcc6fe9a11c711d3828856e4dbb922d992b"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "rejector",
+      "run_seed": "937bf30b831b4a96451b25f583f08a704fd47c7f05b3b57eaf9dc9cbd9443441",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "8ccdd399e5196aeaa017b1d997ae109c1c458de7fdcfb7a7d441c09b4ac78d03"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "metric_transform_lang",
+      "run_seed": "83f65b9b2ac62e1a8c921e791ebaaebc0568421f57871803d3b2c13b8362d000",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "8d1fe35ec93d8b7af66ad2627c18ac0f00c28d05a930b1e1d72c7802762198ba"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "execution_server",
+      "run_seed": "0d9979ba3a3d4e2ff43200405fb38fde86c58c724da1d5fbfcbd2e9481ecb001",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "8dcb1932fe0e30e76cb3634cbe1986fea5688536c9bebd610e9448cce2ef4675"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "pwd_manager",
+      "run_seed": "80068291816cf4343a83276ccaa3757582dc1293937c8cf9fd2498b0fdd146e6",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "8df5d92fa15dc20d2a0bb840acc99981095cadabe594c71ed6f610cbbcb8e476"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "pwd_manager",
+      "run_seed": "92c622f2f75039d467e009feb6bc4538b37b6e09b82e41b62e64d315244df053",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "8e165bf80665f8774bebb9707ca56829b4f529066bd2a3b56d3ec320588d8f74"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "migrate_configs",
+      "run_seed": "48611c3191272ddb6b96b3554065be1f38e664b27fda1bfe74bf45a16ea88281",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "8e3ac4cc9bfa78fd4fbf691140d26da30333aba99cb53d0a92b22de75d8c3d61"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "sheeteval",
+      "run_seed": "4d38ec1485d0f43446757e708496ca325e004e44d9888ee9133df5cd93cbda79",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "8e573aa130e20acc8c88e970570d57720ce4446266e387c6b29b7afbddfc017d"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "etl_pipeline",
+      "run_seed": "65678bc8cfb5b2c77963307a746fbfdec6ccea390b760625ae0d27a71e7a9e6e",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "905150c82face3adcdde3c8e379e4be729c52896186793b7d2af30df90a3056b"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "dag_execution",
+      "run_seed": "887fec6dd8a63a74e7a994bb6448f3e51863be737a0fe57df9cf8fa9fbd1d238",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "90789bd434d4c46046317d52c0b3dfb3716f0154546811bb8a01668796d9a6ae"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "mvvault",
+      "run_seed": "b2a08ad61d2fb67149b5f98090704eac69ac92a5d29b69fede6228b4291f832d",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "90fd610a7c715c28a2471dd48d2d5c38d6a639ffa0f4d928bbd39daa06b20b54"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "mocked_http",
+      "run_seed": "412a8ba104ec6b8075803c662edbe341cb72821922da53ad6d050f4c63ee8daa",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "911e2f0f73ab202db1e161b613efd64e0d36e685e79873c9ee4d0ec06a5aaa3b"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "meshctl",
+      "run_seed": "1417ad881cc0eb22ad6ccadd1187bb15fb08c5e96044dc3c5d9424ff6d19e3e6",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "912579bf2edd98b14b7196260762926cc9b86db21a2f0cbaa03a0b363c6c822c"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "metric_transform_lang",
+      "run_seed": "27f6e8656aee587de4424fc10fc752a1496a33672743c50e8f1cd2d58890672a",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "916357b2ff14ef3c465a83e030a1aee1e5535d09c8736d035707b4e11c904cc1"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "file_query_tool",
+      "run_seed": "628c12e07f6e91dd59f69f17b500d936fd7c3cbc619f305d01d27af32c3c27ad",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "91cc65314f8fa6cfa00c6842e005421d7429f794fd19bd4e3e9ce6e8cbd6cba6"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "l2m",
+      "run_seed": "be89313e6e530a2f3d5a12b71c5cf9fea382de12389fe4fdbac74c4933aa8d8e",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "928612c4c5d27682c1d74d26ebbc27eb7ca2bfda4a2b8a55da9c272649a9d7ba"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "file_backup",
+      "run_seed": "d8dccade09dd2043b27ec29316b05576efc4cab47fe464e6845501693fb52f84",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "92d00eedf4221e3ab7166130d36f0592e5980e9b5e9d424cd0e21168953a3f9b"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "execution_server",
+      "run_seed": "0269c4257f71b5fc0db4b9b5196a2a037d96f2cc33a91acbcb4c05e126d3c163",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "93978577c25a491a50f6e1b096640615b08127edcb973c3a8711fa0e06e0f2c5"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "mocked_http",
+      "run_seed": "1292224e712cb8008edaa9406dc0bbb3213aaa5c7c23e04ede9ecd828b14f162",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "93ac3345048c793cae4cdd6b136abcee7517446666f81ec3ac9d471108ab52f9"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "etl_pipeline",
+      "run_seed": "960cfb67ed6fefec0631fb2e5cfa4cbe386616cf5d97ceeb2bd7596cae71d240",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "93c0dbe94fc51e9a4c47fb186d4d1ac113b116fa3e5f54a09fd499abe586402c"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "metric_transform_lang",
+      "run_seed": "dbd8746e70e68d78bfb8a8b37515af7eba30d3ef4abd375aabbd61dcff42e950",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "943b7789bf31d51bedabc55c3772dd4b224270e4804ec530825dfb25a73890b1"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "layered_config_synthesizer",
+      "run_seed": "1b26a8a29108b87739f6ecb0d86f077fceb055939570e7ef52bb5bb029bc4d07",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "946a0257bb7b42956be608b79ffe51282bbdb75e264590b9b727c0f2658918a8"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "datagate",
+      "run_seed": "186ce2a2a8d42734fde19f6c0892a00abb66379f9ed8e605b35ed394fa1d529f",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "95ad08b8b2e819a5cfc0d513bb02b7d899bd8524f969b14423583c1d9f49165e"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "recli",
+      "run_seed": "c7b2b122748dc2270f4e33e597a828c259fb2d5144757fd104aef416cc90b33c",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "965445f6df1adb2c7ec245fa20a975d4d48c6511cfc9549ddd20fa3f8562bd14"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "dag_execution",
+      "run_seed": "0c976b460a743ec6f10820e7bd66164a27bda092d1c422e5ad1525780c37656d",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "974464a4a886a1114458825584f67d0bc0ec41825ce8a8f8fbf225c632f8dc94"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "log_query",
+      "run_seed": "2f5519ea9296601991b0e61438a5e73bae1c63bc0c4cddb6406e2016493d5025",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "974ff24b42ff5340d3d94eb15a55d4fc938ec350a8a07e83da2ea7718c82b230"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "xjq",
+      "run_seed": "acb4b8d47e88934e2b87683185d4b1f447537dab2f0c4324ebfb41adec3f593d",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "9845ecd5a128a0883689297e7a0a405cd68a50679a8d9fbc54c5032ac76c6e90"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "textdrop",
+      "run_seed": "60021285153e044d244728cbd9b24775c3f5cc59c27894cb7f1bcc88f0c557fb",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "98b149c88cc3c7df5c5d12a3185d5c6b0da47a526f2c1d254803dade2ec32d52"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "env_manager",
+      "run_seed": "2914fe28fef5163f189606698777fd64f2572ae78d35030df84d3d585c4fc5db",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "99bf513eae5d4fedb0fd088b3a997cb7916cf213bb3c6fdbdc8e746cc17f8fc9"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "database_migration",
+      "run_seed": "5f5352be7cdbd1eff9c271569deba5afb7b97b0ba78f4e3d74234e4ad1e61a1e",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "9a27124ad77eeb891a329dbb192d557e58c4ddc4c079438c6cf42ac44586d6c3"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "sheeteval",
+      "run_seed": "ab8c3b07f3f4a0f0ca07285279b1b9c2a9466c0cf2bc37fd7bf2eda5a33d2f8e",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "9a74f3eb7c96ee8ddf5225135d595f9b6d403253c4576e8856ddebd4a693bb01"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "datagate",
+      "run_seed": "e7e29dfcbccb343c59a0d1d0545d1f9568ca6b6aad3f5033b864bf5485c1dc26",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "9aa26c12afb77ef7565de08ded83de97226b2103c81be3239cb028eb89ef19d1"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "eve_market_tools",
+      "run_seed": "33db7697e5f664aac379ceb10981ca6e5304e90ab28f60169cf85846ece07d65",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "9b560809070b5bad6ef07bccef75cee061287d085b02f83c849c0c9eb1bc571d"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "sheeteval",
+      "run_seed": "8ef63aec3cca27e078920577bd6ae4356fd8818d3985503225af752b80004e93",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "9d3b63183376c9f37176f1b365033f9d02383e107cccb499af4b62e8cb5e5bf3"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "log_query",
+      "run_seed": "6b57177a13c6de8255302e6e2f36ad4a280c11ebe208a3996bb1ba2e8641727e",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "9d5de7f1283ff7f9bc1688a9d1e522a617a4fa034f62a069e2b1d923f3d98bde"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "rejector",
+      "run_seed": "f2d70a6274a28c45cf0d5c65eb7354569c60d62e2a8b7293ca5b36f0e8eb5d31",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "9df0eb0c1a3c98794a81b4177185fedf21d6c07bfae06f217020c0af2eef44d8"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "log_query",
+      "run_seed": "0570b2c24e91848cce0aa35e4555ea7c5870e2f758e336bc750b6a94172dc460",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "9e4de8a627124ba757dfcfcb732e9605fb27acf76c23cd8df22f9ad7e2c07bd7"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "meshctl",
+      "run_seed": "c91dd04333bf1ba274676d687920af0d7b8b86fd05b4d901e10faa0b7e58892d",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "9eddcf3038c06e2769aa12e43e0b91961146a91e80d04c1a8abc8af2708f909a"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "xjq",
+      "run_seed": "54e9f287ef47386e664bfcff5b2daf3fea62905d3c74517a2e3bd407aa752414",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "9f942d5915aeb39eaeff7a1c641670a300b41681babd6199d1f9ec8a424651bc"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "xjq",
+      "run_seed": "d0667e015ea5594b7528afd3d175bf8803995d33d3f9974daebc372996c31038",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "a116756cf83685612aa6d0c2a1b02cf4cdce73be461a579c67caab6b93472eaf"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "sith",
+      "run_seed": "19e39404dcb1f803e224cfb40ff0abf6202fdac0a0a2b72f6936f0b62fdf275f",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "a133caf312e8dbd9b07b652e8d3e1f49296857ca0e0edf3703ac293cb237a271"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "execution_server",
+      "run_seed": "4fb3d6498438b45945939ebe492513d40563ab7c32aff7974bc39c1de7eab377",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "a15ab6a3bdfdc50bf33532a3885e4b3619560f8140c057158a5d5041824ecf23"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "circuit_eval",
+      "run_seed": "30ecec0b7ebf415ec0ffbcbdecd9c0149ac3120b1e3a42d82e70e3130fbbed6e",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "a26b825d8bef39a89f70984e0425d5188d5305edff1a00dc38ff498072a87965"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "circuit_eval",
+      "run_seed": "e5847f82dd95c8a7dcea489bad48044a1468658c9ae92180b4bc9b94451702c0",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "a2c317bc7c94b4ef012dbb53e531425feb81c406312ea8f5d2ddee12f04e87e0"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "cfgpipe",
+      "run_seed": "3dcb727d01bfbb58b24fc743ec3bb7d806314b53d6021aa664ec5a5e4a7d3435",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "a2ec637c0ff1b10f6548a671729a6e201921cf4b00612cb287941d9bc64289fc"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "eve_market_tools",
+      "run_seed": "d2b56c710c1dbf8ae9d199d5f18b86854517bd457ca1da4857a9c330c6ba3565",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "a3186d1cc4fc594729c6a2c36f6f5cd6715eb411b75a41c2f56b2b396d4f1de5"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "file_query_tool",
+      "run_seed": "bf65ebef1149403602f7286dda0de2ff32df8a7f7fab7d0b0e323329e194fe00",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "a484f290162b4326c927065acf39672ad3d2d48ff46c2dbea5a9d49c3fe46aee"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "eve_industry",
+      "run_seed": "b68eab90074e0c1c8ed2722007f54fd376e014cb0a7e7983ec46d9aa139df386",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "a4f7f32f7f424d7bfa4786e9dd094dbed187fdc781f5fff0c3b730ba2ee48e48"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "file_merger",
+      "run_seed": "626b0a5214b7bf095e66b0e68220608f59851184d0fa47da7b6ebce6d420b086",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "a5da0ce30e74345d376119b01bb30a7d640c66595dd2f12179fa1151c2d5d338"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "file_merger",
+      "run_seed": "d5fbe1c2a5d0b39457cd7ced6111933644a44ce0e296586333467edbb1c60c9e",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "a65ec8e9b1e591b1077496683843211077e6f4103f50ef029a9102cfd051597e"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "mocked_http",
+      "run_seed": "e6757bd2d7295520bc014ab7ec4e672ecc097a2a6a25510125e456349629a382",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "a67edb0afb196df9149a3beef999d8cff50f411a7f8082b13fe0ca975c7a854b"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "pwd_manager",
+      "run_seed": "ac9b6e3e44e78e21ba839f7b9eea1960adbd620fb2b4375f49423433eedb3b56",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "a7a46a212c520183a4102602b1cd3b5ab33deeddfe1254532c55b7c338455982"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "sith",
+      "run_seed": "bfb2dbd23c5ff17a3839e833e81e2a3ac4feb62a0efd106b64c52f3b9e688cd6",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "a8770b52db24b1d0daf6bc2680dfa4b6a5d0c6591c9d405869671e81e263d779"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "eve_jump_planner",
+      "run_seed": "0218b039a08bd16460c36740f997c3157bd25b47efd066c06507370723cd14d3",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "a8a8c3877f17be07925dc37034988348118b864d9836a8e7ed373022e972e6a8"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "textdrop",
+      "run_seed": "9ff4cd4975fd0fa7ab63dc8c7591e075e5002e3c162d031c960ea01dfc8280e1",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "a8fd56d204f5cbb09ed2aabe8cd5a6ff8699e4f854dc387b4cda6702a7cfd760"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "dag_execution",
+      "run_seed": "462d29ceda439bb4c53b111b5a2bfba8dcecc8b4ddc68fa34cb6cb37450a9adb",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "aa96401e39d3a8ae6e39e5fbb874a0fbef5e06abee1c07eeb222aebc01fcf6a4"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "file_merger",
+      "run_seed": "1d3ca941a3c7d219a046d7bfbb608085c40347889be56673cbd02eec46121668",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "aadb17fdd0a20b11f38b8d5e2f232939f271609225004a79be1f02afb12f0e16"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "rejector",
+      "run_seed": "833853c3d733110790d457c3c29c0f373b3d332536dcf33a19d4dc4759e636ef",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "aaf2633882c8aecfbb62851ff585745b7efd2f4b26ee34d3eb06254ec9a14044"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "dag_execution",
+      "run_seed": "80b3d60ee5be1412a1be1bcc0d8d7b633e1cf3a109e37409ea9613bed28f685a",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "abe688fde81e8c58b4f50be7511fc2a6f028da4992683d0bf14c9fbf8e739617"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "dynamic_buffer",
+      "run_seed": "6083f1ceb8bead13e26334da6668e3b7951f661c22643495a4107dd974fbcb10",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "acfa9a8800c55ae36065c3462f49448407fc0b731d7448c7d0e5466cb347b582"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "log_query",
+      "run_seed": "a4427e309f0429b3489384986b855e8f24ace18c0e70a29e9fcc0dfb97178651",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "ad2c88278b244ec61fdd138dfc05705ebc6dfe7edc81c638ed28aef65ab03f45"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "dynamic_config_service_api",
+      "run_seed": "370bfe2e7844a054ff50df489498cef75d2080c96ca33ca3a85db1fa56a566ef",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "ad5005dce16c3a370d1e2cbf0da657e032e92ee8d1d4c1b6197a5a18b0adf1ef"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "trajectory_api",
+      "run_seed": "0cec2f2a4e76b6393843621276b97bfdab6979a2b7d77e50bd030cb6f3caf726",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "aed0e9f0fb2923e66740fbf0f46db0bb9eca67457d56b9a335b169bb61924418"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "metric_transform_lang",
+      "run_seed": "62f5dc87ac2d44221377ec988e9adc1be1ef05df676f975745c173180eaea157",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "b07ad57e3f261f0e98410c67d2bc29cab96038ff213f5b07fd06058ce48c4555"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "l2m",
+      "run_seed": "8ff25bc5b92655ce90f1fae614921b00d4c2338992189165fe79a45e5b0b0220",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "b0ee2ded358835cbd43cb7a809091082bcc5fcada70a647d6d8a0940aedae052"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "forge",
+      "run_seed": "bfc130f01dd9269943258fc14b3ff51d9e7f56653d56c49ff21ce670b2834562",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "b19f63a497caf010aa20e54515c00b7429ffadec5256026120d7b0f8bcdcf18c"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "xjq",
+      "run_seed": "36d7962938997b7d4440aaa1e2b51c7756538ce9c036b15ff709c586304f4d03",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "b246552dcf6acaee8003a5a5c7b99360980af76d54a06e3e1a4f9fdcbad43e57"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "dynamic_buffer",
+      "run_seed": "fd5c7d094876a0c056c22256867f6e42c056481eb64b2c6f8c6a6321a3cc5988",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "b2c641fed7e9cf9a4776c547c7ca55c9dd37769fca810de96f65f85ecd6e7000"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "layered_config_synthesizer",
+      "run_seed": "ab7512958d0cca8b5d9662a00fe58041d88c16d6b6f2860937e2cc2166062064",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "b385c6e0bf831d73bb1374eaf0881b015263605c45a018b08c4d8825a57e053e"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "sheeteval",
+      "run_seed": "d4231338607a798ba7645a82cc7ffe616af7415fc78add512f84a1e9ff0a1591",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "b54cb28ecabfa83fd6e50333e0f821dab7babaa8117a521ed863988dc639a879"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "file_backup",
+      "run_seed": "d4af2514840dd803607299a19e1aa7d0529f7c72504fcd91c0262ff37e9cada0",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "b57349a6be04cd518b828261bf97f2e6b2a6840492a8018ffddc4e6a490d95bf"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "test_translator",
+      "run_seed": "c1cceada8ad73f0ad5c786b131ce47496e6e19339129b311e25eee2316b7f9d3",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "b5a945d51a0e25f1f671443134976616644d91dd2dac037a5db85debc4d55821"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "execution_server",
+      "run_seed": "700efa2b1ee6787f7987a379b1b065130f7fd8f48e0a0ef11795a43b45561f07",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "b67c8ffd64889fc20b0d74c2b04c78d5d20a9b9e3aaff057927812298241c485"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "log_query",
+      "run_seed": "33b5b37ce5bb921a3ec24d2b06218b71ec378614f099e27766d0490863937c63",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "b77aa210bfba191a6bb6837c5c1f2920372c7170c79724244b8f446ee461a317"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "dynamic_config_service_api",
+      "run_seed": "6b49abb59ae3e52662b0aca6d2f46068e1fe92a06f2a517f9daf004e460c5bd9",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "b8211a69e9f4b0b76df6188213dfe5b42192bf6bdf3a97cbe0a5270f1d5a25bd"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "migrate_configs",
+      "run_seed": "b493c08088163435d9c02ba1aa95b10a8a3ef54dab27080b14724292b48eba3f",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "b842d89b7abd5e2fef5e722632ffaedf45cb59bc36527846a66fade3ab22544f"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "dynamic_config_service_api",
+      "run_seed": "e78f33c1f77745ed6abfa62d60d803797616d5f180e5a04a739c9a4b1dbed91c",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "b9c4db368e32f53ac48a9589fab397ef94a4b153c2366c5c3f8c1d3c75950f38"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "l2m",
+      "run_seed": "84ba4a2c8e4a785aa6b39428f0b1623dddabc2e8599cdb64f55578e919a0cc96",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "b9ed2d56b29628227db927fb8c080097ad4d4310bcc04864d54ace9913876fbe"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "migrate_configs",
+      "run_seed": "02216f28b9cb14aa6988efd93af397f3915020aab896ae6771b344c1ff09e3b9",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "bac002dff9747a8955a8017ad57a0755de7e3c5e57ac05fe44544a6de1277deb"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "recli",
+      "run_seed": "92b1cc953ad443f8cf840478813eb75ca3eb0ff53d8710124ed4b835b824d89d",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "bc7e2090847735d5c4a4ec318aab4984a615f94b091137d01af9963b1d2c82a4"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "sith",
+      "run_seed": "2378e1c1ddc03235abd1abc463fca3070651e3eb26657f31f3f18711f192ff30",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "be247ef18b9df8204d0459d04a1e5be5fed18cbe85cb7e5dbf7222de40148015"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "mocked_http",
+      "run_seed": "410603d8b4bc0359c048b3bd23e8a44e9989e13021bba41d3fbe0e21aaf62c32",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "bf28bbdba216a31804f5e90e501bfcafe10dd2434a50f626a1ab684d4425e751"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "env_manager",
+      "run_seed": "28232be12262e135c1a1a131cbf3b7cecbf752159b4570c1c6c7763af9b48f82",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "bf30d9611ae63421b120e25ff77811faddefde5fad8107123adc1cced2a2e8d0"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "rejector",
+      "run_seed": "675227846dfa02e6a6a6b263f954ab0b84932bf904c5fdb364d4bb389fef9014",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "bf7930427956dbd200c3915841246e02e18465799e69747dfd975396446bb97c"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "dag_execution",
+      "run_seed": "9379bd147cf58bb7756ba8610d65ba21f780f3484666fe3a829cddef7e306601",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "bfc075f9da46ab64557f03e3e24821e9065aed4afe74be46ac548e77efc1262a"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "cfgpipe",
+      "run_seed": "7124e207ec8ed4d52fe699026b12fd757154bb4056c150146600e23d6efe16e4",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "c095a44a7db83344ad7f05eacb71c898d486b9a8a4d451d18100728adb493e1e"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "eve_jump_planner",
+      "run_seed": "4474bf0d4a08f3248451291903aba1d450948da6f03cd13fc458653d1ae7ad4c",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "c098681621ca8dc6bd825be40a41ffd57550f0b1bc6940bacbb56ad18dd87679"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "forge",
+      "run_seed": "bf9b41df44b1b9dcb21e46296c789093390d0c022692a3e04dd52d66d1c474cd",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "c0a9eb7a91179efd3e9f83bc729c92efa0a8bae6b8605ef0cb553b10e5ffa270"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "pwd_manager",
+      "run_seed": "749b391bc8f2225ddb3d748de03863013b3c5acd38bdb587b4b88b6d2d6bc5c6",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "c16b472c4f54c03186db06c4620ae33e4abb5619358b0757c0d746872e51f458"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "meshctl",
+      "run_seed": "f13e3f6f35ceebfc73f0b4294df76e95c30087ca4bc1c14b7a7723202c35fd1e",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "c183e4ef1cec2dfbf3921774c6f502ae2cf2a0df5b17e4d0c470600d638b860a"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "layered_config_synthesizer",
+      "run_seed": "4edb5ccbb62c74159fc8cf33d42c334994707ca251fca3fedc0ac58bdb0fc209",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "c26f3bac3fd5bfbf8b711d0c67ece1455bafac3f568926928eebc570cfa629dc"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "sheeteval",
+      "run_seed": "54b259cc107bbb735d9925c66f076dad21acc735c81f38ccdf7da36b79b38bc2",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "c2d022f0d5f98feb6694639647198e00b61ec20594a6ec6c7754032023b824bf"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "datagate",
+      "run_seed": "abe2af8c8448e87c3e46534522e34e43d5eb31025a5380a9bc43f9c3f327ac1e",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "c33a9d718932b6445b7113f7cc2a93a60798edd2cf3853d7e4ed10c852b1eb4a"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "trajectory_api",
+      "run_seed": "03e3d74ff383192a1d9a33494a645053c00d55c2066ceea68c2b0a556605bc9f",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "c372967ce04137892e33d80d638c13697aa714a6c46b8781925fecc793da5827"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "datagate",
+      "run_seed": "94b70067da6daacab519e51a2c364797190e3b7946ce059a6628f2188aff1a4f",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "c456e0b79eae7476ce1d502f4f0ffd0e902d0debaa1c6a4a637b2db3c0f84696"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "datagate",
+      "run_seed": "375c48eb3b5f9b43acad639c4d0edfc64ea6ca44c2d248e3a68a892200cdc855",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "c4a7227feb14a4f9e01088e20cba07b1ff012d0c244e63f6ab8c2d220b7ce2fb"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "file_query_tool",
+      "run_seed": "e21439da4ba057d8f0355955c3b1b2b7620d055f617e2400f6e70f52980613e2",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "c52b185f8314dca7c708e3aebfa96f411fb02a729cfa620af6fda88c4e413132"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "pwd_manager",
+      "run_seed": "d800e4af1c5725deae28e954c6c41f0d00f37e7263cf32db3cfd544c435aafef",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "c55381d4c67ffa8ec81c99baf50030a3e5458438ccf0d2afd1e88b584061f91f"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "textdrop",
+      "run_seed": "ae3430c885e654eeafca61e2920c3ffe639d3e9874c66c30da4405b2ec0b3e31",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "c58c26ca36fcf4dd58842e030ad18170189587ea73334ba5f8a378375c5aba8f"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "file_backup",
+      "run_seed": "9f693341811f3370516e79261c8f2d8acc90932e0628f487755a97396b9c7048",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "c5a88b991dd6c49d02de07b33d0439825188a8b281b4af85db910e4dcab98d63"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "metric_transform_lang",
+      "run_seed": "89490e97739466a67e25ab448881210afedd9d6314ae77b131c396166829ed6f",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "c66754858f695ffcd87d65c4a6c65e16a37f7f79178eba7de1ec2cf9201ce4f8"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "forge",
+      "run_seed": "fbcca9c42215e20f858a68e05e1e645fb83685cb1e1c64895e6b4b2b4fc81082",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "c681e9183b407cea3e7483866f6e1c3b354d83245c8e5234bf78f453c1aaa4ea"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "code_search",
+      "run_seed": "7c65b50666aae459732dae4a054100a18a8def603d6c66b461534662e234650c",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "c7e23b84a3642db48ead2daa37f7d37a3d13434690d4a326708e28dafba3c7d6"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "dynamic_buffer",
+      "run_seed": "4280175e47fb4f139034d54ccf5a030fee65821d29e961e242e7f294646bf5ed",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "c922f94658a422e8e3018814547d4fc6201dcf837b38bc3f423eae26411550dc"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "xjq",
+      "run_seed": "a1c8eb6bd8e0b4b3ef935082994ca26175645ced049a7112bddd90b96678c2cd",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "c953c072430e33bc26a158afe5b21cc4d769633ddeacf4188c6961a904ce9f96"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "test_translator",
+      "run_seed": "adfa107740f82d20beabd438b92544d03480a226f5ae8951319f97fe0e440ef8",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "c9a049dea43bf5636eaa953b99b5eaa8e0cf738c10f0f6817cbd9e14f0b3541f"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "rejector",
+      "run_seed": "29e13b2906c61ef2f9aa78f70aabe11a6263dd413bf66f842b35be4e4769e601",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "c9a65920471eab8cd48c00707c83996875e31f6de666c153d7f0edfdaca99d34"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "circuit_eval",
+      "run_seed": "cd423e632d79203143ea179b8eaf6498047045091300fe8a627e7869f92c2bff",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "c9db0f11a97aca2b2b610bd3915e26e0a2407cb0d68ab6ff5e82daedff82c2ba"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "database_migration",
+      "run_seed": "ae8f74a5df89c02b75eb884865c84b7c2b41845d6b6f87405a5fd6327e1775ba",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "c9ece57dff99120ad59ac062ff15188d062afb3cd862e5227f44afcc4b4091e4"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "recli",
+      "run_seed": "e03748fa9cd6050ac5253791fc4430014428a67d409081bb621c554f2d40abc0",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "caf705fa511f27ee56816302375beaa5120f036fd46a58acb72b89c4a0f2f118"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "env_manager",
+      "run_seed": "797161c4b22e6f741e3d60592bb74684cfd3d8fca4c4dc8f9145aa89dba5451f",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "cb6184b31bae662f01bdef7724ccadfcf67ede447765904d402516641b5959f2"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "eve_route_planner",
+      "run_seed": "4406d1b23f673fe3ed3e956792837586977b40fecd10eed44f5eccbf31357946",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "cc42f2c276ae68fcc8f89cd3977142e67812b915bad5a98df7f2bfc7ad007f8f"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "etl_pipeline",
+      "run_seed": "e3e1ff08618452d831dd5ee7661cf37997110537b0eb1961d04238bfa475723d",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "cd2c23653ecfe453a26acd9bbbdc99bc6b67c3c4267ad5c996c345f75f86c9e4"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "l2m",
+      "run_seed": "127c257731a93eb7e52878399561c3d1ceee8ce3e3ebdb962f6deb1edebcacd4",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "cd6bfaea126247afbf591d74f422c8a77934cba4bb7996f89c4e8c1cc7c84520"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "test_translator",
+      "run_seed": "e25a8d33fb2ff4359aa7253661eecd66867d4a1b980bf166717a8e987910dd8d",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "cde1ccf84704b415ad88fdb7595739c02d887cfc34c2419b2fd17f59c643d65f"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "recli",
+      "run_seed": "26d8ec5beb844eef171b62ec6c205855a1444256a26ddad05cd901cf4f8203b3",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "ce56b77133fc9d90c715423ff704a4915dea52bcfb79d9e63b3350345d6f4104"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "execution_server",
+      "run_seed": "1057f659c4e67b3c2eeaf601e5a2a80aacad11cc9e5db147cef242410c0a4422",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "ce7515c657048d4739e8d6d60a6d857de8d3dd8d108a0acd4df89c0bd44ab9f1"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "dynamic_config_service_api",
+      "run_seed": "777b55eae8d68d304bae42fa66ab99387544ae6696ece620a997d951176e3650",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "ceed75f6aa32721d38f404c4798e82b85a2cc4c6be24bf570237955c7772e120"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "dynamic_buffer",
+      "run_seed": "86e44c5e24ffd5a47ead1a965e6814fc1dc6413c38047f84b638d50f6dfdc599",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "cfa0af6fddf27bdbdf9af204b1fa582c17877497775e2821ee0b625bad0024d7"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "eve_route_planner",
+      "run_seed": "0e2fe1cdacf35321affbccf9e128611d44258c193af396eb56687506bbe096d4",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "cfea981eff4da95dfda174e0a91d02545659baaadd0b3e6f3f9642eaa71a6487"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "test_translator",
+      "run_seed": "30b7cb01db933663b5b03ba02ea7faa7716a003064d0f3843ae136a96b073f42",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "d00cb08cb8035dbb24dc6bc435f6c3bb834f94352b1e3996ca8dd82f341bd132"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "forge",
+      "run_seed": "9d4e01c62833bd9886128151c4da0cac47f2138ca2435697cb513bc9a362591a",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "d04f36ff13876cfcd908c65be60865860f9abbee295ace5f6e02195d870cd493"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "database_migration",
+      "run_seed": "4c63103a41dafb5a97c87b4ca590252f39e9e9915e13bab2425583757c320150",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "d08242df4d4de7406b526d49a9a361cdb50afaf67d8892c8a4b005d08c8b5711"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "env_manager",
+      "run_seed": "48dfbf7c9ef1f3a5b434af555d2dbed464d279c59c7878fca3595fb0f194dcc0",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "d24d837d6f74c32a84da4aa5024a9de104fdb5928802a687ce102c54cd345483"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "mocked_http",
+      "run_seed": "192e2ff850cb3baf0ec7b45ac348aa49422cd090d7fdeafb71df210e9e51c77e",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "d2a30f16d74ae56e72e96532a4cefb4ff53a76f033066a5ab7dfce6e9ed0f262"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "database_migration",
+      "run_seed": "2aae6da5cdd9ad59a31b2e7267d294ede675de2507960aadbd6c0db8f18a87e9",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "d2ac8f2ea59c4d73c3abe879a098d060ff8fd90f64df4cc5411fe0a233a7bf8b"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "l2m",
+      "run_seed": "ad4c9883ff2469c4c48995e0dca8b23440b9c3b335132e1b2f93714b5b1a05d7",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "d2bc916142a3ab38aa60882f9d20913a7c80ba2c6d384f76b47b2f8f8ec70ec1"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "code_search",
+      "run_seed": "03d7372e89c9aa95ef44f45d733a17338d971bfc76821f31b674f13fdcf6332c",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "d45bb5ddde7847dcba4bd51f27ae3f84e616539d382ead0eec683abaffde8679"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "trajectory_api",
+      "run_seed": "f3f77bcca6d3e3b75c575dae0e86d6b8c85c14f40737b6b8a6231335d6534cba",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "d51c2ee758cbe1153b4c4e81cde5e5aa45125e3e834657a63d3a0712a816694b"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "dag_execution",
+      "run_seed": "f443681b4b16557e2a22608a22bc7fdcb84151160abe1a3825e26f74111ef8ef",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "d52122da470390ef864b7f3882b75792635ab6b9f34b88d7a6407f7ac4334156"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "forge",
+      "run_seed": "6103dbdf3d79a2f2da852f1a50e9d0114802348801ac3a11f44577cf87b568ed",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "d5834bca522f62f545d11cf3fd75a5afca49d888ac49095dfae3e27eaf524979"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "test_translator",
+      "run_seed": "0dbf2bd50bf15203326658e4041c63d18be477d7310546345c9772545b679f30",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "d5aa462ded14693c5e7bd5e129b8ace8677897569e11de33ea60fce15071e870"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "pwd_manager",
+      "run_seed": "21c4c192e8508dab0adb98a8ca58d9cb90bda7d5b38a7382c3a5bb3ebf328d8d",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "d60d567251589dec84aa6952699df3da7c99b7457f66af39306879a65fec4c3f"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "l2m",
+      "run_seed": "f07ca5575c724bf0a2e49deddbc34bd19286f20586b28c271c3805f05eadd631",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "d662e5d6cd62336180d2b36e23a355e3f81481406529bcddebaa6a93751d964d"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "eve_market_tools",
+      "run_seed": "a803c1bb698a4bca53ae090e3db1af9a5e53fc6b42fb36f0cc55ecf6b55a26b0",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "d6c6352b734fa2a10eca2954564dc14d44ac6e15552733b255157b7880c5153e"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "recli",
+      "run_seed": "78d1a1ce7d7979e9c8cfb7a91d1ce743ecc19bca965c13ae7347aed42b3dfa91",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "d707ee0cbe2c7154545847c86c8fe021d756c90d2809bbde8126747a48027703"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "eve_route_planner",
+      "run_seed": "23d386b198022eca6d7af8b83c6112133113970333c4c5a596d6692a0823e690",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "d71b53e89ab70e952f944529c41fa68e2fd7309f975c4128234ee0416075f1f7"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "rejector",
+      "run_seed": "e87986ca988847660d7c49cd9ad7f698273205fb85429d4531537efd48ad2119",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "d7ced7c37daefcf88ab12fce7a77298e1430a09e9de93a2611a6ca155539abb1"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "datagate",
+      "run_seed": "d7a052d3d0af6b350309c370ad8b4a08a46446689befb8581539fcad4a086650",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "d8706379df9c5696678b144b86964bdfca8f319c5a49d614ebfa3fe9ec6bc58e"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "execution_server",
+      "run_seed": "b65102a0d7028b5a834a694c7d910cecc5ee67bbf92acc9819640da89bf65375",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "d9c55a91bff2475cf1f8bee35096437e73d4be51456a091ae7e8d2eb2001dc66"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "meshctl",
+      "run_seed": "a0a1d3c03086e45692abe21113bf376894e0a72b80f31e6cd56369b882a89e1d",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "da4f3db34431764e0d669b2e63ece50c664b92e56e1638fda87bc2de34185eb5"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "test_translator",
+      "run_seed": "5eb3b6ef30f444c98ec332639d6ce966a18e269aee4641f8115deddf9b785fca",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "dac2d0aebac193d4bb6bb59a2860e498e97527d3747b02b0acb4202478d0bf95"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "log_query",
+      "run_seed": "57ee8ff34cab110d31affa16e325c3e73618d531e5accd73d17d051cdfa93299",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "db18f9464057bef58fa1c383e8a57c258cf69f8400eee8394c80c8bb59df2106"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "database_migration",
+      "run_seed": "0c5a50a8b7c218c23cf8df1ead3a2801e1fdd2ca4a42937e91095c28b1ccc8fa",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "db29c1b94040966c75ef2e14111a7b150b50ed47dd4da5770c2474c9f1a85c12"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "file_backup",
+      "run_seed": "835fc9a5360f82bd19fe645598b17473322e3145f323532c90c3c5a570cf27e4",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "dc8121c6b3d5d8b0615055ea633a4ce9af4b60f2d514aac73cbb9c41bcbd94b5"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "metric_transform_lang",
+      "run_seed": "3670bb162f9a45597fbb6895b99df1f821fc217d5ed0f60e7a3d7a1d7fb7fdde",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "de7a2c33aa2576233aa3e76e906bbd1f16d73586cbccc0990c0d4b55f49cd728"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "file_merger",
+      "run_seed": "ba0abcb26b628b1dd9c7bb901e736d78537de65336390fa19a85b5ea687c33b4",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "decb683defc20fc31d13e051c75c945847c2c2a291fe398a2ecf0419af0e40b6"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "textdrop",
+      "run_seed": "b0de42b3ebf471d8a06d41a8737f2f6b107ea25cfc19af0715631667594a0e47",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "df8df1a9711037b2e84a1481d8a07bfe4fcc9cbb6931b6ff03318ab640ad0a10"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "pwd_manager",
+      "run_seed": "3c95495e4809ea3c23dcca36da9424b8ac61b164657b6f18d0d76ed78a751b0b",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "df9728c28b96b186f87da9c1ab030f33b936a7ca6176fb48c63dca1c705ea155"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "datagate",
+      "run_seed": "b913a301feec4ac7f6ac52f927410d98bf47b61705e38d0e53c349562f86e160",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "dfc38483e5b01860c45bd6cab43b2d50833e1768e95abb47ebf63ef7b4c38433"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "sith",
+      "run_seed": "98da489c646fb72bb189587ea870ef37022fe5341102f849052a2cb9c62e7ef4",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "dfd216220bfd6c8eda6a8b1298604a9460005c16eb72ef9b18d927c3a66b0f59"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "textdrop",
+      "run_seed": "3aade32f607871c3b4e42a83f5d36a50f585179d0575521511444724b95682c5",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "e035cdeca11d16623e690a1f94ee5146b6243f6ee42f3ef2376051a70aaabecb"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "dag_execution",
+      "run_seed": "88bd6919d73e252ba629ec9e004012c0a73f653db57f16d5f5badb38b1274911",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "e04da921212b0bcec9b375a57b1c68229b824e81588027a162e5d76c03197288"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "eve_route_planner",
+      "run_seed": "19a4c5f090aa044d61c482ea97bcf94ed107c16aaf05eb3d3aa25f0cba0f5a0e",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "e09f11ecca50724e3bc0641ddca1d86b09cca83debed513eb8c88fb0794fd077"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "cfgpipe",
+      "run_seed": "0240ce98843d4d4a0b48360d8990d61c13c4a2189a63047e3cd607c77230b982",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "e19b823bd4ef77e40dfbb7313885590a503c40ad52c354f2145083af5c32232e"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "code_search",
+      "run_seed": "49c95d8d8002064629fb245c783c23898bf5e857421a2f413f9fbfb1cab6897b",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "e26bf7f1e30d399a4113a50bf023c1a52f90ef54746066b108e7ebed788138f4"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "cfgpipe",
+      "run_seed": "ed5f8fb70fb3f8ad42568f2a963b148f9e9b31a186fa808d1224425b57964ed0",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "e2f7c51ec60b3c300c247b0f9ce61ac6d7929d7e88af0d039d451a10169a7a30"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "etl_pipeline",
+      "run_seed": "cd426ad0933d4835b99d482615645ae3b27dcca61f46234fdaadd606abc83aa2",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "e3982c44d072f06e9a5e2206d23b0cba65589b70c0c3e5c44a3cd2eaf75359f2"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "eve_industry",
+      "run_seed": "bf35c9cc41122ec5ec60fa881d5fdd0e09741ee2a41aef64d6fd4af9b189a035",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "e398fc46d6d5eee2996ab1fe6a74e545d2f937f694242946e4aae699d91fc2da"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "eve_route_planner",
+      "run_seed": "8bb59f259b8dd1db86b1ea1913f8fc9511d42cb0afeb52c1f378345e9a85fb45",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "e584f198c65dcee3cd394980ab00e8f0e5555f878669d20b664debfc687e7c87"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "forge",
+      "run_seed": "addcdd7ec41821a7fd9673e43ac9699439099c2afb3ee0b4ea92271a725835d6",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "e61c0920bbc4f1f796f6035b6220c0d01b9fff00ecab6cf3aea527e83146f9f7"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "file_backup",
+      "run_seed": "6c3d464c688b30a1366e6ad33bf6b13782c9654576243c5ee1e4b1c73ace73a3",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "e6df6ac300225141556a4bfce54c9f0e86921865a3f6fa36fc28d8f84957001d"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "migrate_configs",
+      "run_seed": "6457d114bafed0e3ffb8ff55f34006f664b9559ec4afe9868c6a693e2caa33ac",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "e7971eff9014feab09cdb32e41def08d67d290eb07d353c13318a2c782e71c15"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "database_migration",
+      "run_seed": "9f3b0b011fa62b07f5fbbcbdb9a8541dd5ea8dfa1e2123f835b58bc5107a9d76",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "e844242f5bea922c6c244591e167e249679ad52094a695745bf3d35189068da1"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "database_migration",
+      "run_seed": "2963e7674aff663cdedb0b1d5ab536d5b19edc991dc596b510a66952983d9017",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "e8ba1e0d267c791bb145d819164b1d6e0b87856b39da591ff5ba99ceddf5dfb5"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "sith",
+      "run_seed": "a542603cbe7cba213e77d4fc3928c59b64cfcc8891612a1c4c0491b7c51bbab0",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "e8e437edc5a442d3a133e27bbec95751ebdc2a8a71350129ad78ad11a3d9ad6f"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "mvvault",
+      "run_seed": "5722522b7d06b61f3b809f81803b92f9d7111079c8f29ee646a1f1768c8960ec",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "e91bea413aab714c95eaeb6bb12a1680843539791011b778f3cff368cbd61252"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "env_manager",
+      "run_seed": "147420af5b32dfb77431951a3b65b767d20f36c02cd782c1e3e9bb711a468dcf",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "e9761a7128918900f28ee1ab3becac984a71640f1f450ecbf8982a4228e6d1ea"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "database_migration",
+      "run_seed": "1135ec9b719c9ccb8c31cd9793621fd977dd7ad7a713d1a727c39ac83573ed32",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "e989f5c4ab4da72c270be54187dcf68cd45192b9ec8d19855f84c7b7daed3c07"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "eve_industry",
+      "run_seed": "86a3c08785de574f037dc2f89e22ede0fc2430560d3c1f508cb6b89550462076",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "e9b11f46c3be4c055bfc26098edb56becb9b2afcf85a5688870de588c1292147"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "mvvault",
+      "run_seed": "e8e99c0588455647a5a113550fd1285a6cb806af55f5a60cf193685db76eeab0",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "e9eb8f0c05ed350c8ec562c75efc348988ed06f500af31fa9a7d265103f08714"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "xjq",
+      "run_seed": "efc21eda25202f01c5b3e9126059694db3958b32fa9c4820febd9dc081763b27",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "e9fd0704360cb354c3470aea84a061b4b9f06d3a1215ac1a8c0dc39e29e575d7"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "datagate",
+      "run_seed": "7dce747fefa66f670c27583ce675c5295ddf3be224d8126243dd088e23a476c2",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "ea690bbf51e60ec27ab4d66bae24de9258c0a40c823051b0be7efa6ac91a9b8a"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "mvvault",
+      "run_seed": "7820b269f9370c41aa39a64a7b8a8554b4292c933cc2898a9909b6d8cd2a854a",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "eb018471dce85dd9ce30da701d2eedcae02e19789d11d680f28f785baea6cf16"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "sheeteval",
+      "run_seed": "6d4554669885623efa9f814a6a53abca0e90262b49c017bd069db9bcc0d3b92f",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "eb8f159a31ee6758cdc355cd2296232b677d29a9dbf38c6051d32ecea10aea26"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "pwd_manager",
+      "run_seed": "b13b10b8f2dc9aa3b56a0465781af07ed7ea9da20ccab4d0ee84dbbc38a8317b",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "ecb9914a6ae657e2f4f434f427159ff08f4e90e041f9bc47ac12d8bb70c40330"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "datagate",
+      "run_seed": "cec86961f8059f917ed017d7d397c812e8a290ba17099e73291f2ac990011c62",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "ed14ee0cb5090dea5d75adcaefffffd5d7a908295045148a983d484860585c99"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "forge",
+      "run_seed": "6709b9fa580776495500b38316192c9cb9dfaef516280de94c63f25659b7f540",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "ee738a10d7701bd21dd7849dcc1659d8896b179a3e7d14fbf367a3d0284b545f"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "circuit_eval",
+      "run_seed": "cf3f6ecf6cdeac206812dac36ecb6a6feb6d843b9ef96d2e30ed441ae5d20fb6",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "eedb3ea6b6583f061af03be2d7bbb5db45a2f855f1da26fee94d273814a5ee39"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "dynamic_config_service_api",
+      "run_seed": "24bf8eb673e27b33a9728f6140db02f5d8b69732af280abe37ca18b4d656f689",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "ef13f099cc733fecbb18ffbed2ffbcb514d7f1e69a5b65ecdf2622a6eabaef8f"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "execution_server",
+      "run_seed": "d89f1f82cf879e5742085a2c5b6814570356b685b3521dacc8766c90be049aa8",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "f10f2ece55f4e342705ad421a6d1ac329965f35e442a027419903474f5c47d43"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "dynamic_buffer",
+      "run_seed": "7ab0a6cb56ac350147d5b189557c17d2f39cc17038df9874ea1a0c5c89fb5610",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "f2b000820e6ab0737dd949ba2d99b147af7997408ca37d83763091346eac6cff"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "cfgpipe",
+      "run_seed": "6220ffd28a0fda49ad2039cf77da7aaaafbb168a67fe89f219a22722eb94581d",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "f33409a5efe8fb3cbcfdc304ecbac3979a9a33eb8efe1845c60e9e8513fcea10"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "test_translator",
+      "run_seed": "f4eec9f1f1f9b6e0de4597dd124abf6f3ca7962501c1dc62fdcccd459a1ae9a1",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "f3375b5fb97d13ac2452ce06d39565c500fe0e821602be62371241f21a773f84"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "rejector",
+      "run_seed": "f163f4a973a19608693751225e7933e35d7006e7a7a13f60c7e558444400cce0",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "f3eee45d6a3b6588722f4967db63077ec5e59ae7973f5b72ababf47e07698a0f"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "migrate_configs",
+      "run_seed": "8e205878de958220b3b16c6976ebac426561d0c1c12b91d422993dbe27475103",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "f3f1222c3c59f4fd700028181d87c6297c74cb1ef878096af690033eb1b52236"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "meshctl",
+      "run_seed": "e02bfc496080def880f21132f9ed34ee507e678334d45d571660abeff7ac964c",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "f444ce182dd34b86db778a1962139e6df79821e88f874bcf3d7f1050d67f31d2"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "textdrop",
+      "run_seed": "f20dbd7133851cfdf73d89d56577fe4b9aa725ecf2b2c0d9db76edcf8c2e0ad9",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "f625ac2f1faeaf874e7da6b44372250c0531821e815d6278956846661d8d8d47"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "trajectory_api",
+      "run_seed": "6b6489f65a2a63994858eece3573e5cfc413e905e5c5398e3e4918fce6e8ec37",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "f64b837647202f7b72945dbff0e009555f611c8bb9a489ab9c036d0b96a0c0fd"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "eve_jump_planner",
+      "run_seed": "4178e978db2a2b1139614d5d446f3521fa7d8f6a095fcd0eb93eb7a0654915bf",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "f6d263cf56960dee1c1168f3f09561726db49171032196e795396cc499093345"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "eve_industry",
+      "run_seed": "22a11896454a90c40dcbc6f10ad8b06eea058db63b8578d23c52267f5d33411b",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "f6fb0944d480a146688a24f0ce21835c7b44f2e945202a5126eaa5c26369b91f"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "layered_config_synthesizer",
+      "run_seed": "e22a8febc374c24df4f3404074b7a840ce12e34bbd44c9c612fd295a90d6bb15",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "f7d187fae903b76036078791832bd3b99f04fef58a0ee9a4258e49553f08201d"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "forge",
+      "run_seed": "68fc3fce41aed3983ee97020a275775ba49b288c7692a603f3d0ae36225ad32e",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "f7e21ebdafbe3b681edda7d4d105c0a960ddcddedc777498090c2768b128b688"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "sith",
+      "run_seed": "a2e6ff5ea40a9c16d88bc6c68119f504088599a5b4764995f659633019b33b41",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "f872f9c2d300065561b54d594cc712646d19b072b379b38ddef811023daa325c"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "dynamic_buffer",
+      "run_seed": "70b40c276ae5c7e7d28ee4a9586a9a1890e54f3e57266599c5b89163a79da374",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "f8a8905796b00ff50ad9bcc050b401f0b1e44e875a8fa68551d8180b0af2e420"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "l2m",
+      "run_seed": "523b9e538f406e5c9c13cd7bed18e303ce51644eaaec8168b995ced8df7d29e9",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "f9306b6a7efe3a5a6089301abd3a86dc28a052447e588eb47532b3e4266f4eed"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "migrate_configs",
+      "run_seed": "159ea42df1befaaef8a9af534302f5e8ab4a8575f2db68e5c05be9ca039fde86",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "f994de9d161b05cb9837d86ac2b2d72ce5a297e6ee86b317655bb24180d48a8d"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "pwd_manager",
+      "run_seed": "d809ad236d1b4b2393ea7627d8aab009138ae894c06b2bf03a700c9a3f7be9ee",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "f9c9f4f4651d0ea8b44fc6ec6481c48984f54186a897127623e3d5439d420ed4"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "env_manager",
+      "run_seed": "423b2cccf3f2371ad4d84a1764f3c3e2e36bd07888bc4fe656535ffc8d14df48",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "fa88f8c97664fb72e632ba6d40af0b6cdd4de5eedccb01c0048626581a8c14d1"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "execution_server",
+      "run_seed": "ad4e42b2580afd13c3817f59dc8e102d390a5a824af6eb9221b9954a8b594b31",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "faf5d31b01e6c73e3c0686c3fe2cec21cdce97e45ce663b50244491c9ec0017a"
+    },
+    {
+      "arm": "C_unstructured",
+      "model_id": "qwen/qwen3-32b",
+      "phase": "main",
+      "problem_id": "test_translator",
+      "run_seed": "c18647af8af4bcee3978e608713497619567c73f035094352387eb08321583ed",
+      "schema_file": "schemas/arm-c.json",
+      "trajectory_id": "fb16287968201baf98d92d68fcc1fee41de7758d99f2de624dcb9d9e9eb7a113"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "deepseek/deepseek-chat-v3-0324",
+      "phase": "main",
+      "problem_id": "env_manager",
+      "run_seed": "ee6386b359d272f40dced53f276bca9125932f016df8350fc431105fd2b0bb4d",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "fba26a0f979dfe6dc3184be53c0a3390e03ba6190ba2531eeab8eb1cc031e8d3"
+    },
+    {
+      "arm": "B_neutral",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "file_query_tool",
+      "run_seed": "8b8f651562ddcb3198578c26b8546ebb635d597752a6855e8560e9690200e9d8",
+      "schema_file": "schemas/arm-b.json",
+      "trajectory_id": "fdb1d87ed61a1388c48e3e67c1fb8da1f5de8f77ce34270de07d630ecb51edd2"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "log_query",
+      "run_seed": "e9d8d63b9ede661dd317f3bb99073aec3d0c2bda716bd2f2ce0494b89aba484b",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "fea1640823dd07ce6aef9ba59485cf6860fe94060f756b9ed9540a23585d17a9"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "phase": "main",
+      "problem_id": "eve_jump_planner",
+      "run_seed": "7ee8cf8575adce8abf99466afb9c342e7355ea11851ef59f1b1c76fc0d571834",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "fed35666a74d0b38839b9cdc9d5e323a411ec9f59e682efc039ba89ae5375249"
+    },
+    {
+      "arm": "A_iboga",
+      "model_id": "anthropic/claude-opus-4.7",
+      "phase": "main",
+      "problem_id": "circuit_eval",
+      "run_seed": "23a8e7866a57517866d3fd53e8d9857465abb144e045f18c7150288391cbf8cd",
+      "schema_file": "schemas/arm-a.json",
+      "trajectory_id": "ffcd3520af73b0fb49cc5f6cb48441f7bfb45a244fd744ac7d8d09e25fb81de2"
+    }
+  ],
+  "status": "draft",
+  "version": "0.5.0"
+}
