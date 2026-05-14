@@ -151,14 +151,16 @@ Per H_M, mean activation magnitude of locked feature set during retrospective-ge
 
 **Substrate**: SlopCodeBench harness commit-pinned at pre-reg lock plus managed problem catalog `scb-problems` pinned at `v1.0` / `4d38d300059667d57e43c31969bc455f5c338b52`. The experimental eval set is 20 SlopCodeBench problems × 93 total checkpoints.
 
-**Models** (4 families, 3 vendors), with locked OpenRouter slugs:
+**Models** (4 families, 3 vendors), with locked OpenRouter slugs (all 4 verified HTTP 200 on 2026-05-14):
 
-| # | Family | Vendor | OpenRouter slug | Context | Price (in/out per 1M tok) |
-|---|---|---|---|---:|---|
-| 1 | Claude Opus 4.7 | Anthropic | `anthropic/claude-opus-4.7` | 200K | per OpenRouter listing |
-| 2 | Qwen2.5-32B-Instruct | Alibaba | `qwen/qwen2.5-32b-instruct` | 32K | per OpenRouter listing |
-| 3 | Llama-3.1-8B-Instruct | Meta | `meta-llama/llama-3.1-8b-instruct` | 128K | per OpenRouter listing |
-| 4 | DeepSeek V3 (chat) | DeepSeek | `deepseek/deepseek-chat-v3-0324` | 164K | $0.20 / $0.77 |
+| # | Family | Vendor | OpenRouter slug | Params | Context | Price (in/out per 1M tok) |
+|---|---|---|---|---:|---:|---|
+| 1 | Claude Opus 4.7 | Anthropic | `anthropic/claude-opus-4.7` | — | 200K | per OpenRouter listing |
+| 2 | Qwen3-32B | Alibaba | `qwen/qwen3-32b` | 32.8B | 41K | $0.08 / $0.28 |
+| 3 | Llama-3.1-8B-Instruct | Meta | `meta-llama/llama-3.1-8b-instruct` | 8B | 128K | per OpenRouter listing |
+| 4 | DeepSeek V3 (chat) | DeepSeek | `deepseek/deepseek-chat-v3-0324` | — | 164K | $0.20 / $0.77 |
+
+**Qwen slug correction (2026-05-14)**: v0.5-draft0 named the 2nd model `qwen/qwen2.5-32b-instruct`, which OpenRouter returns HTTP 404 ("No endpoints found"). Verified against `https://openrouter.ai/qwen`: Qwen2.5 only has a 72B variant on OpenRouter; the 32B variant must be Qwen3 generation. `qwen/qwen3-32b` is selected because (a) HTTP 200 verified, (b) 32.8B dense parameters preserves the originally-intended ~32B size class, (c) instruct-tuned, (d) Alibaba vendor preserves the 3-vendor diversity NeurIPS reviewer W11 required, (e) at $0.08/$0.28 it is 8× cheaper than the originally-planned $0.66/$1.00 of Qwen2.5-32B, freeing budget for additional trajectories or higher Opus usage. Context window 41K is sufficient for SlopCodeBench checkpoints (median ~5-15K tokens).
 
 **DeepSeek slug correction (2026-05-14)**: v0.5-draft0 named the 4th model "DeepSeek-Coder-V3," which does NOT exist as a distinct OpenRouter slug. Verified against `https://openrouter.ai/deepseek` on 2026-05-14: OpenRouter's DeepSeek V3 generation consists of `deepseek-chat-v3-0324` (canonical V3 chat), `deepseek-v3.2`, `deepseek-v3.2-speciale`, `deepseek-v4-flash`, and `deepseek-v4-pro`; none are named "Coder-V3." `deepseek/deepseek-chat-v3-0324` is selected because (a) it is the canonical V3 chat model, (b) at $0.20/$0.77 per M tokens it fits the locked $30 DeepSeek arm budget, (c) its 164K context handles SlopCodeBench's longest checkpoints. The DeepSeek family was originally chosen to maintain vendor diversity (NeurIPS reviewer W11), which the chat variant satisfies equally well.
 

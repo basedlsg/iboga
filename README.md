@@ -61,7 +61,7 @@ silentvault (2026 workshop paper) ──── methodology lineage
 ## Research arc decisions (locked unless flagged)
 
 - **Substrate**: SlopCodeBench, not Nemo. Nemo becomes deployment case study only.
-- **Models** (locked OpenRouter slugs): `anthropic/claude-opus-4.7` + `qwen/qwen2.5-32b-instruct` + `meta-llama/llama-3.1-8b-instruct` + `deepseek/deepseek-chat-v3-0324`. Four families, three vendors.
+- **Models** (locked OpenRouter slugs): `anthropic/claude-opus-4.7` + `qwen/qwen3-32b` + `meta-llama/llama-3.1-8b-instruct` + `deepseek/deepseek-chat-v3-0324`. Four families, three vendors.
 - **Arms**: 3 — Iboga (AA vocabulary), Vocabulary-Neutral (coding-jargon), Unstructured.
 - **Primary DV**: structural-erosion slope + solve-rate (co-primary, non-inferiority).
 - **Mechanism**: SAE on Llama-3.1-8B via Goodfire's open weights at layer 19. Exploratory, with pre-registered direction.

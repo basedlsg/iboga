@@ -286,7 +286,7 @@ Behavior:
 Default models (cheap subset for pre-lock gate):
 - anthropic/claude-sonnet-4.5 (was in upstream paper)
 - openai/gpt-5.2
-- qwen/qwen2.5-32b-instruct
+- qwen/qwen3-32b
 - meta-llama/llama-3.1-8b-instruct
 - deepseek/deepseek-chat-v3-0324
 

@@ -36,7 +36,7 @@ A pre-registered, 4-model × 3-arm controlled experiment characterizing how voca
 
 **Models** (4 families, 3 vendors) — locked OpenRouter slugs as of 2026-05-14:
 1. `anthropic/claude-opus-4.7` (Anthropic, via OpenRouter; no direct Anthropic key)
-2. `qwen/qwen2.5-32b-instruct` (Alibaba, via OpenRouter)
+2. `qwen/qwen3-32b` (Alibaba, via OpenRouter)
 3. `meta-llama/llama-3.1-8b-instruct` (Meta, via OpenRouter; local for SAE work)
 4. `deepseek/deepseek-chat-v3-0324` (DeepSeek V3 chat — the originally-named "DeepSeek-Coder-V3" does NOT exist on OpenRouter; verified 2026-05-14)
 
@@ -131,7 +131,7 @@ This requires modifying SprocketLab's harness to expose a `--between-checkpoint-
 
 **Decisions locked** (no silent revisions allowed):
 - Substrate: SlopCodeBench
-- Models: `anthropic/claude-opus-4.7` + `qwen/qwen2.5-32b-instruct` + `meta-llama/llama-3.1-8b-instruct` + `deepseek/deepseek-chat-v3-0324`
+- Models: `anthropic/claude-opus-4.7` + `qwen/qwen3-32b` + `meta-llama/llama-3.1-8b-instruct` + `deepseek/deepseek-chat-v3-0324`
 - 3 arms + Arm 0 (pilot sanity check only)
 - H_M exploratory with pre-registered direction
 - Annotator $200 retainer, F0-F10 taxonomy, κ ≥ 0.7 requirement
