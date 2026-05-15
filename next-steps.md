@@ -218,3 +218,33 @@ The error is always `AgentRunnerError: OpenCode error: unknown OpenCode error`, 
 **Until this is resolved, the Llama-3.1-8B-vs-3.3-70B model decision is moot** — no model is reliable on the current opencode setup. Fix the agent first, then re-test all 4 models.
 
 **Status of the engineering**: J6-J9 are complete and correct — the hook, runner, SAE selector, and reproduction harness all work and are tested. The blocker is purely the upstream agent harness's reliability, which is an environmental/integration issue independent of the Iboga code.
+
+## BLOCKER DIAGNOSIS CORRECTED (2026-05-15) — it is OpenRouter credit, not opencode
+
+The "TOP PRE-LOCK BLOCKER — opencode agent reliability" section above is **WRONG and retracted.** Root cause found by reading the agent artifacts (`checkpoint_1/agent/messages.jsonl`):
+
+```
+HTTP 402 APIError: "This request requires more credits, or fewer max_tokens.
+You requested up to 8192 tokens, but can only afford 1680.
+...upgrade to a paid account"
+```
+
+`opencode` requests 8192 max_tokens per call. The OpenRouter account has **`total_credits: 0`** (verified via `GET /api/v1/credits`: total_credits 0, total_usage $0.19). Every agent call 402s once the small free allowance is exhausted. The early checkpoint-1 successes happened while a few cents of allowance remained.
+
+**This was never an opencode bug, never a model-capability problem, never Llama-specific.** The `_raise_on_opencode_error` handler collapsed the 402 into "unknown OpenCode error" because it only read `error.message` (a string) and OpenCode nests provider errors under `error.data.message`.
+
+**Fixes applied:**
+1. **Fork patch (merged, basedlsg/slop-code-bench main)**: `_raise_on_opencode_error` now digs into `error.data.message` + error name + HTTP status. A 402 now surfaces as `OpenCode error: APIError: HTTP 402: This request requires more credits...` — no more blind debugging.
+2. The Llama-3.1-8B-vs-3.3-70B "decision" is **moot** — there was never a model problem. All 4 models are expected to work once the account is funded. To be re-confirmed with a funded account, but no model change is indicated.
+
+**The actual blocker — and it is a clean one:** the OpenRouter account needs credit. This was always in the budget (`prereg.md §14`: $810, $900 cap) — the account simply hasn't been funded yet. This is a **billing action only Carlos can take**: add credit at https://openrouter.ai/settings/credits. Even ~$25-30 unblocks the full pre-lock validation (pilot + baseline reproduction); the full 432-trajectory run needs the budgeted ~$500-810.
+
+**Once the account is funded, the pre-lock path is unblocked end-to-end** — the engineering (J6-J9), the hook, the runner, the harness are all built and verified. Nothing else is blocking.
+
+## What to do (corrected, 2026-05-15)
+
+1. **Carlos: fund the OpenRouter account** at https://openrouter.ai/settings/credits. ~$30 for pre-lock validation; ~$810 total budget for the experiment. THIS IS THE ONLY HARD BLOCKER.
+2. Carlos: create OSF account at osf.io (flareondon@gmail.com).
+3. Carlos: recruit the external annotator ($200, ~5 hrs in August).
+4. After funding: re-run the hook echo-test (confirm marker injection end-to-end), the J9 baseline reproduction (5 models × 5 problems), and a pilot. All scripts are built and dry-run-verified.
+5. After validation passes: lock the pre-reg, post to OSF, begin the main run.
