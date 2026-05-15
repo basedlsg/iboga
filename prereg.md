@@ -94,7 +94,7 @@ Methodology correction 2026-05-14: Goodfire's open SAE release (`Llama-3.1-8B-In
 
 Selection protocol:
 
-1. **Probe corpus** (locked at pre-reg, stored at `iboga/sae-probe-corpus.json`, SHA-256 `9c9805a3cb53b5b4b55a2df6766a14b71982bb7e20b18cdf7386b83fc18285e5` as of 2026-05-14; if substantive edits happen before lock the hash is recomputed and committed):
+1. **Probe corpus** (locked at pre-reg, stored at `iboga/sae-probe-corpus.json`, SHA-256 `0f62051574cac0bbaf9efbfa46a4dcf689842e2b174a9bb7b7020970b92d20c0` as of 2026-05-15 — token-level length-match verified, ratio 0.886, within ±15% tolerance; the 2026-05-14 hash `9c9805a3...` is superseded by this verification-annotated version):
    - 50 self-referential prompts: drawn from public domain — AA Step 4 worksheet excerpts (12-step.org), Berg 2025 self-referential induction variants, introspective journaling prompts, Vipassana noting instructions, Catholic examination of conscience templates
    - 50 control prompts: math word problems (MATH dataset public sample), recipe instructions, weather descriptions, news headline rewrites. Length-matched in tokens to the self-referential set within ±15%.
    - Both sets are short (50-200 tokens each) and self-contained
