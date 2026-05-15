@@ -248,3 +248,32 @@ You requested up to 8192 tokens, but can only afford 1680.
 3. Carlos: recruit the external annotator ($200, ~5 hrs in August).
 4. After funding: re-run the hook echo-test (confirm marker injection end-to-end), the J9 baseline reproduction (5 models × 5 problems), and a pilot. All scripts are built and dry-run-verified.
 5. After validation passes: lock the pre-reg, post to OSF, begin the main run.
+
+## PROVIDER TRANSITION COMPLETE (2026-05-15) — OpenRouter dropped, NVIDIA free hosted API adopted
+
+Project direction: no paid path. OpenRouter (needs a funded account) is fully retired. Free providers evaluated empirically:
+
+| Provider | Result |
+|---|---|
+| Groq free tier | ✗ 12,000 tokens/min cap; SlopCodeBench agent calls ~50K tokens |
+| Gemini CLI (`gemini` agent) | ✓ works free — completed a full 6-checkpoint mvvault trajectory — but a different agent from `opencode`; mixing agents confounds agent with model. Kept only as validation tool + emergency fallback. |
+| Meta Llama Dev API | ✓ API handles 153K-token requests free, but `opencode`'s model registry rejects custom slugs. Superseded. |
+| **NVIDIA hosted NIM API** | ✓✓ **adopted.** `integrate.api.nvidia.com/v1`, 128 models, OpenAI-compatible, free tier, opencode routes to it cleanly (verified multi-checkpoint run, $0). |
+
+**Locked free model set — 4 vendors, all NVIDIA-hosted, all via `opencode` (no agent confound):**
+1. `nvidia/nvidia-llama-3.3-70b` → `meta/llama-3.3-70b-instruct` (Meta) — also the H_M SAE model
+2. `nvidia/nvidia-qwen3-next-80b` → `qwen/qwen3-next-80b-a3b-instruct` (Alibaba)
+3. `nvidia/nvidia-deepseek-v4-pro` → `deepseek-ai/deepseek-v4-pro` (DeepSeek)
+4. `nvidia/nvidia-nemotron-70b` → `nvidia/llama-3.1-nemotron-70b-instruct` (NVIDIA)
+
+**Decisive proof this turn:** echo-hook test PASSED end-to-end — the Gemini-agent run completed all 6 checkpoints of mvvault and every checkpoint 2-6 carried a unique injected `IBOGA_HOOK_FIRED_MARKER` in its prompt.txt. The J6 hook fires between every checkpoint and injects into the next prompt — confirmed on a real trajectory, not just the unit test.
+
+**Artifacts updated for the transition:**
+- `prereg.md` §7 model table → NVIDIA 4-model set; §4 H_M → Llama-3.3-70B + Goodfire SAE l50 (was Llama-3.1-8B/l19); §14 budget → API cost $0, total $200-250 (annotator + optional GPU); OpenRouter $810 plan retired.
+- `arm-assignment.json` regenerated → 432 records, NVIDIA slugs, SHA-256 `5c1fc77d08ec836c88c0ac951cca935d3e752ffa5e7dc2d8a8e02bb34a4c3961`.
+- `scripts/generate_arm_assignment.py` DEFAULT_MODELS → NVIDIA slugs.
+- `scripts/iboga_runner.py` SCB_MODEL_MAP → NVIDIA identity map.
+- `scripts/select_sae_features.py` → Llama-3.3-70B / Goodfire l50 (default layer 50).
+- fork `providers.yaml` + `configs/models/nvidia-*.yaml` merged to basedlsg/slop-code-bench main.
+
+**The OpenRouter-funding blocker is GONE.** There is no hard billing blocker anymore. Remaining cost: $200 annotator + optional GPU. The pre-lock path runs entirely on free infrastructure. Remaining real constraint is NVIDIA free-tier rate limits → main run batched across the 6-week window with 429 backoff; if throttled it just takes longer, acceptable within the 12-week study.

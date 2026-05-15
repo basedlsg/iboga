@@ -42,13 +42,16 @@ ARM_SCHEMAS = {
     "0": "schemas/arm-c.json", # Arm 0 uses C schema but emits empty
 }
 
-# Maps the OpenRouter slug (arm-assignment.json) -> SlopCodeBench --model arg.
-# The internal names match slop-code-bench/configs/models/*.yaml internal_name fields.
+# arm-assignment.json now stores SlopCodeBench `--model` strings directly
+# (provider/internal_name). All four route to NVIDIA's hosted NIM API via the
+# nvidia provider in the fork's providers.yaml and configs/models/nvidia-*.yaml.
+# SCB_MODEL_MAP is an identity map kept for validation: an --model not listed
+# here is still accepted (passed through) but logs a warning.
 SCB_MODEL_MAP = {
-    "anthropic/claude-opus-4.7": "openrouter/claude-opus-4-7",
-    "qwen/qwen3-32b": "openrouter/qwen3-32b",
-    "meta-llama/llama-3.1-8b-instruct": "openrouter/llama-3.1-8b-instruct",
-    "deepseek/deepseek-chat-v3-0324": "openrouter/deepseek-chat-v3-0324",
+    "nvidia/nvidia-llama-3.3-70b": "nvidia/nvidia-llama-3.3-70b",
+    "nvidia/nvidia-qwen3-next-80b": "nvidia/nvidia-qwen3-next-80b",
+    "nvidia/nvidia-deepseek-v4-pro": "nvidia/nvidia-deepseek-v4-pro",
+    "nvidia/nvidia-nemotron-70b": "nvidia/nvidia-nemotron-70b",
 }
 
 MAX_BUDGET = 900.0
@@ -359,15 +362,11 @@ def main():
     agent = os.environ.get("SCB_AGENT", "opencode")
     run_config = os.environ.get("SCB_RUN_CONFIG", "configs/runs/lite_under20.yaml")
     
-    # Map the OpenRouter model slug (as used in arm-assignment.json) to the
-    # SlopCodeBench --model argument <provider>/<internal_name>, where
-    # internal_name matches a config in slop-code-bench/configs/models/.
-    scb_model = SCB_MODEL_MAP.get(args.model)
-    if scb_model is None:
-        # Unknown model: best-effort — strip the vendor prefix and route via openrouter
-        internal = args.model.split("/")[-1]
-        scb_model = f"openrouter/{internal}"
-        logging.warning(f"Model '{args.model}' not in SCB_MODEL_MAP; using best-effort '{scb_model}'")
+    # arm-assignment.json stores SlopCodeBench --model strings directly
+    # (e.g. nvidia/nvidia-llama-3.3-70b). Pass through; warn if unrecognised.
+    scb_model = SCB_MODEL_MAP.get(args.model, args.model)
+    if args.model not in SCB_MODEL_MAP:
+        logging.warning(f"Model '{args.model}' not in SCB_MODEL_MAP; passing through as-is")
     
     cmd = [
         "uv", "run", "slop-code", "run",

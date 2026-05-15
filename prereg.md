@@ -20,7 +20,7 @@ tags: [iboga, prereg, research, agents, introspection, sae]
 
 **Hybrid template**: ICLR 2026 RSI improvement-operator card (structural spine) + AsPredicted 9-question hypothesis block (statistical core). Hosted on OSF for time-stamped record. Linked to Nemo Compliance as deployment vignette.
 
-> _"We characterize how vocabulary choice and structural constraint on a forced-coverage retrospective protocol mediates (a) the content of agent self-report and (b) downstream structural-erosion under iterated software development, across four model families, with exploratory mechanistic SAE analysis on Llama-3.1-8B."_
+> _"We characterize how vocabulary choice and structural constraint on a forced-coverage retrospective protocol mediates (a) the content of agent self-report and (b) downstream structural-erosion under iterated software development, across four model families, with exploratory mechanistic SAE analysis on Llama-3.3-70B."_
 
 ---
 
@@ -84,13 +84,13 @@ AA-arm verbosity slope is lower than unstructured-arm verbosity slope.
 ## 4. Exploratory Hypothesis (Mechanistic, SAE)
 
 **H_M (exploratory, mechanistic, single-direction-pre-registered):**
-On Llama-3.1-8B-Instruct using Goodfire's open SAE at layer 19 (`Llama-3.1-8B-Instruct-SAE-l19`), the activation magnitude of pre-identified self-referential / deception / roleplay features during retrospective-generation tokens will be **lower** in the AA-vocabulary arm than in the vocabulary-neutral arm.
+On Llama-3.3-70B-Instruct using Goodfire's open SAE at layer 50 (`Goodfire/Llama-3.3-70B-Instruct-SAE-l50`), the activation magnitude of pre-identified self-referential / deception / roleplay features during retrospective-generation tokens will be **lower** in the AA-vocabulary arm than in the vocabulary-neutral arm.
 
 **Predicted direction**: AA-arm suppresses confabulatory self-referential mode because AA vocabulary demands diff-grounded specificity ("I was selfish in commit abc1234 by deleting X without test"), whereas neutral vocabulary ("drift") permits abstract noting that activates the roleplay generative mode.
 
 **Pre-specified features (locked at pre-reg time, probe-prompt method):**
 
-Methodology correction 2026-05-14: Goodfire's open SAE release (`Llama-3.1-8B-Instruct-SAE-l19`) provides weights but **NOT feature labels** (labels only via Goodfire's archived Ember SDK, see `goodfire-ai/goodfire-sdk` which is public-archived). The original "label-string match" filter is therefore not executable from public artifacts. **Replaced with a probe-prompt-based selection that is methodologically tighter and does not depend on any third-party label curation.**
+Methodology correction 2026-05-14: Goodfire's open SAE release (`Llama-3.3-70B-Instruct-SAE-l50`) provides weights but **NOT feature labels** (labels only via Goodfire's archived Ember SDK, see `goodfire-ai/goodfire-sdk` which is public-archived). The original "label-string match" filter is therefore not executable from public artifacts. **Replaced with a probe-prompt-based selection that is methodologically tighter and does not depend on any third-party label curation.**
 
 Selection protocol:
 
@@ -101,7 +101,7 @@ Selection protocol:
    - Corpus authored before pre-reg lock; never modified after
 
 2. **Activation extraction**:
-   - Run Llama-3.1-8B-Instruct on each prompt with Goodfire l19 SAE hooked at residual stream layer 19
+   - Run Llama-3.3-70B-Instruct on each prompt with Goodfire l50 SAE hooked at residual stream layer 50
    - For each SAE feature `f`, compute:
      - `act_self(f)` = mean activation magnitude across all tokens in the 50-prompt self-referential set
      - `act_ctrl(f)` = mean activation magnitude across all tokens in the 50-prompt control set
@@ -151,7 +151,7 @@ A deterministic script builds a stratified recurrence audit frame of (retrospect
 
 ### Mechanistic DV (Exploratory): SAE Feature Activation
 
-Per H_M, mean activation magnitude of locked feature set during retrospective-generation token positions, computed via Goodfire's open SAE inference path on Llama-3.1-8B.
+Per H_M, mean activation magnitude of locked feature set during retrospective-generation token positions, computed via Goodfire's open SAE inference path on Llama-3.3-70B.
 
 ---
 
@@ -175,26 +175,30 @@ Per H_M, mean activation magnitude of locked feature set during retrospective-ge
 
 **Substrate**: SlopCodeBench harness commit-pinned at pre-reg lock plus managed problem catalog `scb-problems` pinned at `v1.0` / `4d38d300059667d57e43c31969bc455f5c338b52`. The experimental eval set is 20 SlopCodeBench problems × 93 total checkpoints.
 
-**Models** (4 families, 3 vendors), with locked OpenRouter slugs (all 4 verified HTTP 200 on 2026-05-14):
+**Models** (4 families, 4 vendors) — all served free by **NVIDIA's hosted NIM API** (`https://integrate.api.nvidia.com/v1`, OpenAI-compatible), all driven by the single `opencode` agent. Verified end-to-end multi-checkpoint on 2026-05-15.
 
-| # | Family | Vendor | OpenRouter slug | Params | Context | Price (in/out per 1M tok) |
-|---|---|---|---|---:|---:|---|
-| 1 | Claude Opus 4.7 | Anthropic | `anthropic/claude-opus-4.7` | — | 200K | per OpenRouter listing |
-| 2 | Qwen3-32B | Alibaba | `qwen/qwen3-32b` | 32.8B | 41K | $0.08 / $0.28 |
-| 3 | Llama-3.1-8B-Instruct | Meta | `meta-llama/llama-3.1-8b-instruct` | 8B | 128K | per OpenRouter listing |
-| 4 | DeepSeek V3 (chat) | DeepSeek | `deepseek/deepseek-chat-v3-0324` | — | 164K | $0.20 / $0.77 |
+| # | Family | Vendor | SlopCodeBench `--model` | NVIDIA model id |
+|---|---|---|---|---|
+| 1 | Llama-3.3-70B-Instruct | Meta | `nvidia/nvidia-llama-3.3-70b` | `meta/llama-3.3-70b-instruct` |
+| 2 | Qwen3-Next-80B-A3B | Alibaba | `nvidia/nvidia-qwen3-next-80b` | `qwen/qwen3-next-80b-a3b-instruct` |
+| 3 | DeepSeek V4 Pro | DeepSeek | `nvidia/nvidia-deepseek-v4-pro` | `deepseek-ai/deepseek-v4-pro` |
+| 4 | Llama-3.1-Nemotron-70B | NVIDIA | `nvidia/nvidia-nemotron-70b` | `nvidia/llama-3.1-nemotron-70b-instruct` |
 
-**Qwen slug correction (2026-05-14)**: v0.5-draft0 named the 2nd model `qwen/qwen2.5-32b-instruct`, which OpenRouter returns HTTP 404 ("No endpoints found"). Verified against `https://openrouter.ai/qwen`: Qwen2.5 only has a 72B variant on OpenRouter; the 32B variant must be Qwen3 generation. `qwen/qwen3-32b` is selected because (a) HTTP 200 verified, (b) 32.8B dense parameters preserves the originally-intended ~32B size class, (c) instruct-tuned, (d) Alibaba vendor preserves the 3-vendor diversity NeurIPS reviewer W11 required, (e) at $0.08/$0.28 it is 8× cheaper than the originally-planned $0.66/$1.00 of Qwen2.5-32B, freeing budget for additional trajectories or higher Opus usage. Context window 41K is sufficient for SlopCodeBench checkpoints (median ~5-15K tokens).
+**Provider transition (2026-05-15) — OpenRouter dropped, NVIDIA hosted API adopted.** The prior plan routed 4 models via OpenRouter, which requires a funded account ($810 budget). Project direction: **no paid path.** Free providers were evaluated:
+- **Groq free tier**: 12,000 tokens/minute cap — SlopCodeBench agent calls are ~50K tokens. Rejected.
+- **Gemini CLI**: works (verified — completed a full 6-checkpoint trajectory), free OAuth — but uses SlopCodeBench's `gemini` agent, not `opencode`. Mixing agents across models would confound agent with model. Rejected as a trajectory model; retained only as a validation tool.
+- **Meta Llama Developer API**: handles 153K-token requests free, but `opencode`'s model registry rejects custom non-catalogued model slugs. Superseded by NVIDIA.
+- **NVIDIA hosted NIM API** (`integrate.api.nvidia.com`): 128 models, OpenAI-compatible, free tier, **and `opencode` routes to it cleanly** (verified: a multi-checkpoint `mvvault` run on `meta/llama-3.3-70b-instruct` progressed cp1→cp2→cp3 with `cost=$0`). Selected.
 
-**DeepSeek slug correction (2026-05-14)**: v0.5-draft0 named the 4th model "DeepSeek-Coder-V3," which does NOT exist as a distinct OpenRouter slug. Verified against `https://openrouter.ai/deepseek` on 2026-05-14: OpenRouter's DeepSeek V3 generation consists of `deepseek-chat-v3-0324` (canonical V3 chat), `deepseek-v3.2`, `deepseek-v3.2-speciale`, `deepseek-v4-flash`, and `deepseek-v4-pro`; none are named "Coder-V3." `deepseek/deepseek-chat-v3-0324` is selected because (a) it is the canonical V3 chat model, (b) at $0.20/$0.77 per M tokens it fits the locked $30 DeepSeek arm budget, (c) its 164K context handles SlopCodeBench's longest checkpoints. The DeepSeek family was originally chosen to maintain vendor diversity (NeurIPS reviewer W11), which the chat variant satisfies equally well.
+NVIDIA hosting all 4 models means **one provider, one agent (`opencode`), no agent-confound, four vendors** — stronger vendor diversity than the OpenRouter plan (which had Anthropic/Alibaba/Meta/DeepSeek; this has Meta/Alibaba/DeepSeek/NVIDIA), at **zero API cost**. The `nvidia` provider is in the fork's `providers.yaml`; the four model configs are in `configs/models/nvidia-*.yaml`.
 
-Provider routing is an execution detail but is material for reproducibility and cost. Final provider slugs and pricing are locked at OSF posting; changing provider routes after lock requires an OSF amendment if it changes model identity, sampling, or budget assumptions.
+**SAE / H_M model**: model #1 (`meta/llama-3.3-70b-instruct`) doubles as the mechanistic-analysis model — Goodfire publishes an open SAE for it (`Goodfire/Llama-3.3-70B-Instruct-SAE-l50`, residual-stream layer 50). H_M (§4) runs that SAE on Llama-3.3-70B retrospective text. (v0.5-draft0 used Llama-3.1-8B + Goodfire l19; the model-set transition moved the SAE target to the 70B at layer 50.)
 
-**Solo-execution adjustment**: dropped Llama-3.3-70B from v0.5-draft0 (compute cost). Replaced with `deepseek/deepseek-chat-v3-0324` to maintain 3-vendor diversity. NeurIPS reviewer W11 flagged "Replace one Qwen with a different family" — DeepSeek satisfies this.
+Provider routing is locked at OSF posting; changing model identity after lock requires an OSF amendment. Earlier draft history (OpenRouter slugs, Qwen2.5→Qwen3, DeepSeek-Coder-V3→chat-v3-0324) is superseded by the 2026-05-15 NVIDIA transition above and retained only in `next-steps.md`'s decision log.
 
 **Trajectories**: 4 models × **36 problems** × 3 arms = **432 trajectories** (updated 2026-05-14). Pair structure: each (model, problem) seen in all 3 arms → **144 paired observations per arm contrast**.
 
-**Problem-set expansion**: v0.5-draft0 planned 20 problems (matching SlopCodeBench's published baseline subset). At pre-reg drafting, inspecting the upstream catalog showed all 36 problems are first-class and well-formed. Locking the full catalog (a) increases paired observations from 80 to 144 → power ≈ 0.99 at d=0.4 vs 0.92 at n=80, (b) eliminates ambiguity in problem selection, (c) makes the deterministic assignment file simpler (`arm-assignment.json` SHA-256 `7adb28f7a74ea34e128351e2f62f47073f612d64c46ca6c3891c8c478d4f7dda`). The 36 problems are the full pinned catalog at `v1.0`/`4d38d300059667d57e43c31969bc455f5c338b52`: cfgpipe, circuit_eval, code_search, dag_execution, database_migration, datagate, dynamic_buffer, dynamic_config_service_api, env_manager, etl_pipeline, eve_industry, eve_jump_planner, eve_market_tools, eve_route_planner, execution_server, file_backup, file_merger, file_query_tool, forge, l2m, layered_config_synthesizer, log_query, meshctl, metric_transform_lang, migrate_configs, mocked_http, mvvault, pwd_manager, recli, rejector, sheeteval, sith, test_translator, textdrop, trajectory_api, xjq.
+**Problem-set expansion**: v0.5-draft0 planned 20 problems (matching SlopCodeBench's published baseline subset). At pre-reg drafting, inspecting the upstream catalog showed all 36 problems are first-class and well-formed. Locking the full catalog (a) increases paired observations from 80 to 144 → power ≈ 0.99 at d=0.4 vs 0.92 at n=80, (b) eliminates ambiguity in problem selection, (c) makes the deterministic assignment file simpler (`arm-assignment.json` SHA-256 `5c1fc77d08ec836c88c0ac951cca935d3e752ffa5e7dc2d8a8e02bb34a4c3961`). The 36 problems are the full pinned catalog at `v1.0`/`4d38d300059667d57e43c31969bc455f5c338b52`: cfgpipe, circuit_eval, code_search, dag_execution, database_migration, datagate, dynamic_buffer, dynamic_config_service_api, env_manager, etl_pipeline, eve_industry, eve_jump_planner, eve_market_tools, eve_route_planner, execution_server, file_backup, file_merger, file_query_tool, forge, l2m, layered_config_synthesizer, log_query, meshctl, metric_transform_lang, migrate_configs, mocked_http, mvvault, pwd_manager, recli, rejector, sheeteval, sith, test_translator, textdrop, trajectory_api, xjq.
 
 **Exclusion criteria**:
 - Trajectories where harness crashes before checkpoint 3 (technical failure, not behavioral)
@@ -334,7 +338,7 @@ Before posting to OSF and beginning treatment runs, the following must be comple
 4. **Reproduce baseline numbers**: run 5 upstream baseline models on 5 problems through the forked harness and pinned `scb-problems` catalog. Verify erosion slope and verbosity slope match upstream report within ±2 pp.
 5. **Arm-0 hook neutrality** — established at two levels. (a) **Code-level (deterministic, proven 2026-05-15)**: the J6 hook unit test (`tests/agent_runner/test_between_checkpoint_hook.py`) verifies that a hook exiting 0 with empty stdout yields an empty `prompt_prefix`, so `get_task_for_checkpoint()` produces a byte-identical task string to a no-hook run. The hook fires only for checkpoint idx>0 and writes nothing to the workspace. Neutrality of the *input* is therefore proven, not estimated. (b) **Empirical (pilot)**: an Arm-0 pilot arm (no-op hook) is run alongside Arm C; because the task input is provably identical, any metric difference between Arm 0 and a no-hook baseline is pure LLM sampling variance. The Arm-0 pilot thus serves as the **sampling-noise floor** against which Arm A/B/C effect sizes are interpreted — not as a separate neutrality test. If Arm-0-vs-no-hook variance exceeds the Arm-A-vs-Arm-C effect, the experiment is underpowered against noise and this is reported.
 6. **Verify retrospective text isolation**: confirm `~/iboga-data/sessions/*` paths on the **host** never enter the Docker container's workspace. No-op hook vs no-hook must match within ±2 pp. For treatment hooks, verify by path audit and content-hash/grep that retrospective text appears only in saved prompts/session logs, never in checkpoint `snapshot`.
-7. **SAE feature selection via probe corpus**: (a) author `iboga/sae-probe-corpus.json` with 50 self-referential + 50 control prompts; hash and pin in pre-reg metadata. (b) Download Goodfire's open SAE weights for `Llama-3.1-8B-Instruct-SAE-l19` from HuggingFace. (c) Run activation extraction on probe corpus. (d) Compute `ratio(f) = act_self / act_ctrl` per feature; lock top-20 in `iboga/sae-features.json`. If <5 features have `ratio > 2.0`, demote H_M to exploratory-no-direction. (Methodology updated 2026-05-14: Goodfire labels are only in the archived Ember SDK and not reliable from public artifacts.)
+7. **SAE feature selection via probe corpus**: (a) author `iboga/sae-probe-corpus.json` with 50 self-referential + 50 control prompts; hash and pin in pre-reg metadata. (b) Download Goodfire's open SAE weights for `Llama-3.3-70B-Instruct-SAE-l50` from HuggingFace. (c) Run activation extraction on probe corpus. (d) Compute `ratio(f) = act_self / act_ctrl` per feature; lock top-20 in `iboga/sae-features.json`. If <5 features have `ratio > 2.0`, demote H_M to exploratory-no-direction. (Methodology updated 2026-05-14: Goodfire labels are only in the archived Ember SDK and not reliable from public artifacts.)
 8. **Power calc commit**: run R script, commit output to `iboga/power-calc-output.txt`.
 9. **Annotator agreement**: interview and select annotator. Confirm $200 payment. Confirm availability for 5-hour pass in August.
 10. **OSF account + pre-reg upload**: post this document. Receive DOI. Write DOI back to frontmatter.
@@ -377,31 +381,24 @@ Before posting to OSF and beginning treatment runs, the following must be comple
 
 ## 14. Solo Execution Plan
 
-**Resource envelope:**
+**Resource envelope (revised 2026-05-15 — zero-paid-API design):**
 - 1 person (candidate)
-- $900 across 18 weeks (~$50/week)
-- 1 paid annotator (~$200 over 1 week in August)
-- 1 GPU rental (~$150 over 1 week for SAE)
 - 30-40 operator hours total (much of it asynchronous monitoring)
+- No paid API. All 432 trajectories run on NVIDIA's free hosted NIM API.
 
-**Honest budget allocation (revised 2026-05-14 for 432-trajectory scope):**
+**Honest budget allocation (revised 2026-05-15 — NVIDIA free transition):**
 
-| Item | Per-trajectory | Trajectories | Subtotal |
-|---|---:|---:|---:|
-| Claude Opus 4.7 (`anthropic/claude-opus-4.7`, $5/$25 per M, via OpenRouter) | ~$3.50 mid / $5 worst | 108 | $378-540 |
-| Qwen3-32B (`qwen/qwen3-32b`, $0.08/$0.28 per M, via OpenRouter) | ~$0.20 | 108 | $22 |
-| Llama-3.1-8B (`meta-llama/llama-3.1-8b-instruct`, $0.02/$0.05 per M, via OpenRouter) | ~$0.05 | 108 | $5 |
-| DeepSeek V3 chat (`deepseek/deepseek-chat-v3-0324`, $0.20/$0.77 per M, via OpenRouter) | ~$0.45 | 108 | $49 |
-| GPU rental for SAE (A10G, ~100 hrs @ $0.50/hr) | — | — | $50 |
-| External annotator (5 hrs @ ~$40/hr) | — | — | $200 |
-| Buffer | — | — | $100 |
-| **Total (mid estimate)** | | | **$809-944** |
+| Item | Cost |
+|---|---:|
+| Trajectory generation — 432 trajectories, all 4 models via NVIDIA hosted NIM API free tier | **$0** |
+| Retrospective generation (hook LLM calls) — same NVIDIA free tier | **$0** |
+| SAE feature selection + activation (Goodfire SAE, Llama-3.3-70B) — runs on a borrowed/local CUDA box or a short GPU rental | $0-50 |
+| External annotator (5 hrs, recurrence-audit κ pass) | $200 |
+| **Total** | **$200-250** |
 
-**Budget risk**: Opus 4.7 trajectories dominate cost and span a wide range (a 4-checkpoint problem vs a 10-checkpoint problem). Worst-case Opus subtotal alone reaches ~$540, pushing total to ~$944 — just over the $900 cap. Mitigations available in priority order:
+**The OpenRouter $810 plan is fully retired.** The only remaining real cost is the external annotator ($200) and an optional short GPU rental for the SAE pass (which can be $0 if a CUDA machine is available; the SAE work is exploratory H_M, so even skipping it does not threaten the primary result).
 
-1. **Cap Opus per-checkpoint output at 1500 tokens** (instead of 2000) — saves ~25% of Opus cost without changing structural outcomes meaningfully. Pre-registered tradeoff.
-2. **Substitute Opus 4.6** (the model SlopCodeBench paper actually benchmarked) — same SOTA tier, lower price tier, and gives direct baseline comparability. Requires pre-reg amendment (model identity change) if done after lock.
-3. **Drop Opus to 18-problem subset** — breaks strict pairing across all 36; would require running Opus on 18 problems × 3 arms = 54 trajectories. Cuts Opus subtotal to ~$190 but introduces a paired-design imbalance that the mixed-effects sensitivity check would have to absorb.
+**The cost risk is no longer dollars — it is free-tier rate limits.** NVIDIA's free tier has per-minute and per-day request limits. The 432-trajectory run × multi-checkpoint × multi-step agent loops is a high request volume. Mitigation: the main run is batched across the 6-week window (Jul 13 – Aug 23, §timeline) with retry/backoff on 429s; if NVIDIA's daily cap throttles throughput, the run simply takes more wall-clock — acceptable within the 12-week study window. The Gemini CLI route remains available as a free fallback for any model that NVIDIA throttles, used only if needed and documented as a deviation.
 
 If a real-budget probe during Week 3 token-validation shows Opus ≥$4 mean per trajectory, **mitigation 1 (output cap)** triggers automatically before main-run launch.
 
@@ -416,7 +413,7 @@ Budget rows are provisional until Week 3 token-budget validation locks observed 
 | 5-6 | Jun 29 — Jul 12 | Pilot run N=2 problems × 4 models × 3 arms (24 trajectories) — debug harness |
 | 7-12 | Jul 13 — Aug 23 | Main run: 432 trajectories across 6 weeks (~72/week batched overnight) |
 | 13 | Aug 24 — Aug 30 | Annotator κ-audit pass |
-| 14 | Aug 31 — Sep 6 | SAE pass on Llama-3.1-8B |
+| 14 | Aug 31 — Sep 6 | SAE pass on Llama-3.3-70B (Goodfire l50) |
 | 15-17 | Sep 7 — Sep 27 | Analysis + paper drafting |
 | 17 | Sep 25 | ICLR 2027 workshop submission |
 

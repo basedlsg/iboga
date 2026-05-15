@@ -15,11 +15,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
+# SlopCodeBench --model strings (provider/internal_name). All four served free
+# by NVIDIA's hosted NIM API; see configs/models/nvidia-*.yaml in the fork.
 DEFAULT_MODELS = [
-    "anthropic/claude-opus-4.7",
-    "qwen/qwen3-32b",
-    "meta-llama/llama-3.1-8b-instruct",
-    "deepseek/deepseek-chat-v3-0324",
+    "nvidia/nvidia-llama-3.3-70b",
+    "nvidia/nvidia-qwen3-next-80b",
+    "nvidia/nvidia-deepseek-v4-pro",
+    "nvidia/nvidia-nemotron-70b",
 ]
 
 MAIN_ARMS = ["A_iboga", "B_neutral", "C_unstructured"]

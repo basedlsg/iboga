@@ -13,7 +13,7 @@ Usage:
   python scripts/select_sae_features.py \
     --probe-corpus sae-probe-corpus.json \
     --output sae-features.json \
-    [--layer 19] [--top-k 20] [--device cuda|cpu] [--self-test]
+    [--layer 50] [--top-k 20] [--device cuda|cpu] [--self-test]
 """
 
 import argparse
@@ -60,14 +60,14 @@ def load_goodfire_sae(layer: int, device: str):
       - encoder bias: e.g. "b_enc" 
       - decoder weight: e.g. "W_dec"
       
-    This function pulls Goodfire/Llama-3.1-8B-Instruct-SAE-l19 if layer=19.
+    This function pulls Goodfire/Llama-3.3-70B-Instruct-SAE-l50 by default (layer 50).
     Since layout might differ, human intervention might be needed to map the exact keys.
     """
     from huggingface_hub import hf_hub_download
     from safetensors.torch import load_file
 
     logging.info(f"Loading Goodfire safetensors SAE for layer {layer}")
-    repo_id = f"Goodfire/Llama-3.1-8B-Instruct-SAE-l{layer}"
+    repo_id = f"Goodfire/Llama-3.3-70B-Instruct-SAE-l{layer}"
     
     try:
         # We try to download the safetensors file
@@ -196,7 +196,7 @@ def main():
     parser = argparse.ArgumentParser(description="Select SAE features.")
     parser.add_argument("--probe-corpus", type=str, required=True, help="Path to sae-probe-corpus.json")
     parser.add_argument("--output", type=str, required=True, help="Path to output sae-features.json")
-    parser.add_argument("--layer", type=int, default=19, help="Transformer layer to hook")
+    parser.add_argument("--layer", type=int, default=50, help="Transformer layer to hook (Goodfire Llama-3.3-70B SAE is layer 50)")
     parser.add_argument("--top-k", type=int, default=20, help="Number of features to select")
     parser.add_argument("--device", type=str, default="cpu", help="Device to use (cuda|cpu)")
     parser.add_argument("--self-test", action="store_true", help="Run in self-test mode with synthetic SAE")
@@ -241,11 +241,11 @@ def main():
             logging.warning("CUDA is not available, falling back to CPU")
             device = "cpu"
             
-        logging.info("Loading Llama-3.1-8B-Instruct...")
+        logging.info("Loading Llama-3.3-70B-Instruct...")
         # (Assuming transformers is available)
         import transformers
         
-        model_id = "meta-llama/Llama-3.1-8B-Instruct"
+        model_id = "meta-llama/Llama-3.3-70B-Instruct"
         
         load_kwargs = {"device_map": device, "torch_dtype": torch.bfloat16}
         if device.startswith("cuda"):
@@ -275,7 +275,7 @@ def main():
         
         # Try finding it in sae_lens registry
         try:
-            sae = SAE.from_pretrained("Llama-3.1-8B-Instruct", f"layer_{args.layer}")
+            sae = SAE.from_pretrained("Llama-3.3-70B-Instruct", f"layer_{args.layer}")
             sae_loader = "sae_lens"
         except Exception as e:
             logging.info(f"SAE not found in sae_lens or could not load via sae_lens ({e}). Falling back to Goodfire safetensors.")
