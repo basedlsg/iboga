@@ -6,3 +6,5 @@ slop-code-bench/
 .uv-cache/
 vendor-inspection/
 slopcodebench-repo-inspection-*.md
+
+harness-validation-*
