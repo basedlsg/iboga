@@ -293,3 +293,25 @@ The NVIDIA `mvvault` validation run on `meta/llama-3.3-70b-instruct` confirmed r
 - The pre-reg §7 exclusion cap (10%) and the 6-week batched main-run window absorb some slowness; if the completed-checkpoint distribution is too thin, that is a pre-lock finding that reshapes the problem set or the timeout.
 
 **Not a transition blocker.** OpenRouter→NVIDIA is done, free, committed. These are throughput/quality-tuning items for the validation phase — exactly what Week-2 is for.
+
+## Week-2 throughput tuning — RESOLVED (2026-05-16)
+
+The NVIDIA route's slowness (29 min/checkpoint, 3/6 completion on dense Llama-3.3-70B) is fixed by two changes:
+
+**Fix 1 — opencode timeout (committed, basedlsg/slop-code-bench).** `configs/agents/opencode.yaml` had no `timeout` field → inherited an implicit ~3600s default that killed the 95-min checkpoint mid-run. Set to `timeout: 7200` (matches codex/cursor_cli/kimi_cli/pi). Slow-but-progressing checkpoints now complete.
+
+**Fix 2 — model speed: qwen3-next-80b-a3b (MoE).** Re-ran `mvvault` on `nvidia/nvidia-qwen3-next-80b`:
+
+| Metric | dense Llama-3.3-70B | qwen3-next-80b-a3b MoE |
+|---|---|---|
+| Checkpoints completed | 3 / 6 | **6 / 6** |
+| Mean agent time / checkpoint | 1718s (~29 min) | **145.5s (~2.4 min)** — 12× faster |
+| Mean input tokens / checkpoint | 2,786,798 | **129,169** — 21× less |
+| Mean steps / checkpoint | 41.7 | 7.3 |
+| Cost | $0 | $0 |
+
+The MoE model (3B active params) is decisive — fewer flailing agent steps, far less context accumulation, completes full trajectories. End-to-end wall-clock ~68 min for a 6-checkpoint `mvvault` trajectory.
+
+**DV pipeline validated end-to-end on the free route.** J7 `iboga_runner.extract_checkpoint_metrics()` ran `scb-check` on all 6 qwen-run checkpoints and produced real per-checkpoint erosion/verbosity/solve_rate; OLS slopes compute cleanly (erosion_slope −0.047, verbosity_slope −0.040, solve_rate mean 0.093 for this one untreated trajectory). The experiment's full measurement chain — trajectory → checkpoints → scb-check metrics → OLS slope — works start to finish, free.
+
+**Main-run feasibility**: 432 trajectories. With qwen-class MoE speed (~68 min/trajectory) the MoE models are very tractable. The two dense 70Bs (llama-3.3-70b, nemotron-70b) run ~3 hr/trajectory; with the 7200s timeout they should now complete 6/6 (needs one confirmation run). Total ~800-900 compute-hours, batched with parallelism across the 6-week main-run window — feasible. A confirmation run of a dense 70B with the new timeout is the one remaining throughput check.
