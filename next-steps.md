@@ -192,3 +192,29 @@ When you hit a fork, log it here. **No silent decisions after pre-reg lock.**
   2. Keep Llama-3.1-8B, accept partial trajectories. H_M is exploratory and even a failed-at-cp3 trajectory yields a cp1→cp2 retrospective, but the erosion-slope DV needs ≥3 checkpoints, so Llama-3.1-8B trajectories would mostly be §7-excluded — effectively a 3-model study with Llama as SAE-only.
   3. Different agent for the 8B model — rejected: claude_code needs the `claude` binary, gemini needs Gemini CLI; neither is OpenRouter-routed.
   Recommendation: **Option 1**. If adopted it is a pre-lock model-identity change (allowed before lock; would be an OSF amendment after). The arm-assignment.json and SCB_MODEL_MAP would update accordingly.
+
+## TOP PRE-LOCK BLOCKER (identified 2026-05-15) — opencode agent reliability
+
+The 2026-05-15 entry above blamed Llama-3.1-8B for trajectory failures. **Further evidence corrects that diagnosis: the failure is the `opencode` agent, not the model.**
+
+Runs observed (all `--agent opencode`, lite_under20):
+| Model | Problem | Result |
+|---|---|---|
+| llama-3.1-8b | mvvault (no hook) | cp1 ran, cp2 errored |
+| llama-3.1-8b | mvvault (/usr/bin/true hook) | 3 checkpoints, cp3 errored |
+| llama-3.1-8b | xjq (echo hook) | cp1 errored |
+| deepseek-chat-v3-0324 | mvvault (echo hook) | cp1 errored at step 0, 0 tokens |
+
+The error is always `AgentRunnerError: OpenCode error: unknown OpenCode error`, raised in `opencode/agent.py::_raise_on_opencode_error`. It strikes at variable points (step 0, or mid-run) and across two different model families. **This is agent-level flakiness, not model capability.**
+
+**Why it matters**: the experiment is 432 trajectories. Pre-reg §7 excludes trajectories that crash before checkpoint 3 and invalidates the pre-reg above a 10% exclusion cap. Current opencode failure rate is far above 10%. **This blocks the OSF lock until resolved.**
+
+**Investigation paths (Week-2 work, before lock):**
+1. **Diagnose the opencode error** — `_raise_on_opencode_error` swallows the real message as "unknown". Patch opencode/agent.py locally to surface the raw opencode stderr/JSON so the actual failure (network? auth inside container? opencode version bug? streaming parse?) is visible. This is the first step — we are currently debugging blind.
+2. **Try a newer opencode version** — config pins `version: 1.0.134`. Check whether a later opencode release fixes it.
+3. **Get `miniswe` working** — `configs/agents/miniswe.yaml` exists (`type: mini_swe`) but the agent registry rejects it ("Unknown agent type"). mini_swe is the lightweight SWE-agent; if registrable it is a strong OpenRouter-compatible alternative. Investigate why it's not registered (missing extra, feature flag, or import).
+4. **Fall back to `claude_code` agent for the Opus arm** — claude_code@2.0.51 is the battle-tested agent SlopCodeBench's own paper used. It would cover Opus 4.7 reliably; the other 3 models would still need a working OpenRouter agent.
+
+**Until this is resolved, the Llama-3.1-8B-vs-3.3-70B model decision is moot** — no model is reliable on the current opencode setup. Fix the agent first, then re-test all 4 models.
+
+**Status of the engineering**: J6-J9 are complete and correct — the hook, runner, SAE selector, and reproduction harness all work and are tested. The blocker is purely the upstream agent harness's reliability, which is an environmental/integration issue independent of the Iboga code.
