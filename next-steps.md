@@ -277,3 +277,19 @@ Project direction: no paid path. OpenRouter (needs a funded account) is fully re
 - fork `providers.yaml` + `configs/models/nvidia-*.yaml` merged to basedlsg/slop-code-bench main.
 
 **The OpenRouter-funding blocker is GONE.** There is no hard billing blocker anymore. Remaining cost: $200 annotator + optional GPU. The pre-lock path runs entirely on free infrastructure. Remaining real constraint is NVIDIA free-tier rate limits → main run batched across the 6-week window with 429 backoff; if throttled it just takes longer, acceptable within the 12-week study.
+
+## NVIDIA run-quality findings (2026-05-15) — real, flagged for Week-2 tuning
+
+The NVIDIA `mvvault` validation run on `meta/llama-3.3-70b-instruct` confirmed routing + $0 cost, but surfaced two operational issues that must be addressed before the main run:
+
+1. **Run completed only 3 of 6 checkpoints.** Mean time/checkpoint 1718s (~29 min) with ±2858s variance — one checkpoint ran ~95 min and almost certainly hit SlopCodeBench's 1-hour checkpoint timeout, ending the run. If many trajectories reach only 3-4 checkpoints, the erosion-slope DV (needs ≥3 points, ideally more) is thin. Pre-reg §7 already excludes <3-checkpoint trajectories; the concern is the 3-5 checkpoint band.
+2. **~2.8M input tokens per checkpoint.** opencode accumulates the full agent-history into context every step (41 steps/checkpoint). NVIDIA's free tier handled it at $0, but it makes runs slow and stresses rate limits.
+
+**Mitigations to evaluate in Week-2 (before lock):**
+- Use a faster NVIDIA model where possible: `qwen/qwen3-next-80b-a3b-instruct` is an MoE (3B active) — likely much faster per step than the dense 70Bs.
+- Check whether opencode has a context-window / history-truncation setting to cut the 2.8M token accumulation.
+- Consider raising SlopCodeBench's per-checkpoint timeout (it is harness config, not a metric — allowed to change) so slow-but-progressing checkpoints aren't killed.
+- The Gemini-CLI route completed 6/6 checkpoints on the same problem — keep it as the documented fallback for any model NVIDIA throttles or times out.
+- The pre-reg §7 exclusion cap (10%) and the 6-week batched main-run window absorb some slowness; if the completed-checkpoint distribution is too thin, that is a pre-lock finding that reshapes the problem set or the timeout.
+
+**Not a transition blocker.** OpenRouter→NVIDIA is done, free, committed. These are throughput/quality-tuning items for the validation phase — exactly what Week-2 is for.
