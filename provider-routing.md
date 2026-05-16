@@ -117,17 +117,18 @@ Result on 2026-05-13: checkpoint 1 completed/evaluated; checkpoint 2 did not com
 4. If Meta Llama Developer API is used instead of OpenRouter for Llama-3.1-8B, copy the exact official endpoint/model string from the authenticated portal into this file and add a provider config to the SlopCodeBench fork.
 5. Re-price the budget rows after exact provider slugs are locked.
 
-## Roles of the Tool Stack (Original Plan — Gemini CLI + Jules + OpenRouter)
+## Roles of the Tool Stack (LOCKED 2026-05-15 — NVIDIA free hosted API)
+
+OpenRouter was retired 2026-05-15 (it requires a funded account; project direction is no paid path). The everything-above provider notes are historical; the live routing is:
 
 | Tool | Role | Status |
 |---|---|---|
-| **OpenRouter** | Primary route for the 4 trajectory models (Opus 4.7, Qwen2.5-32B, Llama-3.1-8B, DeepSeek). Pre-registered, locked. | Configured locally; awaits `OPENROUTER_API_KEY` export. |
-| **Gemini CLI** | Free-tier validation route. Use for harness debugging, dry-runs, and any non-pre-registered probe where capacity allows. NOT a trajectory model. | Installed v0.41.2; OAuth working; capacity-limited (hit `429 MODEL_CAPACITY_EXHAUSTED` on real `xjq` run). |
-| **Jules** | Engineering coordinator. Used for J-series coding tasks (write `iboga-runner.py`, build the `--between-checkpoint-hook`, draft the SAE activation collection script, etc.) the way silentvault used it for J1-J5. NOT a trajectory model. | Installed v0.1.42; authenticated to GitHub `basedlsg`. Awaits the iboga repo being public for `--repo basedlsg/iboga` invocations. |
-| **HuggingFace Router** | Fallback inference for Llama-3.1-8B if both OpenRouter and Meta Developer API have issues. Used previously in silentvault. | Available; not pre-registered as primary route. |
-| **Together AI** | Alternative route for Qwen and Llama. Documented in `prereg.md` §7 as the original intent before the OpenRouter consolidation; retained as fallback. | Available; not exercised yet. |
+| **NVIDIA hosted NIM API** | **Primary route for all 4 trajectory models** (`integrate.api.nvidia.com/v1`, OpenAI-compatible, free tier). Models: `meta/llama-3.3-70b-instruct`, `qwen/qwen3-next-80b-a3b-instruct`, `deepseek-ai/deepseek-v4-pro`, `nvidia/llama-3.1-nemotron-70b-instruct`. All via the `opencode` agent. | Provider in `providers.yaml`; 4 `nvidia-*` model configs in `configs/models/`. Verified multi-checkpoint, $0. |
+| **Gemini CLI** | Free OAuth route. Verified — completed a full 6-checkpoint trajectory. Kept as fallback if NVIDIA throttles a model; not a primary trajectory model (different agent → confound). | Installed v0.41.2; OAuth working. |
+| **Jules** | Engineering coordinator. Ran J6-J9 (hook, `iboga_runner.py`, SAE selector, reproduction harness) — all complete and merged. | v0.1.42; done. |
+| **Groq / Llama Dev API** | Evaluated, not adopted. Groq free tier 12K TPM too small; Llama Dev API works but `opencode` won't route its custom slugs. Provider configs retained as documented fallbacks. | Not used. |
 
-**Operating rule**: trajectory generation flows through pre-registered routes only (OpenRouter primary, with documented fallbacks). All other tools (Gemini CLI, Jules, HF, Together direct) are engineering and validation tools. Routing changes that affect trajectory model identity require an OSF amendment after lock; routing changes that don't affect trajectory identity (e.g., switching the Jules task list) do not.
+**Operating rule**: all 432 trajectories route through the NVIDIA provider via `opencode`. Free-tier rate limits (not dollars) are the constraint — the main run batches across its window with 429 backoff. Gemini CLI is the only sanctioned fallback and using it for any locked-model trajectory is a documented deviation.
 
 ### Jules engineering tasks (explicit, in-scope)
 

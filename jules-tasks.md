@@ -7,11 +7,11 @@ related: provider-routing.md, harness-validation.md
 tags: [iboga, jules, engineering, dispatch]
 ---
 
-# Jules Task Prompts — Ready to Dispatch
+# Jules Task Prompts — ALL COMPLETE (historical)
 
-Each block below is a complete prompt for `jules new --repo basedlsg/iboga "..."`. Same pattern as silentvault J1-J5. Dispatch in the order listed; J7 depends on J6, J8 is independent, J9 depends on J6.
+> **STATUS 2026-05-15: J6-J9 all dispatched, reviewed, and merged.** This file is now a historical record. The prompts below were the dispatch text; the actual dispatched versions differed in details (J6 targeted `basedlsg/slop-code-bench` not `basedlsg/iboga`; J8 was re-scoped after a failed first attempt; SAE work targets Llama-3.3-70B/l50 not Llama-3.1-8B/l19 after the NVIDIA transition). The merged, reviewed outcomes are the source of truth — see `next-steps.md` decision log. Do not re-dispatch these.
 
-After dispatch, pull patches with `jules remote pull --session <id>`. **Inspect every patch before applying.** Jules is generally good but produces code that must be reviewed.
+Each block below is the original dispatch prompt for `jules new`. Same pattern as silentvault J1-J5. After dispatch, pull patches with `jules remote pull --session <id>`. **Inspect every patch before applying.**
 
 ---
 

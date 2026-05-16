@@ -30,15 +30,15 @@ Read `/Users/carlos/Brain/OBSIDIAN/projects/iboga/CLAUDE.md` first; it formalize
 
 ## What Iboga is
 
-A pre-registered, 4-model × 3-arm controlled experiment characterizing how vocabulary choice and structural constraint on a between-checkpoint retrospective protocol mediates structural-erosion slope and solve rate in long-horizon coding agents, with exploratory SAE-based mechanistic analysis on Llama-3.1-8B.
+A pre-registered, 4-model × 3-arm controlled experiment characterizing how vocabulary choice and structural constraint on a between-checkpoint retrospective protocol mediates structural-erosion slope and solve rate in long-horizon coding agents, with exploratory SAE-based mechanistic analysis on Llama-3.3-70B.
 
-**Substrate**: SlopCodeBench (arXiv:2603.24755, MIT-licensed, `github.com/SprocketLab/slop-code-bench`). 20 problems × 93 checkpoints × Python-only.
+**Substrate**: SlopCodeBench (arXiv:2603.24755, MIT-licensed, `github.com/SprocketLab/slop-code-bench`). 36 problems (full v1.0 catalog) × Python-only.
 
-**Models** (4 families, 3 vendors) — locked OpenRouter slugs as of 2026-05-14:
-1. `anthropic/claude-opus-4.7` (Anthropic, via OpenRouter; no direct Anthropic key)
-2. `qwen/qwen3-32b` (Alibaba, via OpenRouter)
-3. `meta-llama/llama-3.1-8b-instruct` (Meta, via OpenRouter; local for SAE work)
-4. `deepseek/deepseek-chat-v3-0324` (DeepSeek V3 chat — the originally-named "DeepSeek-Coder-V3" does NOT exist on OpenRouter; verified 2026-05-14)
+**Models** (4 families, 4 vendors) — all served free by NVIDIA's hosted NIM API (`integrate.api.nvidia.com`), all via the `opencode` agent. OpenRouter was dropped 2026-05-15 (no paid path):
+1. `nvidia/nvidia-llama-3.3-70b` → `meta/llama-3.3-70b-instruct` (Meta) — also the H_M SAE model
+2. `nvidia/nvidia-qwen3-next-80b` → `qwen/qwen3-next-80b-a3b-instruct` (Alibaba)
+3. `nvidia/nvidia-deepseek-v4-pro` → `deepseek-ai/deepseek-v4-pro` (DeepSeek)
+4. `nvidia/nvidia-nemotron-70b` → `nvidia/llama-3.1-nemotron-70b-instruct` (NVIDIA)
 
 **Three arms** (all identical structure except where noted):
 - **Arm A — Iboga**: AA Big Book vocabulary `{selfish, dishonest, self-seeking, frightened, inconsiderate}` as the "Where I was" closed-vocab field. Plus structured table, closed-vocab noting, Resentment inventory, past-tense panorama.
@@ -54,9 +54,9 @@ A pre-registered, 4-model × 3-arm controlled experiment characterizing how voca
 - **H3**: verbosity slope AA < unstructured
 
 **Exploratory mechanistic** (BH-FDR q<0.10):
-- **H_M**: Goodfire l19 SAE features tagged with self-reference/deception/roleplay terms show LOWER activation in AA-arm vs neutral-arm during retrospective generation on Llama-3.1-8B (pre-registered direction).
+- **H_M**: Goodfire l50 SAE features tagged with self-reference/deception/roleplay terms show LOWER activation in AA-arm vs neutral-arm during retrospective generation on Llama-3.3-70B (pre-registered direction).
 
-**Budget**: $810 against $900 cap. **Timeline**: pre-reg lock 2026-07-01, main run Jul 1–Aug 23, submission ICLR 2027 workshop 2026-09-25 (Recursive Self-Improvement or Lifelong Agents). Fallback NeurIPS SafetyXAI October.
+**Budget**: ~$200-250 total (external annotator + optional GPU). API cost $0 — all trajectories run on NVIDIA's free hosted NIM API. The earlier $810 OpenRouter plan is retired. **Timeline**: pre-reg lock 2026-07-01, main run Jul 1–Aug 23, submission ICLR 2027 workshop 2026-09-25 (Recursive Self-Improvement or Lifelong Agents). Fallback NeurIPS SafetyXAI October.
 
 ## How we got here (compressed history)
 
@@ -131,7 +131,7 @@ This requires modifying SprocketLab's harness to expose a `--between-checkpoint-
 
 **Decisions locked** (no silent revisions allowed):
 - Substrate: SlopCodeBench
-- Models: `anthropic/claude-opus-4.7` + `qwen/qwen3-32b` + `meta-llama/llama-3.1-8b-instruct` + `deepseek/deepseek-chat-v3-0324`
+- Models (free, NVIDIA-hosted): `nvidia/nvidia-llama-3.3-70b` + `nvidia/nvidia-qwen3-next-80b` + `nvidia/nvidia-deepseek-v4-pro` + `nvidia/nvidia-nemotron-70b`
 - 3 arms + Arm 0 (pilot sanity check only)
 - H_M exploratory with pre-registered direction
 - Annotator $200 retainer, F0-F10 taxonomy, κ ≥ 0.7 requirement

@@ -3,18 +3,21 @@
   "version": "0.5.0",
   "created": "2026-05-14",
   "status": "draft",
-  "purpose": "Locked probe set for selecting top-20 self-referential SAE features at Llama-3.1-8B Goodfire l19. Used at pre-reg lock to compute act_self / act_ctrl ratio per feature.",
+  "purpose": "Locked probe set for selecting top-20 self-referential SAE features at Llama-3.3-70B Goodfire l50. Used at pre-reg lock to compute act_self / act_ctrl ratio per feature.",
   "method": "For each SAE feature f: act_self(f) = mean activation over all tokens of self_referential[]; act_ctrl(f) = mean activation over all tokens of control[]. Lock top-20 features by ratio = (act_self + 1e-6) / (act_ctrl + 1e-6).",
   "constraints": {
     "self_count": 50,
     "control_count": 50,
-    "prompt_token_range": [50, 200],
+    "prompt_token_range": [
+      50,
+      200
+    ],
     "length_match_tolerance_pct": 15
   },
   "self_referential": [
     "I notice that I am noticing. Right now I am attending to my own attention. The looking and the thing looked at are the same. Stay with this. Do not pull away into description of the world; remain with the act of attending itself.",
     "What I held to be true about myself: that I was disciplined, that I did not lie, that I worked hard. What I now see was true: I was disciplined when watched, performed honesty for approval, and worked hard at being seen working.",
-    "In the last meeting I said I would deliver by Friday. I knew while saying it that Friday was unlikely. I said it anyway because the silence afterward would have cost me something. That is the moment to name. Not the lateness — the silence I refused to sit in.",
+    "In the last meeting I said I would deliver by Friday. I knew while saying it that Friday was unlikely. I said it anyway because the silence afterward would have cost me something. That is the moment to name. Not the lateness \u2014 the silence I refused to sit in.",
     "Noting. Noting. Sitting. Breath rising at the chest. Now thought of yesterday's call. Now self-judgment about the thought. Now awareness of self-judgment. The label is not the thing; the label is what allows me to see I was elsewhere.",
     "I keep returning to the same sentence about myself. It says: I am someone who finishes things. I have not finished the thing in front of me for eleven days. The sentence is older than the evidence. Examine which one I am willing to revise.",
     "Where was I selfish today? I took the last seat. Where was I dishonest? I told her the meeting ran late when it did not. Where was I self-seeking? I asked the question I already knew the answer to, so others would see I asked it.",
@@ -65,7 +68,7 @@
   ],
   "control": [
     "A train leaves Station A at 9:00 AM traveling east at 60 mph. A second train leaves Station B at 9:30 AM traveling west at 75 mph. The stations are 405 miles apart. At what time will the trains pass each other?",
-    "Find the volume of a cylinder with radius 7 cm and height 12 cm. Then find the surface area, including both circular ends. Use π = 3.14159. Show each step of the calculation and report both answers to two decimal places.",
+    "Find the volume of a cylinder with radius 7 cm and height 12 cm. Then find the surface area, including both circular ends. Use \u03c0 = 3.14159. Show each step of the calculation and report both answers to two decimal places.",
     "Solve for x: 3x squared minus 11x plus 6 equals 0. State both solutions in exact form using the quadratic formula. Then verify each solution by substituting it back into the original equation.",
     "A rectangular garden is 12 meters longer than it is wide. The perimeter of the garden is 64 meters. Find the dimensions of the garden and compute the area. Express both length and width in meters and the area in square meters.",
     "Compute the derivative of f of x equals 4 x cubed minus 7 x squared plus 2 x minus 9. Then evaluate the derivative at x equals 2 and x equals minus 1. Present the answer as a polynomial first, then both evaluated values.",
@@ -88,7 +91,7 @@
     "Series convergence test: determine whether the infinite series with general term one over n times the natural logarithm of n converges or diverges for n starting at two. Justify using the integral test and show the relevant integral.",
     "Matrix problem: given the two-by-two matrix with entries 3, 1, 4, 2, compute the determinant, the inverse, and the eigenvalues. Verify the inverse by matrix multiplication. Express the eigenvalues in exact form.",
     "Statistics exercise: a fair six-sided die is rolled twelve times. Compute the probability of obtaining exactly four sixes. Then compute the probability of obtaining at least one six in the twelve rolls. State both as decimals.",
-    "Geometry problem: a sphere of radius five centimeters is inscribed in a cube. Find the volume of the cube, the volume of the sphere, and the percentage of the cube's volume occupied by the sphere. Use π = 3.14159.",
+    "Geometry problem: a sphere of radius five centimeters is inscribed in a cube. Find the volume of the cube, the volume of the sphere, and the percentage of the cube's volume occupied by the sphere. Use \u03c0 = 3.14159.",
     "Vegetable stir fry: heat sesame oil in a wok over high flame. Add julienned carrots and sliced red pepper, tossing for ninety seconds. Add broccoli florets and snow peas, continuing to toss. Pour in two tablespoons of soy sauce.",
     "Rustic apple tart: roll shortcrust pastry to a three-millimeter thickness and transfer to a lined tray. Arrange thinly sliced apples in concentric rings, leaving a four-centimeter border. Sprinkle with brown sugar and a pinch of cinnamon.",
     "Pumpkin soup: dice one medium pumpkin and place on a roasting tray with whole cloves of garlic. Drizzle with olive oil and roast at one hundred ninety degrees for thirty-five minutes. Transfer to a pot with stock and blend until smooth.",
@@ -112,15 +115,15 @@
     "Roast root vegetables: toss cubed parsnip, carrot, swede, and beetroot with olive oil, sea salt, fresh thyme, and a few crushed bay leaves. Spread on a wide tray and roast at two hundred degrees for forty minutes, turning halfway.",
     "Fresh berry compote: combine three cups of mixed berries with a quarter cup of caster sugar and a tablespoon of lemon juice in a small saucepan. Simmer gently for eight minutes until the berries soften but retain shape. Cool before serving.",
     "Beef and barley stew: brown cubed chuck in batches in a heavy pot. Add diced onion, carrot, and celery, cooking until softened. Stir in tomato paste, bay leaves, and a cup of pearl barley. Cover with stock and simmer for two hours.",
-    "Mushroom risotto: warm stock in a separate pan. In a wide pan, sauté shallot and garlic in butter, add arborio rice and toast for two minutes. Deglaze with white wine. Add stock a ladle at a time, stirring continuously, for eighteen minutes.",
+    "Mushroom risotto: warm stock in a separate pan. In a wide pan, saut\u00e9 shallot and garlic in butter, add arborio rice and toast for two minutes. Deglaze with white wine. Add stock a ladle at a time, stirring continuously, for eighteen minutes.",
     "Buttermilk pancakes: whisk two cups of plain flour with two tablespoons of sugar, one teaspoon of baking powder, half a teaspoon of baking soda, and a pinch of salt. In a second bowl, combine two cups of buttermilk with two eggs and melted butter."
   ],
   "notes": {
     "diversity": "self_referential[] draws from five public-domain traditions: AA Step 4 inventory style, Berg 2025 self-referential induction variants, modern journaling prompts, Vipassana/Mahasi noting instructions, and Catholic examination-of-conscience templates.",
     "control_diversity": "control[] draws from four genres: math word problems (~15), recipes (~15), weather and natural forecasts (~10), and news/civic announcements (~10).",
-    "length": "All prompts are 50-200 tokens; both sets are constructed to approximate equal mean length within ±15% on tokenization.",
+    "length": "All prompts are 50-200 tokens; both sets are constructed to approximate equal mean length within \u00b115% on tokenization.",
     "verification_protocol": "Before pre-reg lock, run a tokenizer pass to confirm length-match. If mean token count differs by >15% between sets, prune longer prompts from the over-set until parity holds. Record final per-prompt token counts in the locked file.",
-    "verification_result_2026_05_15": "Token-level check run with tiktoken cl100k_base BPE (a tokenizer-robust proxy for the Llama-3.1 BPE; the self/control RATIO is insensitive to tokenizer choice since both sets are tokenized identically). self_referential: mean 40.7 tok (median 40, range 28-57). control: mean 46.0 tok (median 45, range 34-62). Mean-length ratio self/control = 0.886 — within the pre-registered +/-15% tolerance (11.4% difference), so no pruning required per the protocol above. The imbalance direction (control slightly longer) is conservative for H_M: more control tokens can only raise act_ctrl, lowering the self/control activation ratio, biasing AGAINST finding self-referential features. PASS.",
+    "verification_result_2026_05_15": "Token-level check run with tiktoken cl100k_base BPE (a tokenizer-robust proxy for the Llama-3.1 BPE; the self/control RATIO is insensitive to tokenizer choice since both sets are tokenized identically). self_referential: mean 40.7 tok (median 40, range 28-57). control: mean 46.0 tok (median 45, range 34-62). Mean-length ratio self/control = 0.886 \u2014 within the pre-registered +/-15% tolerance (11.4% difference), so no pruning required per the protocol above. The imbalance direction (control slightly longer) is conservative for H_M: more control tokens can only raise act_ctrl, lowering the self/control activation ratio, biasing AGAINST finding self-referential features. PASS.",
     "rationale": "These prompts are designed so that self_referential[] saturates first-person introspective, confessional, and meta-attentional content while control[] is designed to be ordinary procedural / declarative content with no self-reference. The ratio (act_self / act_ctrl) per feature is therefore a measure of how selectively that feature responds to self-referential content.",
     "audit": "Hash of this file is committed to prereg.md before OSF lock. No edits after lock. If a Llama tokenizer audit fails length-match, the failing prompts are documented in a deviation log and replaced with hash-tracked substitutions."
   }

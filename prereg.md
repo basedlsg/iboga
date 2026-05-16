@@ -94,7 +94,7 @@ Methodology correction 2026-05-14: Goodfire's open SAE release (`Llama-3.3-70B-I
 
 Selection protocol:
 
-1. **Probe corpus** (locked at pre-reg, stored at `iboga/sae-probe-corpus.json`, SHA-256 `0f62051574cac0bbaf9efbfa46a4dcf689842e2b174a9bb7b7020970b92d20c0` as of 2026-05-15 — token-level length-match verified, ratio 0.886, within ±15% tolerance; the 2026-05-14 hash `9c9805a3...` is superseded by this verification-annotated version):
+1. **Probe corpus** (locked at pre-reg, stored at `iboga/sae-probe-corpus.json`, SHA-256 `4a0853a0b97fd9ba3e4c443be5afdd8619735fe7d5dc7d317ec0e7fc97ce0229` as of 2026-05-15 — token-level length-match verified, ratio 0.886, within ±15% tolerance; the 2026-05-14 hash `9c9805a3...` is superseded by this verification-annotated version):
    - 50 self-referential prompts: drawn from public domain — AA Step 4 worksheet excerpts (12-step.org), Berg 2025 self-referential induction variants, introspective journaling prompts, Vipassana noting instructions, Catholic examination of conscience templates
    - 50 control prompts: math word problems (MATH dataset public sample), recipe instructions, weather descriptions, news headline rewrites. Length-matched in tokens to the self-referential set within ±15%.
    - Both sets are short (50-200 tokens each) and self-contained
@@ -270,12 +270,12 @@ The candidate authors prompts once; thereafter the per-trajectory arm assignment
 
 **H1a (erosion slope, AA vs unstructured)**:
 - Paired Wilcoxon signed-rank, one-tailed (predict AA < unstructured)
-- 80 paired (model, problem) observations
+- 144 paired (model, problem) observations
 - α = 0.025 (Holm-Bonferroni half of 0.05)
 
 **H1b (solve rate non-inferiority, AA vs unstructured)**:
 - TOST procedure, non-inferiority margin Δ = −0.05 (absolute)
-- 80 paired observations
+- 144 paired observations
 - α = 0.025
 
 **Joint decision rule**: H1a rejected ∧ H1b passes non-inferiority → primary hypothesis supported.
@@ -287,9 +287,9 @@ The candidate authors prompts once; thereafter the per-trajectory arm assignment
 
 ### Power Analysis
 
-For paired Wilcoxon at d=0.4, n=80 paired observations:
-- α=0.025 one-tailed → power ≈ 0.92
-- α=0.025 TOST two-one-sided → power ≈ 0.85 for non-inferiority
+For paired Wilcoxon at d=0.4, n=144 paired observations (4 models × 36 problems):
+- α=0.025 one-tailed → power ≈ 0.99
+- α=0.025 TOST two-one-sided → power ≈ 0.97 for non-inferiority
 
 Power is computed via R `WMWssp` package. Computation script in `iboga/power-calc.R`; output must be committed to `iboga/power-calc-output.txt` before pre-reg lock.
 

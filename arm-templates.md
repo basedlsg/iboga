@@ -298,7 +298,7 @@ The candidate writes these three prompt templates once. At trajectory-run time:
 1. `iboga-runner.py` reads `arm-assignment.json` (committed before lock with cryptographic hash)
 2. For trajectory `t` and checkpoint `k`, `arm-assignment.json` deterministically yields arm ∈ {A, B, C, 0(pilot only)}
 3. Runner loads the corresponding prompt template
-4. Candidate **does not look** at which arm assignment was made for any specific trajectory until **analysis time** (after all 240 trajectories complete)
+4. Candidate **does not look** at which arm assignment was made for any specific trajectory until **analysis time** (after all 432 trajectories complete)
 
 **Specifically**: the candidate should not run analysis scripts that group by arm until after the run is fully complete. The pre-committed `iboga/analysis-plan.R` will be the first time arm-grouped data is seen.
 

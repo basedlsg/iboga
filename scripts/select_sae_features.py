@@ -35,7 +35,7 @@ import numpy as np
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
-EXPECTED_HASH = "0f62051574cac0bbaf9efbfa46a4dcf689842e2b174a9bb7b7020970b92d20c0"
+EXPECTED_HASH = "4a0853a0b97fd9ba3e4c443be5afdd8619735fe7d5dc7d317ec0e7fc97ce0229"
 
 
 def check_corpus_hash(corpus_path: str):

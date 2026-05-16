@@ -30,7 +30,7 @@ The final paper draft will draw lightly on `/Users/carlos/NEMU-TEST-main/` (the 
 
 ## What this project is
 
-A pre-registered, 4-model, 3-arm, ICLR 2027 workshop submission characterizing how vocabulary choice and structural constraint on a retrospective protocol mediates structural-erosion slope and solve rate on the SlopCodeBench benchmark, with exploratory SAE mechanistic analysis on Llama-3.1-8B.
+A pre-registered, 4-model, 3-arm, ICLR 2027 workshop submission characterizing how vocabulary choice and structural constraint on a retrospective protocol mediates structural-erosion slope and solve rate on the SlopCodeBench benchmark, with exploratory SAE mechanistic analysis on Llama-3.3-70B.
 
 Pre-reg in `prereg.md`. Pre-lock checklist in `next-steps.md`. Status flags in `README.md`.
 

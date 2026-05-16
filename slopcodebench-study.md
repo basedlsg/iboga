@@ -183,7 +183,9 @@ Per the HTML version's Table (paraphrased; verify against repo at validation tim
 
 **Reproduction check (Week 2)**: pick 5 of these. Run their unmodified harness on 5 problems each. Verify our forked metric scripts produce solve rates within ±2 percentage points.
 
-**Iboga model selection**: Claude Opus 4.7 (newer than their Opus 4.6), Qwen2.5-32B, Llama-3.1-8B, DeepSeek-Coder-V3. **None of our 4 models are in the SlopCodeBench leaderboard.** This means we cannot directly compare our untreated-control numbers against the leaderboard — we run our own untreated baselines as Arm C (unstructured) and treat that as our local control.
+**Iboga model selection** (LOCKED 2026-05-15 — NVIDIA free hosted API; supersedes earlier OpenRouter draft): `meta/llama-3.3-70b-instruct`, `qwen/qwen3-next-80b-a3b-instruct`, `deepseek-ai/deepseek-v4-pro`, `nvidia/llama-3.1-nemotron-70b-instruct` — 4 vendors, all free via `integrate.api.nvidia.com`. **None of our 4 models are in the SlopCodeBench leaderboard.** This means we cannot directly compare our untreated-control numbers against the leaderboard — we run our own untreated baselines as Arm C (unstructured) and treat that as our local control.
+
+> Note: lines below this point that mention Opus 4.7 / Qwen2.5-32B / Llama-3.1-8B / OpenRouter / a per-Opus dollar budget are pre-2026-05-15 draft notes, superseded by the NVIDIA transition (see `prereg.md` §7 and `next-steps.md`'s "PROVIDER TRANSITION COMPLETE" entry). API cost is now $0; the experiment uses 36 problems, not 20.
 
 This is fine for the pre-registered design (paired-within-trajectory comparisons across arms), but it means we cannot claim "our intervention beats the SlopCodeBench leaderboard." That claim was never made. We measure *differential* arm effect within (model, problem) pairs.
 

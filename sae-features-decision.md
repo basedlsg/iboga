@@ -12,7 +12,7 @@ Purpose: record the pre-lock Goodfire layer-19 feature-catalog pull, filter, and
 
 ## Locked Filter Terms
 
-Per `prereg.md` section 4, filter Goodfire `Llama-3.1-8B-Instruct-SAE-l19` labels against:
+Per `prereg.md` section 4 (probe-prompt method), select features from Goodfire `Llama-3.3-70B-Instruct-SAE-l50` by act_self/act_ctrl ratio:
 
 - `deception`
 - `roleplay`
@@ -27,7 +27,7 @@ Per `prereg.md` section 4, filter Goodfire `Llama-3.1-8B-Instruct-SAE-l19` label
 
 | Field | Value |
 |---|---|
-| SAE source | Goodfire `Llama-3.1-8B-Instruct-SAE-l19` |
+| SAE source | Goodfire `Llama-3.3-70B-Instruct-SAE-l50` |
 | Catalog source URL or HF repo | `<TBD>` |
 | Catalog revision / commit | `<TBD>` |
 | Pull date | `<TBD>` |

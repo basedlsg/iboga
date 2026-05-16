@@ -10,7 +10,7 @@
 #     - Paired Wilcoxon, Holm-Bonferroni α=0.025 each
 #   Secondary: H2 (AA vs neutral erosion slope) + H3 (AA verbosity slope)
 #     - Separate α=0.05 budget
-#   Exploratory: H_M (SAE features, AA vs neutral on Llama-3.1-8B)
+#   Exploratory: H_M (SAE features, AA vs neutral on Llama-3.3-70B)
 #     - Mann-Whitney + BH-FDR q<0.10 across locked feature set
 #   Confirmatory check: mixed-effects regression as sensitivity
 #
@@ -31,7 +31,8 @@ PRIMARY_ALPHA   <- 0.025  # Holm-Bonferroni split of 0.05
 SECONDARY_ALPHA <- 0.05
 NONINF_MARGIN   <- -0.05  # H1b: AA solve rate not worse than unstructured by more than 5pp
 ARMS            <- c("A_iboga", "B_neutral", "C_unstructured")
-MODELS          <- c("opus-4.7", "qwen-2.5-32b", "llama-3.1-8b", "deepseek-coder-v3")
+MODELS          <- c("nvidia/nvidia-llama-3.3-70b", "nvidia/nvidia-qwen3-next-80b",
+                      "nvidia/nvidia-deepseek-v4-pro", "nvidia/nvidia-nemotron-70b")
 
 dir.create(OUT_DIR, recursive = TRUE, showWarnings = FALSE)
 RUN_TIMESTAMP <- format(Sys.time(), "%Y-%m-%dT%H%M%S")
@@ -210,9 +211,9 @@ if (!is.null(me_fit)) {
   print(summary(me_fit)$coefficients)
 }
 
-# ---- EXPLORATORY: H_M — SAE feature activation, AA vs neutral on Llama-3.1-8B ----
+# ---- EXPLORATORY: H_M — SAE feature activation, AA vs neutral on Llama-3.3-70B ----
 
-cat("\n=== H_M: SAE feature activation, AA vs neutral (Llama-3.1-8B only) ===\n")
+cat("\n=== H_M: SAE feature activation, AA vs neutral (Llama-3.3-70B only) ===\n")
 SAE_DATA_PATH <- "~/iboga-data/sae/activations.json"
 if (file.exists(SAE_DATA_PATH)) {
   sae <- fromJSON(SAE_DATA_PATH)

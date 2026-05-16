@@ -36,11 +36,11 @@ are pre-registering a 4-model × 3-arm test of exactly that: a
 between-checkpoint retrospective protocol (with closed-vocabulary
 structural constraint vs vocabulary-neutral vs unstructured), with
 structural-erosion slope and solve-rate non-inferiority as paired
-primary outcomes. 240 trajectories total, ICLR 2027 workshop target.
+primary outcomes. 432 trajectories total, ICLR 2027 workshop target.
 
 What we are NOT touching:
 - Your metric computation. Reproductions use your exported checkpoint metrics unmodified.
-- Your problem set. We use the 20 problems and 93 checkpoints as published.
+- Your problem set. We use the full 36-problem v1.0 catalog as published.
 - Your leaderboard. We run our own untreated-control arm rather than
   comparing against your published baselines.
 
@@ -49,7 +49,7 @@ What we add:
   call happen on the host between Docker checkpoint runs, with the
   retrospective text injected into the next checkpoint's agent prompt.
 - Three retrospective vocabularies (treatment, neutral, none).
-- Exploratory SAE analysis on Llama-3.1-8B using Goodfire's open SAEs.
+- Exploratory SAE analysis on Llama-3.3-70B using Goodfire's open SAE (layer 50).
 
 We're not asking for anything — just letting you know in case any
 of this overlaps with what your group is planning. The pre-reg will

@@ -52,7 +52,7 @@ silentvault (2026 workshop paper) ──── methodology lineage
                                         │
                                         ├─ primary: structural erosion + solve rate
                                         ├─ secondary: vocabulary differentiation
-                                        └─ exploratory: SAE mechanism (Llama-3.1-8B)
+                                        └─ exploratory: SAE mechanism (Llama-3.3-70B)
                                         
                   Nemo Compliance ───── deployment vignette (one chapter)
                   (Chinese energy/transport compliance Q&A, production)
@@ -61,22 +61,21 @@ silentvault (2026 workshop paper) ──── methodology lineage
 ## Research arc decisions (locked unless flagged)
 
 - **Substrate**: SlopCodeBench, not Nemo. Nemo becomes deployment case study only.
-- **Models** (locked OpenRouter slugs): `anthropic/claude-opus-4.7` + `qwen/qwen3-32b` + `meta-llama/llama-3.1-8b-instruct` + `deepseek/deepseek-chat-v3-0324`. Four families, three vendors.
+- **Models** (free, NVIDIA hosted NIM API): `nvidia/nvidia-llama-3.3-70b` + `nvidia/nvidia-qwen3-next-80b` + `nvidia/nvidia-deepseek-v4-pro` + `nvidia/nvidia-nemotron-70b`. Four families, four vendors (Meta/Alibaba/DeepSeek/NVIDIA).
 - **Arms**: 3 — Iboga (AA vocabulary), Vocabulary-Neutral (coding-jargon), Unstructured.
 - **Primary DV**: structural-erosion slope + solve-rate (co-primary, non-inferiority).
-- **Mechanism**: SAE on Llama-3.1-8B via Goodfire's open weights at layer 19. Exploratory, with pre-registered direction.
+- **Mechanism**: SAE on Llama-3.3-70B via Goodfire's open weights at layer 50. Exploratory, with pre-registered direction.
 - **Operator**: solo. Blinding via deterministic hash-based arm assignment.
-- **Budget**: $810 across 18 weeks.
+- **Budget**: ~$200-250 total (annotator + optional GPU). API cost $0 — NVIDIA free tier. The $810 OpenRouter plan is retired.
 - **Submission window**: ICLR 2027 workshop, 2026-09-25. Fallback NeurIPS SafetyXAI October.
 
-## Tool stack (original plan, preserved)
+## Tool stack (all free)
 
-- **OpenRouter** — pre-registered route for the 4 trajectory models. Locked.
-- **Gemini CLI** — free OAuth-backed validation route (proven on `xjq` checkpoint 1). Used for harness debugging, not as a trajectory model.
-- **Jules** — engineering coordinator for J6-J10 coding tasks (hook implementation, `iboga_runner.py`, SAE collection script, metric reproduction harness, DeepSeek slug resolution). Same way silentvault used it for J1-J5. Not a trajectory model.
-- **HuggingFace Router + Together AI** — fallbacks for Llama / Qwen if OpenRouter has issues.
+- **NVIDIA hosted NIM API** — free, OpenAI-compatible, the locked route for all 4 trajectory models (via the `opencode` agent). OpenRouter dropped 2026-05-15 (no paid path).
+- **Gemini CLI** — free OAuth route. Proven (completed a full 6-checkpoint trajectory). Kept as the fallback if NVIDIA throttles a model; not a primary trajectory model (different agent → would confound).
+- **Jules** — engineering coordinator; ran J6-J9 (hook, `iboga_runner.py`, SAE selector, reproduction harness) — all complete and merged.
 
-See `provider-routing.md` for the full routing table and the Jules task list.
+See `provider-routing.md` for the full routing table.
 
 ## Status flags
 
@@ -89,7 +88,7 @@ See `provider-routing.md` for the full routing table and the Jules task list.
 - 🟢 Non-Anthropic `lite_under20` dry-run route verified through Gemini CLI OAuth (`gemini_auth/gemini-2.5-flash-lite`) on 2026-05-13
 - 🟢 Gemini SlopCodeBench Docker image built successfully on 2026-05-13 after Docker disk cleanup
 - 🟡 Actual no-treatment `xjq` Gemini run partially validated the path: checkpoint 1 completed/evaluated; checkpoint 2 hit Google capacity errors and was stopped
-- 🟡 OpenRouter route identified; `OPENROUTER_API_KEY` is not exported in this shell yet
+- 🟢 NVIDIA hosted API route verified end-to-end (multi-checkpoint mvvault run, $0); OpenRouter retired
 - 🟡 Baseline reproduction and Arm 0 hook-neutrality gates pending
 - ⚪ SAE feature catalog pull pending
 - ⚪ External annotator recruitment pending
