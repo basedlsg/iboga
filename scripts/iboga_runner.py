@@ -243,99 +243,43 @@ def main():
         logging.error("NVIDIA_API_KEY not set")
         sys.exit(1)
 
-    # Read diff
+    # Assemble the corpus the agent confronts: the diff since the previous
+    # checkpoint, plus this trajectory's prior-session retrospectives.
     diff_content = ""
     if previous_diff_path and Path(previous_diff_path).exists():
         with open(previous_diff_path) as f:
             diff_content = f.read()
 
-    # Load schema
-    schema_path = REPO_ROOT / runner.ARM_SCHEMAS[ARM]
-    with open(schema_path) as f:
-        schema = json.load(f)
-
-
-    # Retrospective LLM call → NVIDIA hosted API (OpenAI-compatible).
-    # The arm prompt templates in arm-templates.md are the locked source;
-    # this builds the request from the arm's structured-output schema.
-    system_prompt = f"You are completing an introspection for arm {{ARM}}.\\nDiff:\\n{{diff_content}}"
-
-    tools = []
-    if ARM in ["A", "B"]:
-        tools = [{{"type": "function", "function": t}} for t in schema.get("tools", [])]
-    else:
-        # Arm C
-        tools = [{{
-            "type": "function",
-            "function": {{"name": "record_unstructured_retrospective", "description": "...", "parameters": schema.get("input_schema", {{}})}}
-        }}]
-
-    headers = {{"Authorization": f"Bearer {{api_key}}", "Content-Type": "application/json"}}
-    data = {{
-        "model": NVIDIA_MODEL,
-        "messages": [{{"role": "user", "content": system_prompt}}],
-        "tools": tools,
-        "tool_choice": "auto"
-    }}
-
-    retries = 2
-    for attempt in range(retries + 1):
+    prior = []
+    for pf in sorted(session_dir.glob("session-checkpoint_*.json")):
         try:
-            resp = httpx.post(NVIDIA_API_BASE, headers=headers, json=data, timeout=120.0)
-            resp.raise_for_status()
-            result = resp.json()
+            prior.append(pf.read_text())
+        except OSError:
+            pass
+    corpus = "DIFF SINCE LAST CHECKPOINT:\\n" + diff_content
+    if prior:
+        corpus += "\\n\\nPRIOR SESSION RETROSPECTIVES (most recent last):\\n" + "\\n---\\n".join(prior[-3:])
 
-            usage = result.get("usage", {{}})
-            runner.update_cost(TRAJECTORY_ID, usage.get("prompt_tokens", 0), usage.get("completion_tokens", 0), MODEL)
-            
-            choice = result.get("choices", [{{}}])[0]
-            message = choice.get("message", {{}})
-            
-            tool_calls = message.get("tool_calls", [])
-            output_data = {{}}
-            if tool_calls:
-                try:
-                    tool_call = tool_calls[0]
-                    func_name = tool_call["function"]["name"]
-                    output_data = json.loads(tool_call["function"]["arguments"])
-                    
-                    # Find matching schema for this tool
-                    tool_schema = None
-                    if ARM in ["A", "B"]:
-                        for t in schema.get("tools", []):
-                            if t.get("name") == func_name:
-                                tool_schema = t.get("input_schema")
-                                break
-                    else:
-                        tool_schema = schema.get("input_schema")
-                        
-                    if tool_schema:
-                        jsonschema.validate(instance=output_data, schema=tool_schema)
-                        
-                    break
-                except (json.JSONDecodeError, jsonschema.exceptions.ValidationError) as e:
-                    logging.warning(f"Validation failure: {{e}}")
-                    continue # Retry on validation error
-            elif message.get("content"):
-                 output_data = {{"retrospective": message.get("content")}}
-                 break
-        except Exception as e:
-            logging.warning(f"LLM call attempt {{attempt}} failed: {{e}}")
-            time.sleep(2)
-    else:
-        # Final failure
-        logging.error("Structured output failure")
+    # Run the full Iboga confession ritual (confession.py).
+    import scripts.confession as confession
+    try:
+        result = confession.run_confession(ARM, corpus, NVIDIA_MODEL, api_key, NVIDIA_API_BASE)
+    except confession.ConfessionError as e:
+        logging.error(f"Confession failed after retries: {{e}}")
         session_file = session_dir / f"session-{{current_checkpoint_name}}.json"
         with open(session_file, "w") as f:
-            json.dump({{"error": "structured_output_failure"}}, f)
-        print("")
+            json.dump({{"error": "confession_failure", "detail": str(e), "arm": ARM}}, f, indent=2)
+        print("")  # empty prefix — next checkpoint proceeds without injection
         sys.exit(0)
-        
+
+    runner.update_cost(TRAJECTORY_ID, result["usage"]["prompt_tokens"],
+                       result["usage"]["completion_tokens"], MODEL)
+
     session_file = session_dir / f"session-{{current_checkpoint_name}}.json"
     with open(session_file, "w") as f:
-        json.dump(output_data, f)
-        
-    print("Prior session retrospective: " + json.dumps(output_data) + ". Continue your work.")
+        json.dump(result["confession"], f, indent=2)
+
+    print(result["prompt_prefix"])
 
 if __name__ == "__main__":
     main()
