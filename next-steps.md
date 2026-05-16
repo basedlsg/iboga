@@ -316,3 +316,36 @@ The MoE model (3B active params) is decisive — fewer flailing agent steps, far
 
 **Main-run feasibility**: 432 trajectories. With qwen-class MoE speed (~68 min/trajectory) the MoE models are very tractable. The two dense 70Bs (llama-3.3-70b, nemotron-70b) run ~3 hr/trajectory; with the 7200s timeout they should now complete 6/6 (needs one confirmation run). Total ~800-900 compute-hours, batched with parallelism across the 6-week main-run window — feasible. A confirmation run of a dense 70B with the new timeout is the one remaining throughput check.
 - 2026-05-16 — **Stale-reference consistency sweep.** The 2026-05-15 NVIDIA-transition commit updated `prereg.md`/`arm-assignment.json`/core scripts but missed the secondary docs. Swept all project files and fixed live operational text that still referenced the retired OpenRouter plan (Llama-3.1-8B, l19, OpenRouter, 240 trajectories, 20 problems, n=80, $810 budget): `sae-probe-corpus.json` (metadata → Llama-3.3-70B/l50; re-hashed → `4a0853a0b97fd9ba3e4c443be5afdd8619735fe7d5dc7d317ec0e7fc97ce0229`, re-pinned in prereg.md + select_sae_features.py), `prereg.md` §9 (n=80→144, power 0.92→0.99), `handoff-prompt.md` (model list, substrate, H_M, budget), `README.md` (model set, tool stack, budget), `sprocketlab-email.md` (432 trajectories, 36 problems, Llama-3.3-70B), `provider-routing.md` (tool-stack table → NVIDIA locked), `slopcodebench-study.md` (superseded-note banner), `analysis-plan.R` (MODELS constant + H_M comments), `CLAUDE.md`, `arm-templates.md`, `sae-features-decision.md`, `jules-tasks.md` (historical banner — J6-J9 all done). Decision-log history in this file is intentionally left intact (audit trail). SAE self-test re-verified against the re-hashed corpus.
+
+## Arm-A validation trajectory — RESULT + a real methodological finding (2026-05-16)
+
+First real Iboga Arm-A trajectory: `qwen3-next-80b` on `mvvault`, via NVIDIA, $0. **6/6 checkpoints completed.** The treatment mechanism works end-to-end:
+- 5 retrospectives generated (checkpoints 2-6), each valid Arm-A structured output — e.g. checkpoint_4: `{item, claimed_purpose, actual_outcome, where_i_was:"selfish", diff_line_refs:[...]}`. The model classified its own backup-removing refactor as "selfish" — exactly the intended signal.
+- All 5 retrospective calls free ($0), token-logged.
+- Retrospectives injected into the next checkpoint's prompt.
+- `metrics.json` written with per-checkpoint data.
+
+**The finding — erosion/verbosity are only measurable on early checkpoints:**
+
+| checkpoint | erosion | verbosity | solve_rate |
+|---|---|---|---|
+| 1 | 0.702 | 0.398 | 0.919 |
+| 2 | 0.365 | 0.276 | 0.209 |
+| 3 | 0.545 | 0.262 | 0.096 |
+| 4 | **None** | **None** | 0.052 |
+| 5 | **None** | **None** | 0.043 |
+| 6 | **None** | **None** | 0.000 |
+
+`scb-check` reports "failed to parse Python file" for checkpoints 4-6 — the agent's code became **syntactically unparseable**. `scb-check`'s erosion metric needs an AST (cyclomatic complexity); broken syntax → no number. `solve_rate` is robust for all 6 (it comes from pytest pass-counts in `evaluation.json`, which run regardless).
+
+**Why it matters:** the primary DV H1a is **erosion_slope** — an OLS slope over checkpoints. This trajectory yields only a 3-point erosion slope. The co-primary H1b (solve_rate) yields a clean 6-point signal. If unparseable later checkpoints are common, erosion_slope is systematically measured over the early-to-mid trajectory only.
+
+**Root cause is partly model strength.** `qwen3-next-80b-a3b` is a small fast MoE (3B active) — chosen for throughput. SlopCodeBench's own paper used frontier models (Opus 4.6, GPT 5.4) that hold syntax longer. A weaker model breaks parseability sooner. The dense 70Bs (llama-3.3-70b, nemotron-70b) are more capable and may keep code parseable through more checkpoints — but they are ~12× slower (the throughput tradeoff).
+
+**This is a genuine pre-lock decision — do NOT lock on one trajectory.** Options to weigh after the pilot shows the parseable-checkpoint distribution across all 4 models:
+1. Pre-register: "erosion_slope computed over parseable checkpoints; trajectory needs ≥3 parseable checkpoints to enter erosion analysis." Honest; means a variable measurement window.
+2. Treat unparseable-code as a worst-case erosion sentinel (e.g. erosion=1.0) — captures the degradation signal but is a methodology change requiring justification.
+3. Promote solve_rate to lead primary (robustly 6/6-measurable), erosion_slope to secondary. The NeurIPS reviewer's N7 already wanted solve_rate co-primary; it is also the more reliably-measurable DV.
+4. Use the dense 70Bs despite the speed cost, for parseability.
+
+**Action: the Week-7 pilot (24 trajectories, 4 models × 2 problems × 3 arms) must report the parseable-checkpoint distribution per model.** That distribution is the data the §9 analysis-plan decision hinges on. Until then, erosion_slope-vs-solve_rate primacy is an open pre-lock question.
