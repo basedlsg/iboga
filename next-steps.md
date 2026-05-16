@@ -11,7 +11,7 @@ tags: [iboga, prereg, checklist]
 
 **Goal**: complete every item below before posting `prereg.md` to OSF. No treatment trajectories run before lock.
 
-Today: **2026-05-13**. Lock target: **2026-07-01**. That's **7 weeks of pre-lock work**.
+> **⚠️ AUTHORITATIVE SOURCE: the dated decision log further down this file, not the Week 1-7 checklist below.** The Week 1-7 checklist was written 2026-05-12 against the original OpenRouter plan and is now substantially superseded — OpenRouter is dropped (NVIDIA free hosted API instead), the SAE model is Llama-3.3-70B/l50 (not Llama-3.1-8B/l19), the run is 432 trajectories over 36 problems (not 240/20), and J6-J9 are all built and merged. Read the decision log (entries from 2026-05-12 onward) and `prereg.md` for the current state. The checklist below is kept only as the original planning skeleton.
 
 ---
 
