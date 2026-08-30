@@ -1,0 +1,46 @@
+{
+  "experiment": "bedrock-preflight",
+  "created_at": "2026-08-03",
+  "region": "us-east-1",
+  "credential_present_in_process": true,
+  "credential_persisted": false,
+  "models": [
+    "deepseek.v3.2",
+    "zai.glm-4.7-flash"
+  ],
+  "attempts": [
+    {
+      "api": "converse",
+      "endpoint": "bedrock-runtime.us-east-1.amazonaws.com",
+      "result": "rejected",
+      "http_status": 403,
+      "diagnosis": "credential rejected or not authorized for this Runtime path"
+    },
+    {
+      "api": "mantle_chat_completions",
+      "endpoint": "bedrock-mantle.us-east-1.api.aws/v1/chat/completions",
+      "result": "rejected",
+      "http_status": 401,
+      "diagnosis": "bearer credential rejected before model invocation"
+    },
+    {
+      "credential_attempt": "second_user_supplied_token",
+      "api": "converse",
+      "endpoint": "bedrock-runtime.us-east-1.amazonaws.com",
+      "result": "rejected",
+      "http_status": 403,
+      "models_tested": ["deepseek.v3.2", "zai.glm-4.7-flash"],
+      "diagnosis": "credential rejected or not authorized for this Runtime path"
+    },
+    {
+      "credential_attempt": "second_user_supplied_token",
+      "api": "mantle_chat_completions",
+      "endpoint": "bedrock-mantle.us-east-1.api.aws/v1/chat/completions",
+      "result": "rejected",
+      "http_status": 401,
+      "diagnosis": "bearer credential rejected before model invocation"
+    }
+  ],
+  "live_experiment_started": false,
+  "secret_material": "not recorded"
+}

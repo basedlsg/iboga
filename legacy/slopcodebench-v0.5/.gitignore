@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.DS_Store
+slop-code-bench/
+.scbench/
+.uv-cache/
+vendor-inspection/
+slopcodebench-repo-inspection-*.md
+
+harness-validation-*

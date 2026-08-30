@@ -1,0 +1,51 @@
+{
+  "ok": true,
+  "errors": [],
+  "n": 96,
+  "splits": {
+    "train": 40,
+    "dev": 28,
+    "test": 28
+  },
+  "domains": {
+    "talent": 28,
+    "evaluation": 16,
+    "agentic_work": 24,
+    "research": 20,
+    "governance": 8
+  },
+  "task_families": {
+    "evidence_grounding": 4,
+    "calibrated_screening": 8,
+    "conflict_resolution": 4,
+    "rubric_scope": 8,
+    "contamination": 4,
+    "review_calibration": 8,
+    "label_hygiene": 4,
+    "tool_authorization": 8,
+    "state_tracking": 4,
+    "privacy_boundary": 12,
+    "recovery": 8,
+    "citation_scope": 4,
+    "calibration": 4,
+    "missing_evidence": 8,
+    "commit_gate": 8
+  },
+  "decisions": {
+    "reject": 20,
+    "request_evidence": 16,
+    "hold": 16,
+    "approve": 16,
+    "escalate": 16,
+    "local_only": 12
+  },
+  "quality": {
+    "validity": 1.0,
+    "evidence_fidelity": 1.0,
+    "variant_diversity": 1.0,
+    "split_integrity": 1.0,
+    "pii_screen": 1.0,
+    "label_balance": 0.6
+  },
+  "dataset_hash": "bc031a6b5790980b7d440722711f8847e992f66ca6aa5a884433643d6c5b10ac"
+}

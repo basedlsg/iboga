@@ -1,0 +1,26 @@
+{
+  "session_id": "demo-001",
+  "task": "Choose whether to commit a generated artifact after a research pass.",
+  "evidence": [
+    {
+      "id": "e1",
+      "kind": "tool_error",
+      "text": "The research tool returned an empty result after a successful HTTP response."
+    },
+    {
+      "id": "e2",
+      "kind": "user_correction",
+      "text": "The operator said that a blank response does not prove the source was empty."
+    },
+    {
+      "id": "e3",
+      "kind": "prior_decision",
+      "text": "The workflow requires independent review before an artifact is committed."
+    },
+    {
+      "id": "e4",
+      "kind": "contradiction",
+      "text": "The agent previously treated a successful status code as proof that usable content was returned."
+    }
+  ]
+}

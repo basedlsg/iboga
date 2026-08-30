@@ -1,10 +1,17 @@
+.DS_Store
 __pycache__/
 *.pyc
-.DS_Store
-slop-code-bench/
-.scbench/
-.uv-cache/
-vendor-inspection/
-slopcodebench-repo-inspection-*.md
 
-harness-validation-*
+# Research corpus — local only, never commit (may contain copyrighted PDFs and private notes)
+research/notebooklm/briefing-docs/
+research/notebooklm/study-guides/
+research/notebooklm/faqs/
+research/notebooklm/timelines/
+research/notebooklm/mind-maps/
+research/notebooklm/sources/
+research/notebooklm/transcripts/
+research/notebooklm/query-logs/
+
+# Keep README.md and index.md tracked so the structure is documented
+!research/notebooklm/README.md
+!research/notebooklm/index.md

@@ -1,0 +1,47 @@
+{
+  "checked_at": "2026-08-03",
+  "credential": {
+    "source": "user-supplied short-term Bedrock bearer token",
+    "stored": false,
+    "redacted": true
+  },
+  "region": "us-east-1",
+  "endpoint": "https://bedrock-mantle.us-east-1.api.aws/v1",
+  "model_discovery": {
+    "status": 200,
+    "available_model_count": 55,
+    "selected_models_present": [
+      "deepseek.v3.2",
+      "moonshotai.kimi-k2.5",
+      "zai.glm-4.7-flash",
+      "zai.glm-5"
+    ]
+  },
+  "chat_completions_preflight": [
+    {
+      "model_id": "deepseek.v3.2",
+      "status": "success",
+      "response_shape": "OpenAI-compatible chat completion",
+      "input_tokens": 21,
+      "output_tokens": 20,
+      "estimated_cost_usd": 0.00005002
+    },
+    {
+      "model_id": "zai.glm-4.7-flash",
+      "status": "success",
+      "response_shape": "OpenAI-compatible chat completion",
+      "input_tokens": 21,
+      "output_tokens": 22,
+      "estimated_cost_usd": 0.00001027
+    }
+  ],
+  "runtime_converse": {
+    "status": "not_usable_with_this_credential",
+    "observed_status": 403
+  },
+  "long_run": {
+    "status": "not_completed",
+    "observed_failure": "provider HTTP 500 during a refinement call; subsequent manually re-entered copies returned 401",
+    "interpretation": "The endpoint and selected models are usable, but no complete live experiment result was generated."
+  }
+}
