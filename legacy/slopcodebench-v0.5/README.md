@@ -53,7 +53,7 @@ silentvault (2026 workshop paper) ──── methodology lineage
                                         ├─ primary: structural erosion + solve rate
                                         ├─ secondary: vocabulary differentiation
                                         └─ exploratory: SAE mechanism (Llama-3.3-70B)
-                                        
+
                   Nemo Compliance ───── deployment vignette (one chapter)
                   (Chinese energy/transport compliance Q&A, production)
 ```
